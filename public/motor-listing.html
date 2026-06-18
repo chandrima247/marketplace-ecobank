@@ -1,0 +1,423 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MaaS Insurance | Quote Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#00164f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#1d398a",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-container": "#44e4ab",
+                        "inverse-primary": "#8ecefa",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#006245",
+                        "inverse-surface": "#273142",
+                        "secondary": "#4159ab",
+                        "surface-container-highest": "#d9e3f9",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed": "#001e2e",
+                        "success-teal": "#00C58F",
+                        "on-primary-container": "#91d2fe",
+                        "deep-navy": "#023448",
+                        "on-surface-variant": "#40484e",
+                        "border-subtle": "#E5E5E5",
+                        "surface": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary": "#004832",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#c8e6ff",
+                        "primary-fixed-dim": "#8ecefa",
+                        "surface-dim": "#d0daf1",
+                        "on-surface": "#121c2c",
+                        "on-tertiary-fixed": "#002115",
+                        "outline": "#70787f",
+                        "tertiary-fixed-dim": "#3edfa7",
+                        "inverse-on-surface": "#ecf1ff",
+                        "eco-lime": "#BED600",
+                        "secondary-fixed": "#dce1ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "outline-variant": "#c0c7cf",
+                        "surface-tint": "#17648c",
+                        "primary": "#004260",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#264192",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d9e3f9",
+                        "surface-container": "#e7eeff",
+                        "on-primary-fixed-variant": "#004c6d",
+                        "tertiary-fixed": "#63fcc2",
+                        "surface-gray": "#F8F8F8",
+                        "secondary-container": "#8fa7ff",
+                        "primary-container": "#005b82",
+                        "surface-container-high": "#dee8ff",
+                        "on-tertiary-fixed-variant": "#005139",
+                        "on-background": "#121c2c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-scroller::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroller::-webkit-scrollbar-thumb { background: #c0c7cf; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface-gray text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed-variant min-h-screen flex flex-col">
+<!-- TopNavBar Implementation from SCREEN_69 -->
+<header class="bg-surface-container-lowest/80 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-border-subtle/50 shadow-sm">
+<nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto w-full">
+<div class="flex items-center">
+<img alt="Ecobank Logo" class="w-[100px] h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3Nt5OVToBPKxtyfZBReBtWk-ipo786E1W6qVtZVNOKYggz5n7Kk7TMSUfBwG7zajrZjYKCXGx37rtVDkP8EUQGhCuwT2ir47347C8mMzRQ2yqKV3Q0003dTKDFafVPEm1zYFSNk0h3lwQG-pRInnMGXtExh1B5IYLVxWJnlRQ4XRG3aEV7uRkc_k3y9dgKIHi9Vo6HE8cfDNYAVUydmgCTvqXdkirmOjjpVG5F_2m4_jKyWftN81LBvCm2x6z4ulqSOhJ4RX_v0c">
+</div>
+<div class="hidden md:flex items-center gap-6 font-label-lg text-label-lg">
+<a class="text-primary border-b-2 border-primary font-bold pb-1 hover:text-secondary transition-colors" href="#" data-nav="explore">Explore</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors" href="#" data-nav="policies">My Policies</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors" href="#" data-nav="claims">Claims</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center">
+<img alt="nxtpe Logo" class="h-6 md:h-7 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0OJhkVGQEtK_BFI-bmLqZztV9fS3Gls2wnxVD5NFh6xubAVBbfMnxVRJU23cEFVsS8jH-v43TjslANVxyeuqXKCTo5c_LeYWUVGv02LyW29BJjnScXAxR-YHQ5IRMa3IJejFk6KyvqAFvndSh4X7TymlWk6E4HDSbhEtDt1j-VC0xTW2eRgTYLq17tEp5kYLPhurmnOboRc2tUC-wANQFT8h29dZCgXNBMJevqpQ7e5bk9M7zK4s9IaML-cMvoZxnDKzWuaMx5jI">
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-150 md:hidden">menu</span>
+</div>
+</nav>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-stack-md flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar -->
+<aside class="hidden md:block w-72 flex-shrink-0">
+<div class="sticky top-24 space-y-stack-md">
+<!-- Vehicle Summary Card (from IMAGE_27) -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border border-border-subtle shadow-sm mb-stack-md">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-deep-navy text-label-lg">MARUTI SX4</h4>
+<button class="text-secondary text-sm font-medium hover:underline" data-nav="edit">Edit Car</button>
+</div>
+<p class="text-on-surface-variant text-label-sm mb-4">DL10CB1234 | 2011 | Petrol</p>
+<div class="flex justify-between items-center pt-3 border-t border-border-subtle/50">
+<span class="text-label-sm text-on-surface-variant">Policy Expiry Date</span>
+<span class="text-label-sm font-bold text-on-surface">31-May-2026 <span class="material-symbols-outlined text-[16px] align-middle">chevron_right</span></span>
+</div>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl border border-border-subtle">
+<h3 class="font-label-lg text-label-lg text-primary mb-4 uppercase tracking-wider">Refine Results</h3>
+<div class="space-y-6">
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface-variant mb-2">Policy Type</label>
+<select class="w-full bg-surface-container-lowest border-border-subtle rounded-lg py-2 px-3 text-body-md focus:ring-2 focus:ring-primary-container">
+<option>Comprehensive Motor</option>
+<option>Third Party Fire &amp; Theft</option>
+<option>Health Prime</option>
+</select>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="font-label-lg text-label-lg text-on-surface-variant">Annual Premium</label>
+<span class="text-label-sm font-bold text-primary">UGX 400k - 1.2M</span>
+</div>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range">
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface-variant mb-3">Key Features</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
+<span class="text-body-md group-hover:text-primary transition-colors">Zero Depreciation</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
+<span class="text-body-md group-hover:text-primary transition-colors">Cashless Garages</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
+<span class="text-body-md group-hover:text-primary transition-colors">Engine Protection</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
+<span class="text-body-md group-hover:text-primary transition-colors">Roadside Assist</span>
+</label>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 bg-primary text-on-primary py-3 rounded-lg font-bold hover:bg-primary-container transition-all active:scale-95">
+                    Update Results
+                </button>
+</div>
+<!-- Ad/EcoBank Trust Banner -->
+<div class="bg-secondary p-stack-md rounded-xl text-on-secondary relative overflow-hidden group">
+<div class="relative z-10">
+<span class="text-label-sm uppercase font-bold text-eco-lime mb-2 block">Ecobank Exclusive</span>
+<h4 class="font-label-lg text-label-lg font-bold mb-2">Get 5% Cashback</h4>
+<p class="text-label-lg opacity-90">When you pay using your Ecobank Mobile App or Card.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Quote Listings Container -->
+<section class="flex-grow space-y-stack-md">
+<!-- Header/Summary -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-4 gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-deep-navy">Insurance Quotes</h1>
+<p class="text-body-md text-on-surface-variant">Showing 14 policies for your <span class="font-bold text-primary">Toyota RAV4 2022</span></p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full border border-border-subtle">
+<span class="text-label-lg text-on-surface-variant">Sort by:</span>
+<button class="text-label-lg font-bold text-primary flex items-center gap-1">
+                    Lowest Price <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Quote Card 1 (Simplified) -->
+<article class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm hover:shadow-md transition-all overflow-hidden">
+<div class="flex flex-col md:flex-row items-center min-h-[80px] p-4 gap-4">
+<!-- Column 1: Brand -->
+<div class="w-16 h-16 flex-shrink-0 flex items-center justify-center">
+<img alt="AXA Logo" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Kwif4olBwECfw70kIFT0KqXXXyj8_VYLBeWB9GI7EelLQflhsE0HQL6yN_madxmLyiMEIOzJONTjU5k5KHzxwLswCJBhjYQcQbpuCYE27uMR8sw9BajvDxVwWy82oESSoWx6h2NfQRirUV3IgKa_okC7q75NmcKju4L3drY74AJgDIL4-le74o47hVHb5fnMjDM319hxiH9mIb4oxbVxMKn1JqPVFighkbMPf28cYje-iRiekHtyrQRlopTrh-k0nskRUlKSssk">
+</div>
+<!-- Column 2: Plan Info -->
+<div class="flex-grow">
+<h2 class="font-body-md text-body-md font-bold text-deep-navy mb-1">ICEA Lion Simba Motor Policy</h2>
+<span class="bg-success-teal/10 text-success-teal text-[10px] font-bold px-2 py-0.5 rounded uppercase border border-success-teal/20">Top Rated</span>
+</div>
+<!-- Column 3: Pricing Block -->
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="text-label-sm text-on-surface-variant line-through block">UGX 680,000</span>
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary block leading-none">UGX 542,000</span>
+<span class="text-label-sm text-on-surface-variant block uppercase tracking-tighter">Per Year</span>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-label-lg text-label-lg hover:bg-deep-navy transition-all active:scale-95 flex items-center justify-center gap-1.5" data-buy="ICEA Lion">
+                        Buy Plan
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Simplified Footer -->
+<div class="px-stack-md py-3 bg-surface-container-low border-t border-border-subtle flex justify-between items-center">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
+<span class="text-label-lg font-label-lg text-primary hover:text-secondary transition-colors">Add to Compare</span>
+</label>
+<a class="text-label-sm font-bold text-on-surface-variant hover:underline" href="#">View Policy Wordings</a>
+</div>
+</article>
+<!-- Quote Card 2 (Simplified) -->
+<article class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm hover:shadow-md transition-all overflow-hidden">
+<div class="flex flex-col md:flex-row items-center min-h-[80px] p-4 gap-4">
+<!-- Column 1: Brand -->
+<div class="w-16 h-16 flex-shrink-0 flex items-center justify-center">
+<img alt="Allianz Logo" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADL7bfHB2Yo2_W0Q_Y0z5xnfHNRlGsobh-_lDenLKxePhnjWx8wO5jjWevTwYhvKcfngjHhLlWnwqx3RWUsE6S4POHkPwUIldHv5Zn6TBgTYPUYsJoHdv1krfTBFqxDY1joJWRq2uvf6D7lMmBe7cpaAAmuR5GfsR_RboDy9rBWqoUyR-987dKmpWDEHn8L9T0bjsukUYTamPLNfuLCZ4wX08PPKuR5Jc5Al82ro6Vq1PFhodNZlStJFPICZVhN0Ta3oz9kBnFD3s">
+</div>
+<!-- Column 2: Plan Info -->
+<div class="flex-grow">
+<h2 class="font-body-md text-body-md font-bold text-deep-navy mb-1">Britam Motor Insurance</h2>
+<span class="bg-eco-lime/20 text-on-tertiary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded uppercase border border-eco-lime/40">Best Value</span>
+</div>
+<!-- Column 3: Pricing Block -->
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary block leading-none">UGX 485,000</span>
+<span class="text-label-sm text-on-surface-variant block uppercase tracking-tighter">Per Year</span>
+</div>
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-label-lg text-label-lg hover:bg-deep-navy transition-all active:scale-95 flex items-center justify-center gap-1.5" data-buy="Britam">
+                        Buy Plan
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Simplified Footer -->
+<div class="px-stack-md py-3 bg-surface-container-low border-t border-border-subtle flex justify-between items-center">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
+<span class="text-label-lg font-label-lg text-primary hover:text-secondary transition-colors">Add to Compare</span>
+</label>
+<a class="text-label-sm font-bold text-on-surface-variant hover:underline" href="#">View Details</a>
+</div>
+</article>
+<!-- Quote Card 3 (Simplified Premium) -->
+<article class="bg-surface-container-lowest rounded-xl border-2 border-secondary/20 shadow-md transition-all overflow-hidden relative">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-4 py-0.5 rounded-bl-xl font-bold text-[10px] uppercase tracking-widest z-10 shadow-sm">Ecobank Priority</div>
+<div class="flex flex-col md:flex-row items-center min-h-[80px] p-4 gap-4">
+<!-- Column 1: Brand -->
+<div class="w-16 h-16 flex-shrink-0 flex items-center justify-center">
+<img alt="Liberty Logo" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARkUSO4u-B0dNP4edm6krOB8fVO_OoFREpjPOot15AsTl0j8pcJp2CWcM7ls9Raty6j7sZAc6NLGTgPULB-BnyTXOI4j8pTfP94K8U0CtWMURzqqF1CqOiodu97QJ8MBoB-YqM86xNc-MiCYqC2MASQaoBemA4UZj18bpIwVGQFoB3JWIWjp7ae06TAx9jk2bb694zmJHD75Lq9s4ClKETd9DKRPISvSJQzLBjeoCuJ5argtMLNOp4t5wFOeoKrX0TdMuUF7cNt1M">
+</div>
+<!-- Column 2: Plan Info -->
+<div class="flex-grow">
+<h2 class="font-body-md text-body-md font-bold text-deep-navy mb-1">Old Mutual Car Insurance</h2>
+<span class="bg-secondary text-on-secondary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Highly Recommended</span>
+</div>
+<!-- Column 3: Pricing Block -->
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="text-headline-lg font-headline-lg text-secondary block leading-none">UGX 720,000</span>
+<span class="text-label-sm text-on-surface-variant block uppercase tracking-tighter">Per Year</span>
+</div>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-lg font-bold hover:bg-on-secondary-fixed-variant transition-all active:scale-95 flex items-center justify-center gap-2" data-buy="Old Mutual">
+                        Buy Plan
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Simplified Footer -->
+<div class="px-stack-md py-3 bg-surface-container-low border-t border-border-subtle flex justify-between items-center">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
+<span class="text-label-lg font-label-lg text-primary hover:text-secondary transition-colors">Add to Compare</span>
+</label>
+<a class="text-label-sm font-bold text-on-surface-variant hover:underline" href="#">View Policy Wordings</a>
+</div>
+</article>
+</section>
+</main>
+<!-- Compare Drawer (Floating Interaction) -->
+<div class="fixed bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface py-4 px-6 rounded-full shadow-2xl z-40 hidden flex items-center gap-6 animate-bounce-short" id="compare-bar">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-on-surface bg-white overflow-hidden"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANn5vEk74J4RWxMIABJGk4Zh_cooxDyRFGIEsXqzZe31fXt3TQ9fGIWszeDWgFEwhptO00tWwrb03xNZfCG6GYYjERv4eWZqwcTTqs1yXKnYsyFesUp5OxYxRVWO0vpLclu9JRj6294D4pHfndH0AGZGEzb4iZGiTKaS21-33sO__kgayi9q0tjSTAAHx8KWRvk2VE8VacohoZEq664iKu6_b1C5M58KoUS7k8eCfdQS06GjVh2vkkHCLFpe6C8VyvOMT99CvEGeY"></div>
+<div class="w-10 h-10 rounded-full border-2 border-on-surface bg-white overflow-hidden"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC31NPDuIXT-zKVGRm6OFjPLmcypvjRxof6jYcQgz_S6DZjr5XcPC4_TQlv8bIG5bkf5i5jzVCp5ngOPSp2fIU5BxM7k8fTbBOmYB0bIHXNuuxPLJnmJDjoG35IN5dU7YiiVz_wswH-vBh3XBqMu6YGeoX8bXoMLOOfoKOcs6PPOUlxfYyXNiT_12HEH4lkgM3bJeiiPUu7L78qzEprpDaNGs5TWYgjfJEFHwnvAL9BvcRHEN_E8rAX8DUxrkhN5oI---Tq_SmCInI"></div>
+</div>
+<div class="h-6 w-px bg-surface-variant/30"></div>
+<div class="text-label-lg font-bold">2 Plans Selected</div>
+<button class="bg-primary-fixed text-on-primary-fixed-variant px-6 py-2 rounded-full font-bold hover:bg-white transition-colors">Compare Now</button>
+<button class="material-symbols-outlined text-surface-variant/70 hover:text-white" onclick="document.getElementById('compare-bar').classList.add('hidden')">close</button>
+</div>
+<!-- Mobile Bottom Nav -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface border-t border-border-subtle shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="text-label-sm font-label-sm">Insurance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-label-sm font-label-sm">Claims</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm font-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-gray dark:bg-surface-container border-t border-border-subtle mt-stack-lg">
+<div class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-title-md text-title-md font-bold text-deep-navy">MaaS Insurance</span>
+<p class="text-body-md text-on-surface-variant text-center md:text-left">© 2024 MaaS Insurance Marketplace. Partnered with Ecobank.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">FAQ</a>
+<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script>
+    // Logic for compare bar
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const compareBar = document.getElementById('compare-bar');
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+            const checkedCount = Array.from(checkboxes).filter(c => c.checked).length;
+            if (checkedCount > 0) {
+                compareBar.classList.remove('hidden');
+                compareBar.querySelector('.text-label-lg').textContent = `${checkedCount} Plan${checkedCount > 1 ? 's' : ''} Selected`;
+            } else {
+                compareBar.classList.add('hidden');
+            }
+        });
+    });
+
+    // Sticky Header Shrink
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 20) {
+            nav.classList.add('py-2');
+            nav.classList.remove('py-4');
+        } else {
+            nav.classList.add('py-4');
+            nav.classList.remove('py-2');
+        }
+    });
+
+    // ── Bridge to parent wizard (MaaS shell) ──
+    function post(action, payload) {
+        try {
+            window.parent.postMessage(Object.assign({ source: 'maas-motor-listing', action: action }, payload || {}), '*');
+        } catch (e) {}
+    }
+    // Buy Plan → advance to application/details with selected provider
+    document.querySelectorAll('[data-buy]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            post('buy', { provider: btn.getAttribute('data-buy') });
+        });
+    });
+    // Edit Car / Explore / nav → back to questionnaire or other views
+    document.querySelectorAll('[data-nav]').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            post('navigate', { target: el.getAttribute('data-nav') });
+        });
+    });
+</script>
+
+
+</body></html>

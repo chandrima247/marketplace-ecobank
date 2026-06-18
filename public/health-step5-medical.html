@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medical History - Ecobank MaaS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#1e398a",
+                    "secondary": "#4159ab",
+                    "surface-tint": "#316383",
+                    "surface-dim": "#d0daf1",
+                    "surface-container-high": "#dee8ff",
+                    "on-primary-fixed": "#001e2e",
+                    "on-surface": "#121c2c",
+                    "surface-container-low": "#f0f3ff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#b1f0d1",
+                    "primary-fixed-dim": "#9cccf0",
+                    "on-secondary-fixed": "#001550",
+                    "inverse-on-surface": "#ecf1ff",
+                    "surface-container": "#e7eeff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#0f513a",
+                    "eco-lime": "#BED600",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#004731",
+                    "deep-navy": "#023448",
+                    "background": "#f9f9ff",
+                    "on-background": "#121c2c",
+                    "primary-container": "#004260",
+                    "primary": "#002b40",
+                    "secondary-fixed": "#dce1ff",
+                    "on-surface-variant": "#41484d",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#9cccf0",
+                    "on-primary-container": "#7eaed1",
+                    "surface": "#f9f9ff",
+                    "border-subtle": "#E5E5E5",
+                    "tertiary-fixed-dim": "#96d4b6",
+                    "inverse-surface": "#273142",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface-gray": "#F8F8F8",
+                    "on-secondary-fixed-variant": "#274192",
+                    "on-error": "#ffffff",
+                    "success-teal": "#00C58F",
+                    "outline": "#71787e",
+                    "on-primary-fixed-variant": "#124b6a",
+                    "outline-variant": "#c1c7ce",
+                    "secondary-fixed-dim": "#b6c4ff",
+                    "surface-container-highest": "#d9e3f9",
+                    "on-tertiary-fixed": "#002115",
+                    "secondary-container": "#90a7ff",
+                    "tertiary": "#002e1f",
+                    "primary-fixed": "#c8e6ff",
+                    "surface-variant": "#d9e3f9",
+                    "on-tertiary-container": "#78b599",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1200px",
+                    "base": "8px",
+                    "stack-lg": "48px",
+                    "margin-desktop": "40px",
+                    "stack-sm": "12px",
+                    "stack-md": "24px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Hanken Grotesk"],
+                    "title-md": ["Hanken Grotesk"],
+                    "label-lg": ["Hanken Grotesk"],
+                    "badge-xs": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "badge-xs": ["10px", {"lineHeight": "12px", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: var(--primary); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Custom Checkbox Styling */
+        input[type="checkbox"]:checked + label .check-icon { opacity: 1; transform: scale(1); }
+        input[type="checkbox"]:checked + label { border-color: #002b40; background-color: #f0f3ff; }
+
+        /* Smooth transition for side drawer */
+        .priority-sidebar { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        body > nav, body > header { display: none !important; }
+        html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
+        footer.fixed { position: relative !important; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest dark:bg-surface-dim border-b border-border-subtle dark:border-outline-variant backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">Ecobank MaaS</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors" data-icon="help">help</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors" data-icon="account_circle">account_circle</button>
+</div>
+</header>
+<main class="mt-20 mb-32 flex-grow max-w-[1200px] mx-auto w-full px-margin-mobile md:px-margin-desktop">
+<!-- Progress Stepper -->
+<nav class="mb-stack-lg overflow-x-auto hide-scrollbar">
+<div class="flex items-center justify-between min-w-[600px] py-4">
+<div class="flex flex-col items-center gap-2 group opacity-60">
+<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-label-sm">Basic Info</span>
+</div>
+<div class="h-[2px] flex-grow bg-success-teal mx-4 opacity-30"></div>
+<div class="flex flex-col items-center gap-2 group opacity-60">
+<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-label-sm">Plan Selection</span>
+</div>
+<div class="h-[2px] flex-grow bg-success-teal mx-4 opacity-30"></div>
+<div class="flex flex-col items-center gap-2 group opacity-60">
+<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-label-sm">Beneficiaries</span>
+</div>
+<div class="h-[2px] flex-grow bg-success-teal mx-4 opacity-30"></div>
+<div class="flex flex-col items-center gap-2 group opacity-60">
+<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</div>
+<span class="font-label-sm text-label-sm">Contact</span>
+</div>
+<div class="h-[2px] flex-grow bg-primary-container mx-4"></div>
+<div class="flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-lg shadow-md ring-4 ring-primary-container ring-opacity-20">
+                        5
+                    </div>
+<span class="font-label-lg text-label-lg text-primary">Medical History</span>
+</div>
+</div>
+</nav>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+<!-- Left Side: Wizard Content -->
+<div class="md:col-span-8 space-y-stack-md">
+<section class="bg-surface-container-lowest p-stack-md md:p-stack-lg rounded-xl shadow-sm border border-border-subtle">
+<div class="mb-stack-md">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Medical History</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Please select any pre-existing conditions that apply to you. This helps us ensure your coverage is tailored to your needs.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="medical-checklist">
+<!-- Checklist Items -->
+<div class="relative">
+<input class="peer hidden" id="cond-1" type="checkbox" value="diabetes"/>
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-1">
+<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary">
+<span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
+</div>
+<span class="font-label-lg text-label-lg">Diabetes</span>
+</label>
+</div>
+<div class="relative">
+<input class="peer hidden" id="cond-2" type="checkbox" value="blood_pressure"/>
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-2">
+<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
+</div>
+<span class="font-label-lg text-label-lg">High Blood Pressure</span>
+</label>
+</div>
+<div class="relative">
+<input class="peer hidden" id="cond-3" type="checkbox" value="heart_disease"/>
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-3">
+<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
+</div>
+<span class="font-label-lg text-label-lg">Heart Disease</span>
+</label>
+</div>
+<div class="relative">
+<input class="peer hidden" id="cond-4" type="checkbox" value="asthma"/>
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-4">
+<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
+</div>
+<span class="font-label-lg text-label-lg">Asthma</span>
+</label>
+</div>
+<div class="relative">
+<input class="peer hidden" id="cond-5" type="checkbox" value="kidney_disease"/>
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-5">
+<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
+</div>
+<span class="font-label-lg text-label-lg">Kidney Disease</span>
+</label>
+</div>
+<div class="relative">
+<input class="peer hidden" id="cond-6" type="checkbox" value="cancer"/>
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-6">
+<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
+</div>
+<span class="font-label-lg text-label-lg">Cancer</span>
+</label>
+</div>
+</div>
+<div class="mt-stack-md pt-stack-md border-t border-border-subtle">
+<div class="relative">
+<input class="peer hidden" id="cond-none" type="checkbox" value="none"/>
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-success-teal peer-checked:bg-surface-container-low" for="cond-none">
+<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center peer-checked:bg-success-teal peer-checked:border-success-teal">
+<span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold">None of these</span>
+</label>
+</div>
+</div>
+<!-- WhatsApp Toggle -->
+<div class="mt-stack-lg p-4 bg-surface-container-low rounded-lg flex items-center justify-between border border-secondary-fixed">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-success-teal bg-opacity-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-success-teal" data-icon="chat">chat</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-primary">WhatsApp Updates</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Get policy documents and alerts via WhatsApp</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-success-teal"></div>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Side: Sticky Info Sidebar -->
+<aside class="md:col-span-4 sticky top-24 space-y-stack-md">
+<!-- Ecobank Priority Card -->
+<div class="bg-primary text-on-primary p-stack-md rounded-xl relative overflow-hidden shadow-md">
+<div class="absolute top-0 right-0 bg-eco-lime text-primary px-3 py-1 font-badge-xs text-badge-xs uppercase tracking-wider rounded-bl-lg">
+                        Ecobank Priority
+                    </div>
+<div class="mt-4">
+<h3 class="font-title-md text-title-md mb-2">Priority Onboarding</h3>
+<p class="font-label-sm text-label-sm opacity-80 mb-4">As an Ecobank Gold Member, your medical underwriting is expedited. You'll receive instant approval for standard conditions.</p>
+<div class="flex items-center gap-2 text-eco-lime">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm font-bold">Fast-Track Coverage Enabled</span>
+</div>
+</div>
+</div>
+<!-- Security Assurance -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-border-subtle shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="encrypted">encrypted</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-primary uppercase">Data Privacy</h4>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 leading-relaxed">
+                        Your medical data is encrypted using AES-256 standards. We only share necessary information with underwriters to calculate your premium. Ecobank never stores your raw medical records.
+                    </p>
+<a class="text-secondary font-label-sm text-label-sm hover:underline flex items-center gap-1" href="#">
+                        View Privacy Policy
+                        <span class="material-symbols-outlined text-[14px]" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+<!-- Support Card -->
+<div class="bg-surface-container-high p-stack-md rounded-xl flex items-center justify-between group cursor-pointer hover:bg-secondary-fixed transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="support_agent">support_agent</span>
+<div class="text-primary">
+<p class="font-label-lg text-label-lg font-bold">Need assistance?</p>
+<p class="font-label-sm text-label-sm">Talk to a medical advisor</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</aside>
+</div>
+</main>
+<!-- Navigation Footer -->
+<footer class="fixed bottom-0 w-full z-50 bg-surface-container-low dark:bg-surface-container border-t border-border-subtle dark:border-outline-variant py-4 px-margin-mobile md:px-margin-desktop shadow-lg">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg text-primary font-label-lg hover:bg-surface-container transition-colors Active:scale-95 transition-transform" onclick="notifyParent('back')">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                Back
+            </button>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex px-6 py-3 rounded-lg text-on-surface-variant font-label-lg hover:bg-surface-container transition-colors">
+                    Save as Draft
+                </button>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-lg font-bold flex items-center gap-2 hover:bg-primary-container shadow-sm Active:scale-95 transition-transform" onclick="notifyParent('complete')">
+                    Save &amp; Continue
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Script for Logic -->
+<script>
+        // Mutual exclusivity logic: If "None of these" is checked, uncheck others. If any other is checked, uncheck "None".
+        const checkboxes = document.querySelectorAll('#medical-checklist input[type="checkbox"]');
+        const noneCheckbox = document.getElementById('cond-none');
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                if (cb.checked) {
+                    noneCheckbox.checked = false;
+                }
+            });
+        });
+
+        noneCheckbox.addEventListener('change', () => {
+            if (noneCheckbox.checked) {
+                checkboxes.forEach(cb => {
+                    cb.checked = false;
+                });
+            }
+        });
+
+        // Simple animation on footer button hover
+        const mainBtn = document.querySelector('footer .bg-primary');
+        mainBtn.addEventListener('mouseenter', () => {
+            mainBtn.querySelector('span').style.transform = 'translateX(4px)';
+        });
+        mainBtn.addEventListener('mouseleave', () => {
+            mainBtn.querySelector('span').style.transform = 'translateX(0px)';
+        });
+    </script>
+<script>
+function notifyParent(action) {
+  if (window.parent !== window) {
+    window.parent.postMessage({ source: 'maas-health-wizard', action: action }, '*');
+  }
+}
+</script>
+<script>
+(function() {
+  function reportHeight() {
+    window.parent.postMessage({ source: 'maas-iframe-resize', height: document.documentElement.scrollHeight }, '*');
+  }
+  if (window.parent !== window) {
+    new ResizeObserver(reportHeight).observe(document.documentElement);
+    setInterval(reportHeight, 500);
+    reportHeight();
+  }
+})();
+</script>
+
+</body></html>

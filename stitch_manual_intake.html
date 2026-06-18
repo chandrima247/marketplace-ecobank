@@ -1,0 +1,339 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Manual Vehicle Entry - MaaS Insurance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-container": "#005b82",
+                "on-secondary-fixed": "#00164f",
+                "border-subtle": "#E5E5E5",
+                "tertiary-fixed": "#63fcc2",
+                "on-secondary": "#ffffff",
+                "on-tertiary-container": "#44e4ab",
+                "on-surface": "#121c2c",
+                "surface": "#f9f9ff",
+                "tertiary-fixed-dim": "#3edfa7",
+                "surface-container-highest": "#d9e3f9",
+                "error": "#ba1a1a",
+                "tertiary": "#004832",
+                "surface-variant": "#d9e3f9",
+                "eco-lime": "#BED600",
+                "on-surface-variant": "#40484e",
+                "on-secondary-container": "#1d398a",
+                "inverse-on-surface": "#ecf1ff",
+                "background": "#f9f9ff",
+                "inverse-primary": "#8ecefa",
+                "secondary-fixed": "#dce1ff",
+                "surface-dim": "#d0daf1",
+                "on-primary-container": "#91d2fe",
+                "inverse-surface": "#273142",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed-variant": "#264192",
+                "primary-fixed": "#c8e6ff",
+                "secondary-fixed-dim": "#b6c4ff",
+                "secondary": "#4159ab",
+                "surface-tint": "#17648c",
+                "on-tertiary": "#ffffff",
+                "outline-variant": "#c0c7cf",
+                "on-background": "#121c2c",
+                "tertiary-container": "#006245",
+                "success-teal": "#00C58F",
+                "secondary-container": "#8fa7ff",
+                "surface-container-high": "#dee8ff",
+                "on-primary-fixed-variant": "#004c6d",
+                "primary": "#004260",
+                "on-tertiary-fixed": "#002115",
+                "surface-bright": "#f9f9ff",
+                "surface-container": "#e7eeff",
+                "error-container": "#ffdad6",
+                "on-error-container": "#93000a",
+                "surface-container-low": "#f0f3ff",
+                "surface-gray": "#F8F8F8",
+                "on-error": "#ffffff",
+                "on-tertiary-fixed-variant": "#005139",
+                "surface-container-lowest": "#ffffff",
+                "outline": "#70787f",
+                "deep-navy": "#023448",
+                "primary-fixed-dim": "#8ecefa",
+                "on-primary-fixed": "#001e2e"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-sm": "12px",
+                "stack-md": "24px",
+                "stack-lg": "48px",
+                "margin-desktop": "40px",
+                "gutter": "24px",
+                "margin-mobile": "20px",
+                "container-max": "1200px",
+                "base": "8px"
+            },
+            "fontFamily": {
+                "label-lg": ["Hanken Grotesk"],
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "label-sm": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "headline-lg": ["Hanken Grotesk"],
+                "title-md": ["Hanken Grotesk"],
+                "display-lg": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-segment {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .form-input-focus:focus {
+            border-bottom-width: 2px;
+            border-color: #004260;
+            outline: none;
+        }
+        .bg-pattern {
+            background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLssxqbIwoWYNQ1si-jsQRMABGRJT_5Pq42yRZY5sTotHhz_0SdtTHeSHvHIFV01isqRk5n9lsIMCOUMmZSQcZn4ug52wzcYizlrkaa5-kZDNkA4Zihx7FQG_7vmbgPymMOBtEgtUXUPUO7eGVe27oMn1T2SJ8Kaefo_2JS-64pixKpJTjrHJtzcjGvBx_5UsRt6FaB8WAtHgM5pHFthGPO70bjkWO7bJSUU5XN2Y9a2utKfbqhjvuOBBgg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface docked full-width top-0 z-50 border-b border-border-subtle">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                        Partnered with <span class="font-bold text-eco-lime">Ecobank</span>
+</span>
+</div>
+<nav class="hidden md:flex items-center gap-6 ml-10">
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Marketplace</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Claims</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">My Policies</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block font-label-lg text-label-lg text-primary hover:bg-surface-container-low px-4 py-2 rounded-lg transition-colors">Partner Login</button>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow relative overflow-hidden flex flex-col items-center">
+<!-- Background Accents -->
+<div class="absolute inset-0 bg-pattern pointer-events-none"></div>
+<!-- Progress Indicator -->
+<div class="w-full h-1 bg-surface-container relative">
+<div class="absolute left-0 top-0 h-full bg-secondary progress-segment" style="width: 33.33%;"></div>
+<div class="absolute left-0 top-0 h-full bg-tertiary-fixed progress-segment" style="width: 15%;"></div>
+</div>
+<div class="w-full max-w-[800px] px-margin-mobile md:px-margin-desktop py-stack-lg relative z-10">
+<!-- Step Label -->
+<div class="mb-stack-sm text-center">
+<span class="font-label-lg text-label-lg text-secondary uppercase tracking-widest">STEP 1 OF 3 - Manual Entry</span>
+</div>
+<!-- Form Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle p-8 md:p-12 shadow-sm">
+<div class="mb-stack-md text-center">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Enter Vehicle Details</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Provide your vehicle information manually to get the most accurate quotes.</p>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Vehicle Make -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface">Vehicle Make</label>
+<div class="relative">
+<select class="w-full bg-surface-gray border-b border-outline-variant p-3 font-body-md text-body-md rounded-t-lg form-input-focus appearance-none">
+<option disabled="" selected="" value="">Select Make</option>
+<option value="toyota">Toyota</option>
+<option value="mercedes">Mercedes-Benz</option>
+<option value="volkswagen">Volkswagen</option>
+<option value="nissan">Nissan</option>
+<option value="hyundai">Hyundai</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Vehicle Model -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface">Vehicle Model</label>
+<div class="relative">
+<select class="w-full bg-surface-gray border-b border-outline-variant p-3 font-body-md text-body-md rounded-t-lg form-input-focus appearance-none">
+<option disabled="" selected="" value="">Select Model</option>
+<option value="camry">Camry</option>
+<option value="corolla">Corolla</option>
+<option value="rav4">RAV4</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Year of Manufacture -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface">Year of Manufacture</label>
+<div class="relative">
+<select class="w-full bg-surface-gray border-b border-outline-variant p-3 font-body-md text-body-md rounded-t-lg form-input-focus appearance-none">
+<option disabled="" selected="" value="">Select Year</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Vehicle Body Type -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface">Vehicle Body Type</label>
+<div class="relative">
+<select class="w-full bg-surface-gray border-b border-outline-variant p-3 font-body-md text-body-md rounded-t-lg form-input-focus appearance-none">
+<option disabled="" selected="" value="">Select Body Type</option>
+<option value="sedan">Sedan</option>
+<option value="suv">SUV</option>
+<option value="hatchback">Hatchback</option>
+<option value="pickup">Pickup</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Estimated Market Value -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-lg text-label-lg text-on-surface">Estimated Market Value</label>
+<div class="relative flex items-center">
+<span class="absolute left-4 font-bold text-primary">UGX</span>
+<input class="w-full bg-surface-gray border-b border-outline-variant pl-14 p-3 font-body-md text-body-md rounded-t-lg form-input-focus" placeholder="0.00" type="number">
+</div>
+<p class="text-xs text-on-surface-variant italic">Enter the current estimated sale price of the vehicle.</p>
+</div>
+<!-- Region of Registration -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-lg text-label-lg text-on-surface">Region of Registration</label>
+<div class="relative">
+<select class="w-full bg-surface-gray border-b border-outline-variant p-3 font-body-md text-body-md rounded-t-lg form-input-focus appearance-none">
+<option disabled="" selected="" value="">Select Region</option>
+<option value="central">Central Region</option>
+<option value="western">Western Region</option>
+<option value="eastern">Eastern Region</option>
+<option value="northern">Northern Region</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col md:flex-row gap-4 pt-6">
+<button class="flex-1 bg-primary-container text-white font-label-lg text-label-lg py-4 rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-md" type="submit">
+                            Confirm &amp; Next Step
+                        </button>
+<button class="flex-1 bg-transparent text-primary font-label-lg text-label-lg py-4 rounded-lg border border-primary hover:bg-surface-container-low active:scale-95 transition-all" type="button">
+                            Back to Lookup
+                        </button>
+</div>
+</form>
+</div>
+<!-- Help/Trust Text -->
+<div class="mt-stack-md flex items-start gap-3 justify-center text-on-surface-variant max-w-md mx-auto">
+<span class="material-symbols-outlined text-primary" data-icon="shield">shield</span>
+<p class="font-label-sm text-label-sm">Your data is secured using bank-grade encryption in partnership with Ecobank. We do not share your personal vehicle information with third parties.</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-border-subtle bg-surface-container-low">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-6">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center">
+<!-- Partner Logo Placeholder -->
+<div class="w-24 h-8 bg-surface-dim rounded flex items-center justify-center">
+<span class="font-bold text-eco-lime text-xs">Ecobank</span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">© 2024 MaaS Insurance Marketplace. Powered by Ecobank.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">FAQ</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Partner Portal</a>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-border-subtle shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-sm text-label-sm">Policies</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('select, input').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.parentElement.classList.add('scale-[1.01]');
+                el.parentElement.parentElement.classList.add('transition-transform');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Form submission prevention for demo
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log('Moving to Step 2...');
+        });
+    </script>
+</body></html>

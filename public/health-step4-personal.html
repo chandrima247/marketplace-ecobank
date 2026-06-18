@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ecobank MaaS - Finalize Your Quote</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#1e398a",
+                        "secondary": "#4159ab",
+                        "surface-tint": "#316383",
+                        "surface-dim": "#d0daf1",
+                        "surface-container-high": "#dee8ff",
+                        "on-primary-fixed": "#001e2e",
+                        "on-surface": "#121c2c",
+                        "surface-container-low": "#f0f3ff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#b1f0d1",
+                        "primary-fixed-dim": "#9cccf0",
+                        "on-secondary-fixed": "#001550",
+                        "inverse-on-surface": "#ecf1ff",
+                        "surface-container": "#e7eeff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#0f513a",
+                        "eco-lime": "#BED600",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#004731",
+                        "deep-navy": "#023448",
+                        "background": "#f9f9ff",
+                        "on-background": "#121c2c",
+                        "primary-container": "#004260",
+                        "primary": "#002b40",
+                        "secondary-fixed": "#dce1ff",
+                        "on-surface-variant": "#41484d",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#9cccf0",
+                        "on-primary-container": "#7eaed1",
+                        "surface": "#f9f9ff",
+                        "border-subtle": "#E5E5E5",
+                        "tertiary-fixed-dim": "#96d4b6",
+                        "inverse-surface": "#273142",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-gray": "#F8F8F8",
+                        "on-secondary-fixed-variant": "#274192",
+                        "on-error": "#ffffff",
+                        "success-teal": "#00C58F",
+                        "outline": "#71787e",
+                        "on-primary-fixed-variant": "#124b6a",
+                        "outline-variant": "#c1c7ce",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "surface-container-highest": "#d9e3f9",
+                        "on-tertiary-fixed": "#002115",
+                        "secondary-container": "#90a7ff",
+                        "tertiary": "#002e1f",
+                        "primary-fixed": "#c8e6ff",
+                        "surface-variant": "#d9e3f9",
+                        "on-tertiary-container": "#78b599",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.4rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1200px",
+                        "base": "8px",
+                        "stack-lg": "48px",
+                        "margin-desktop": "40px",
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "badge-xs": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #002b40; }
+        .step-inactive { color: #41484d; opacity: 0.5; }
+        .progress-line { height: 2px; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation Bar (Shared Component Anchor) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest dark:bg-surface-dim border-b border-border-subtle dark:border-outline-variant backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-2">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">Ecobank MaaS</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-surface-container-low transition-colors">help</button>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim p-2 rounded-full hover:bg-surface-container-low transition-colors">account_circle</button>
+</div>
+</header>
+<main class="mt-16 flex-grow container mx-auto max-w-[1200px] px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Progress Stepper -->
+<div class="w-full mb-stack-lg">
+<div class="flex justify-between items-center relative max-w-2xl mx-auto">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-outline-variant -z-10 -translate-y-1/2"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-lg">1</div>
+<span class="text-label-sm text-on-surface-variant hidden md:block">Personal Info</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-lg">2</div>
+<span class="text-label-sm text-on-surface-variant hidden md:block">Plan Preferences</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-label-lg">3</div>
+<span class="text-label-sm text-on-surface-variant hidden md:block">Health History</span>
+</div>
+<!-- Step 4 (Active) -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary ring-4 ring-primary-fixed text-on-primary flex items-center justify-center text-label-lg font-bold">4</div>
+<span class="text-label-lg text-primary font-bold">Finalize</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Side: Main Intake Form -->
+<div class="md:col-span-8 flex flex-col gap-stack-md">
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-8 shadow-sm">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Help us finalize your quote</h1>
+<p class="text-body-lg text-on-surface-variant mb-stack-md">Provide your contact details so we can send you the full breakdown of your 5+ matched plans.</p>
+<form class="space-y-stack-md">
+<div class="grid grid-cols-1 gap-6">
+<!-- Full Name -->
+<div class="flex flex-col gap-2">
+<label class="text-label-lg text-on-surface" for="fullName">Full Name</label>
+<input class="w-full p-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary-container outline-none transition-all text-body-md" id="fullName" placeholder="Enter your full legal name" type="text"/>
+</div>
+<!-- Mobile Number -->
+<div class="flex flex-col gap-2">
+<label class="text-label-lg text-on-surface" for="mobile">Mobile Number</label>
+<div class="flex">
+<div class="flex items-center px-4 bg-surface-container-low border border-outline-variant border-r-0 rounded-l-lg text-body-md font-bold text-primary">
+                                        +233
+                                    </div>
+<input class="w-full p-4 rounded-r-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary-container outline-none transition-all text-body-md" id="mobile" placeholder="24 123 4567" type="tel"/>
+</div>
+<span class="text-label-sm text-on-surface-variant italic">We'll only use this to verify your identity and send quotes.</span>
+</div>
+</div>
+</form>
+</div>
+<!-- Trust Banner -->
+<div class="flex items-center gap-4 bg-primary-container/10 border border-primary-container/20 p-6 rounded-xl">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<div class="flex flex-col">
+<h3 class="text-title-md text-primary font-bold">Ecobank Secure Encryption</h3>
+<p class="text-body-md text-on-primary-container">Your data is protected with 256-bit SSL encryption. We never share your personal information with unauthorized third parties.</p>
+</div>
+</div>
+</div>
+<!-- Right Side: Summary & Testimonial -->
+<div class="md:col-span-4 flex flex-col gap-stack-md">
+<!-- Summary Card -->
+<div class="bg-primary text-on-primary p-8 rounded-xl shadow-md relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-eco-lime opacity-20 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<span class="bg-eco-lime text-primary font-badge-xs text-badge-xs px-2 py-1 rounded-sm uppercase tracking-wider mb-4 inline-block">Ecobank Priority</span>
+<h2 class="text-display-lg font-display-lg mb-2">5+ Plans</h2>
+<p class="text-body-lg text-on-primary-container opacity-90">Matched to your health profile and budget preferences.</p>
+<div class="mt-6 pt-6 border-t border-on-primary/10 flex flex-col gap-3">
+<div class="flex justify-between text-label-lg">
+<span>Premium Range</span>
+<span class="font-bold">GH₵ 120 - 850 /mo</span>
+</div>
+<div class="flex justify-between text-label-lg">
+<span>Network Reach</span>
+<span class="font-bold">Pan-African</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial -->
+<div class="bg-surface-container-low border border-border-subtle p-6 rounded-xl italic">
+<div class="flex gap-1 text-eco-lime mb-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-md text-on-surface mb-4">"Finding insurance used to be a headache. Ecobank MaaS made it so simple to compare and buy within minutes. Truly the future of banking."</p>
+<div class="flex items-center gap-3">
+<img alt="Customer Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="A portrait of a professional African woman smiling warmly, wearing a modern blue business suit. She is set against a clean, softly blurred corporate office background with natural lighting that creates a trust-focused, professional atmosphere consistent with the Ecobank brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQII7_aUtbXUCd_c8cGeSoOL3cMRNZxKCKkW6yInwvmPJ1E8cSPmpX2CsQnEQmaJDZoBffVIGouGs5XQwx5kaegerVq-7W-r-QR-d4NFvCG3oPhYkNgU5O9aUJL2wH441iY1YIupBqhhLmElLtaAQDU7IHSHeZ7GnMgT--1qJQ168UCnX6N0aj4awMIHb1TlrEg7gJecW4y0uoOitUUtqIgYre4KhBa07S9J_lGrqO8D_o3dCQt--sYfcwTnrJXVZPr4B9GsWcI88"/>
+<div class="flex flex-col">
+<span class="text-label-lg text-primary font-bold not-italic">Abena Mansa</span>
+<span class="text-label-sm text-on-surface-variant not-italic">Accra, Ghana</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Footer -->
+<div class="sticky bottom-0 w-full bg-surface-container-lowest border-t border-border-subtle py-6 px-margin-mobile md:px-margin-desktop z-40">
+<div class="container mx-auto max-w-[1200px] flex justify-between items-center">
+<button class="flex items-center gap-2 text-secondary font-bold hover:underline transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+                Back
+            </button>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold flex items-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-md" onclick="window.location.reload()">
+                View Your Quotes
+                <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Global Footer (Shared Component Anchor) -->
+<footer class="w-full py-stack-md px-margin-mobile md:px-margin-desktop bg-surface-container-low dark:bg-surface-container border-t border-border-subtle dark:border-outline-variant mt-auto">
+<div class="container mx-auto max-w-[1200px] flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-title-md text-title-md text-primary">Ecobank MaaS</span>
+<div class="flex gap-6">
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">© 2024 Ecobank Insurance Marketplace. All rights reserved.</span>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Simple button active state simulation
+        const primaryBtn = document.querySelector('button.bg-primary');
+        primaryBtn.addEventListener('mousedown', () => primaryBtn.style.opacity = '0.9');
+        primaryBtn.addEventListener('mouseup', () => primaryBtn.style.opacity = '1');
+    </script>
+</body></html>

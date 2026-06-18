@@ -1,0 +1,486 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MaaS Insurance Marketplace | Health Quotes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #F8F8F8; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#274192",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#0f513a",
+                        "on-secondary-fixed": "#001550",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#273142",
+                        "outline": "#71787e",
+                        "tertiary-container": "#004731",
+                        "deep-navy": "#023448",
+                        "inverse-primary": "#9cccf0",
+                        "primary": "#002b40",
+                        "surface-tint": "#316383",
+                        "on-tertiary-fixed": "#002115",
+                        "primary-container": "#004260",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c7ce",
+                        "on-surface": "#121c2c",
+                        "surface-container-highest": "#d9e3f9",
+                        "surface-variant": "#d9e3f9",
+                        "secondary": "#4159ab",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "border-subtle": "#E5E5E5",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#9cccf0",
+                        "background": "#f9f9ff",
+                        "on-secondary-container": "#1e398a",
+                        "on-surface-variant": "#41484d",
+                        "surface": "#f9f9ff",
+                        "on-primary-fixed-variant": "#124b6a",
+                        "tertiary-fixed-dim": "#96d4b6",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-error": "#ffffff",
+                        "eco-lime": "#BED600",
+                        "secondary-container": "#90a7ff",
+                        "success-teal": "#00C58F",
+                        "on-primary-fixed": "#001e2e",
+                        "secondary-fixed": "#dce1ff",
+                        "tertiary": "#002e1f",
+                        "on-tertiary-container": "#78b599",
+                        "surface-container-low": "#f0f3ff",
+                        "on-primary-container": "#7eaed1",
+                        "surface-container": "#e7eeff",
+                        "tertiary-fixed": "#b1f0d1",
+                        "primary-fixed": "#c8e6ff",
+                        "surface-dim": "#d0daf1",
+                        "on-tertiary": "#ffffff",
+                        "surface-gray": "#F8F8F8",
+                        "surface-bright": "#f9f9ff",
+                        "on-background": "#121c2c",
+                        "surface-container-high": "#dee8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "margin-desktop": "40px",
+                        "stack-sm": "12px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "stack-lg": "48px",
+                        "margin-mobile": "20px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "badge-xs": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "badge-xs": ["10px", {"lineHeight": "12px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface-gray min-h-screen">
+<!-- Top App Bar (MaaS) -->
+<header class="bg-surface sticky top-0 z-50 border-b border-border-subtle">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="font-label-lg text-label-lg text-primary font-bold border-b-2 border-primary pb-1" href="#">Marketplace</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Claims</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">My Policies</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex relative items-center">
+<input class="pl-10 pr-4 py-2 rounded-full border border-outline-variant bg-surface-container-low font-body-md text-body-md w-64 focus:ring-2 focus:ring-primary-container outline-none" placeholder="Search insurance..." type="text">
+<span class="material-symbols-outlined absolute left-3 text-outline">search</span>
+</div>
+<button class="text-primary font-label-lg text-label-lg hover:underline transition-all">Partner Login</button>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Sub-header: Dynamic Info & Members -->
+<div class="bg-surface shadow-sm">
+<div class="max-w-container-max mx-auto px-margin-desktop py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<div class="bg-primary-container/10 p-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">group</span>
+<span class="font-label-lg text-label-lg">Self + 3 members</span>
+</div>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<span class="font-label-lg text-label-lg">Accra</span>
+</div>
+<button class="ml-4 flex items-center gap-1 text-primary font-label-lg text-label-lg hover:bg-primary-container/5 px-2 py-1 rounded transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit search
+                </button>
+</div>
+
+</div>
+<!-- Member Selection Tabs -->
+<div class="max-w-container-max mx-auto px-margin-desktop border-t border-border-subtle overflow-x-auto hide-scrollbar">
+<div class="flex gap-8">
+<button class="py-4 font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">Self (32) , Daughter (5) &amp;...</button>
+<button class="py-4 font-label-lg text-label-lg text-primary font-bold border-b-4 border-eco-lime whitespace-nowrap">Mother (52)</button>
+<button class="py-4 font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">Father (55)</button>
+<button class="py-4 font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">Spouse (30)</button>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="max-w-container-max mx-auto px-margin-desktop py-stack-md flex flex-col lg:flex-row gap-gutter">
+<!-- Left Column: Filters & Results -->
+<section class="flex-1 space-y-stack-md">
+<!-- Quick Filters Row -->
+<div class="flex items-center gap-3 overflow-x-auto hide-scrollbar py-2">
+<span class="font-label-lg text-label-lg text-on-surface-variant whitespace-nowrap pr-2">Quick filters</span>
+<div class="flex gap-2">
+<button class="flex items-center gap-1 border border-outline-variant px-4 py-2 rounded-full bg-surface-container-lowest font-label-sm text-label-sm hover:border-primary transition-colors">
+                        Cover <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1 border border-outline-variant px-4 py-2 rounded-full bg-surface-container-lowest font-label-sm text-label-sm hover:border-primary transition-colors">
+                        Sort by <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1 border-2 border-secondary px-4 py-2 rounded-full bg-secondary-container/10 font-label-sm text-label-sm text-secondary font-bold">
+                        Important Features <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 border border-outline-variant px-4 py-2 rounded-full bg-surface-container-lowest font-label-sm text-label-sm hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-eco-lime text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">stars</span> New launches
+                    </button>
+<button class="flex items-center gap-2 border border-outline-variant px-4 py-2 rounded-full bg-surface-container-lowest font-label-sm text-label-sm hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">local_hospital</span> Cashless Hospitals
+                    </button>
+</div>
+<button class="ml-auto flex items-center gap-1 font-label-lg text-label-lg text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary-container/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span> All filters
+                </button>
+</div>
+<div class="flex items-center justify-between border-l-4 border-primary pl-4 py-1">
+<h2 class="font-title-md text-title-md text-on-surface">70 plans found.</h2>
+</div>
+<!-- Analyzing Banner -->
+
+<!-- Plan Results List -->
+<div class="space-y-stack-sm">
+<!-- Plan Card 1 -->
+<div class="group bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden hover:shadow-md transition-shadow" style="transform: translateY(0px);">
+<div class="flex flex-col md:flex-row">
+<!-- Insurer Side -->
+<div class="p-6 md:w-56 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-border-subtle bg-surface-gray/30">
+<img alt="Care Health Insurance Logo" class="w-32 h-auto mb-4 grayscale group-hover:grayscale-0 transition-all" data-alt="A professional corporate logo for Care Health Insurance featuring clean blue typography on a minimalist white and light blue background. The aesthetic is institutional, secure, and modern, representing a reliable health insurance provider. High resolution with soft ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFsciclRQC81beEiH-3dFBU6fx5udtA2MTzGEY71Zn9Ch39oL7KCvJy1TQoFVDNFOwWwVD1rSJCZwVDIvrfGfwtlMPq4D50IoOIG-bY3EGK_mcluB8J87uXpQFbo4s9s1KbltlvHfJ7Ki6yLKrRwaduxUNDgYk0GgvgJcIsx-iicZSSsLwqOEYMAAy724XCtjv5Cpxp5QRHVkWrsm6NFqAvxzJN12rAQuwZw4TB4YqepjbOlmi48Ed04TNNxdwIREr9HtqJ2cOmmk">
+<a class="text-primary font-label-sm text-label-sm hover:underline flex items-center gap-1" href="#">About Insurer <span class="material-symbols-outlined text-[14px]">arrow_forward_ios</span></a>
+</div>
+<!-- Plan Content -->
+<div class="p-6 flex-1">
+<div class="flex flex-col lg:flex-row justify-between gap-6">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<h3 class="font-title-md text-title-md text-primary">Ultimate Care (Direct)</h3>
+
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">131 Cashless hospitals. <a class="text-primary hover:underline font-label-sm" href="#">View list</a></span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">No Room Rent Limit</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">GHC 25,000 bonus increase/year</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Unlimited Restoration of cover</span>
+</div>
+</div>
+<button class="text-primary font-label-lg text-label-lg flex items-center gap-1 hover:gap-2 transition-all">View all features <span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+<div class="flex flex-col items-start lg:items-end gap-4 min-w-[200px]">
+<div class="w-full lg:w-auto">
+<label class="block font-label-sm text-label-sm text-outline mb-1">Cover amount</label>
+<div class="relative w-full lg:w-32">
+<select class="w-full bg-surface-container-low border-none rounded-lg font-label-lg text-label-lg focus:ring-2 focus:ring-primary-container pr-8">
+<option>GHC 5 Lakh</option>
+<option>GHC 10 Lakh</option>
+<option>GHC 25 Lakh</option>
+</select>
+</div>
+</div>
+<div class="text-left lg:text-right">
+<p class="font-label-sm text-label-sm text-outline">Premium (1 year)</p>
+<h4 class="font-headline-lg text-headline-lg text-primary">GHC 685<span class="text-label-lg font-normal">/month</span></h4>
+<p class="text-error font-label-sm text-label-sm line-through">GHC 808</p>
+</div>
+<button class="w-full bg-eco-lime text-primary font-bold py-3 px-6 rounded-lg shadow-sm hover:shadow-md active:scale-95 transition-all">Customize plan →</button>
+<div class="flex items-center gap-2 text-success-teal font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">verified</span> Inclusive of 5% online discount
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Footer Actions -->
+<div class="bg-surface-container-low/50 px-6 py-2 border-t border-border-subtle flex justify-between items-center">
+<button class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_circle</span> Add to compare
+                        </button>
+<button class="text-primary font-label-sm text-label-sm flex items-center gap-1 hover:underline">
+                            View 7 more plans from Care Health <span class="material-symbols-outlined text-[16px]">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<!-- Plan Card 2 (Featured) -->
+<div class="group relative bg-surface-container-lowest border-2 border-primary rounded-xl overflow-hidden hover:shadow-lg transition-shadow" style="transform: translateY(0px);">
+<div class="absolute top-0 right-0 bg-primary text-on-primary font-badge-xs text-badge-xs px-3 py-1 rounded-bl-lg z-10">ECOBANK PRIORITY</div>
+<div class="flex flex-col md:flex-row">
+<div class="p-6 md:w-56 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-border-subtle bg-primary-container/5">
+<img alt="Ecobank Insurance Logo" class="w-32 h-auto mb-4 group-hover:scale-110 transition-transform" data-alt="Logo for Ecobank Insurance with high contrast dark navy and lime green accents. Professional, modern, and trust-evoking brand design set against a clean studio background with soft reflections and sharp vector edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyHu5StFvBXXY_cg0Rxg-DMxWJ8GFtyRzMBH0eaG3NZX2rqSy1uFJom-Q_jKA1MSTuQSHEwC01V44EyaP5jykdEEwqXyWLpnowtuv48uK1hbhkCnSO1jNVOxwq07-_JRAi3AxH22HQGoAksuv5ETnEfssQGqZvY1abXLec-D-QGdqb5NPeS0h3O9RmSmB905PafjGdn8AGJBY3HVTcD_QtKkT-SJF7KR5_TQ1j1qhgj22GyIy6gkelTKshXrcnVQFtX43iI4gkliY">
+<a class="text-primary font-label-sm text-label-sm hover:underline flex items-center gap-1" href="#">Trusted Partner →</a>
+</div>
+<div class="p-6 flex-1">
+<div class="flex flex-col lg:flex-row justify-between gap-6">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<h3 class="font-title-md text-title-md text-primary">Elite Health Gold</h3>
+<span class="bg-eco-lime text-primary font-badge-xs text-badge-xs px-2 py-0.5 rounded-full uppercase">Best Value</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Global medical assistance</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">0 Day waiting period for accidents</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Full cover for Day Care procedures</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Premium wellness rewards</span>
+</div>
+</div>
+<button class="text-primary font-label-lg text-label-lg flex items-center gap-1 hover:gap-2 transition-all">View all features <span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+<div class="flex flex-col items-start lg:items-end gap-4 min-w-[200px]">
+<div class="w-full lg:w-auto text-right">
+<p class="font-label-sm text-label-sm text-outline">Monthly Premium</p>
+<h4 class="font-headline-lg text-headline-lg text-primary">GHC 920</h4>
+<p class="text-success-teal font-label-sm text-label-sm font-bold">Recommended for your age</p>
+</div>
+<button onclick="notifyParent('buy', {provider:'Ecobank Insurance'})" class="w-full bg-primary text-on-primary font-bold py-3 px-6 rounded-lg shadow-sm hover:bg-primary-container active:scale-95 transition-all">Select This Plan</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- "Why MaaS" Section -->
+
+</section>
+<!-- Right Column: Sidebar Actions -->
+<aside class="w-full lg:w-[320px] space-y-stack-md">
+<!-- Talk to a Doctor Card -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Doctor Profile" class="w-full h-full object-cover" data-alt="A portrait of a friendly, professional male doctor wearing a white medical coat and a stethoscope. He is smiling warmly, set against a clean, modern medical office background with soft bokeh lighting. The overall mood is comforting, expert-driven, and trustworthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDstFvtTSC7u98tSOIRZsSBkNzR1KEe3m4V26_-GAX4vueDaknR6HTETnJ_3MXm9kO1HtXaoLRtOeNXhG5bPr2qy1eKu_xafMo4Cv3uxIJ8r7sb8xc1e0xZ0k8rwMDl68vOoC7j4pW0YauCQZQdncqbsHCNfkjkNdftsEJYX5nlGhCkuyleoXSbox7Qhd0gYosb3hbzyVhf9WHQ2cCIUe2e6e40Rr7aRtOt4Y6se3Rcp94mv7N25W9Si0nUNZM4xY_1A-gvvODjDA">
+<div class="absolute bottom-1 right-1 w-3 h-3 bg-success-teal border-2 border-white rounded-full"></div>
+</div>
+<div>
+<span class="bg-secondary text-on-secondary font-badge-xs text-badge-xs px-2 py-0.5 rounded-full uppercase">Talk to a Doctor</span>
+<h4 class="font-label-lg text-label-lg text-on-surface mt-1">Free consultation available</h4>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Discuss your existing medical conditions &amp; find the best health plan for you.</p>
+<button class="w-full flex items-center justify-center gap-2 bg-success-teal text-white font-bold py-3 rounded-lg hover:bg-success-teal/90 transition-all">
+<span class="material-symbols-outlined">videocam</span> Start a Free video call
+                    </button>
+<p class="text-center font-label-sm text-label-sm text-outline mt-3 italic">To protect your privacy, video is off by default.</p>
+</div>
+</div>
+<!-- Trust / Social Proof Card -->
+<div class="bg-primary-container/10 border border-primary-container/20 rounded-xl p-6">
+<div class="flex items-center gap-2 mb-4 text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="font-label-lg text-label-lg">6 lakh+ successful home visits done</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="relative w-full h-40 bg-white rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+<img alt="Expert Advice illustration" class="w-full h-auto" data-alt="A modern vector illustration showing a professional insurance expert visiting a family in a bright, minimalist living room. The style uses clean lines, a corporate color palette of navy and lime, and soft gradients. The atmosphere is helpful, secure, and personalized." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkYd4Q9htfP9hovcCkRW4ZsAyGWm3RhkGm6xkiL3dx1GSJj1A8oT5U3534X6JHi2g80crip5BRPvhFBvgsJ_l-mGoxLUfSdXFueLIJvp_m0AaRl1dgdR-HD70Es7r9RwYTzE1NK4fpBBloTeKGYZrblZHhm1vvCQ5oobW82fr23cmt3b0my1EAE-E4Z0EXmW7bhS1rVBsX9OGVrDOa5hEKqW8j_vjGcTtzNzn9j3uyLLrNSvJpYvHlDT5ULeKQrgmXYXU9LUpOcBw">
+</div>
+<h5 class="font-title-md text-title-md text-primary mb-2">Expert insurance advice at your home!</h5>
+<button class="w-full bg-secondary text-on-secondary font-bold py-3 rounded-lg hover:bg-on-secondary-fixed-variant transition-colors">Book a FREE slot now →</button>
+<button class="mt-4 text-outline font-label-sm text-label-sm hover:text-on-surface transition-colors">✕ Not interested</button>
+</div>
+</div>
+<!-- Stats Card -->
+<div class="bg-surface-container-high rounded-xl p-6 border border-border-subtle">
+<h6 class="font-label-sm text-label-sm text-primary uppercase font-bold mb-4">Market Impact 2025</h6>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-white/20 pb-2">
+<span class="font-body-md text-body-md text-on-surface-variant">Claims Assisted</span>
+<span class="font-title-md text-title-md text-primary">GHC 2600 Cr</span>
+</div>
+<div class="flex justify-between items-end border-b border-white/20 pb-2">
+<span class="font-body-md text-body-md text-on-surface-variant">Customer Satisfaction</span>
+<span class="font-title-md text-title-md text-primary">98.2%</span>
+</div>
+<div class="flex justify-between items-end pb-2">
+<span class="font-body-md text-body-md text-on-surface-variant">Network Hospitals</span>
+<span class="font-title-md text-title-md text-primary">12,000+</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Compare Drawer (Floating) -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-inverse-surface text-inverse-on-surface py-4 px-margin-desktop transform translate-y-full transition-transform duration-300" id="compare-drawer">
+<div class="max-w-container-max mx-auto flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-inverse-surface flex items-center justify-center text-primary font-bold text-xs">CH</div>
+<div class="w-10 h-10 rounded-full bg-eco-lime border-2 border-inverse-surface flex items-center justify-center text-primary font-bold text-xs">EB</div>
+<div class="w-10 h-10 rounded-full bg-outline-variant border-2 border-inverse-surface flex items-center justify-center text-primary font-bold text-xs">+</div>
+</div>
+<div>
+<h5 class="font-label-lg text-label-lg">Compare 2 plans</h5>
+<p class="font-label-sm text-label-sm opacity-70 text-on-surface-variant">Detailed feature breakdown</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-lg text-label-lg hover:underline">Clear all</button>
+<button class="bg-eco-lime text-primary font-bold px-8 py-3 rounded-lg shadow-xl hover:scale-105 transition-transform">Compare Now</button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-border-subtle mt-stack-lg">
+<div class="w-full py-stack-lg px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">© 2024 MaaS Insurance Marketplace. Powered by Ecobank.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">FAQ</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Partner Portal</a>
+</div>
+</div>
+</footer>
+<!-- Bottom Nav Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest border-t border-border-subtle flex justify-around items-center px-4 py-2 shadow-lg">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl p-2 transition-transform scale-90">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-sm text-label-sm">Policies</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</button>
+</nav>
+<script>
+        function notifyParent(action, data) {
+            if (window.parent !== window) {
+                window.parent.postMessage(Object.assign({ source: 'maas-health-listing', action: action }, data || {}), '*');
+            }
+        }
+
+        // Micro-interaction for compare drawer demonstration
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText.includes('Add to compare')) {
+                btn.addEventListener('click', () => {
+                    const drawer = document.getElementById('compare-drawer');
+                    drawer.classList.toggle('translate-y-full');
+                    drawer.classList.toggle('translate-y-0');
+                    btn.classList.toggle('text-primary');
+                    btn.querySelector('span').innerText = btn.innerText.includes('Add') ? 'check_circle' : 'add_circle';
+                });
+            }
+        });
+
+        // Hover animation for plan cards
+        const cards = document.querySelectorAll('.group');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+<script>
+// Iframe auto-resize reporter
+(function() {
+  function reportHeight() {
+    if (window.parent !== window) {
+      window.parent.postMessage({ source: 'maas-iframe-resize', height: document.documentElement.scrollHeight }, '*');
+    }
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(reportHeight).observe(document.body);
+  }
+  setInterval(reportHeight, 500);
+})();
+</script>
+</body></html>

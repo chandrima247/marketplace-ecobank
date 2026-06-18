@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MaaS Health Insurance - Member Ages</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#dce1ff",
+                        "on-tertiary-container": "#78b599",
+                        "surface": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001e2e",
+                        "primary": "#002b40",
+                        "on-primary-fixed-variant": "#124b6a",
+                        "inverse-surface": "#273142",
+                        "surface-container-high": "#dee8ff",
+                        "on-secondary-fixed": "#001550",
+                        "surface-container-low": "#f0f3ff",
+                        "on-background": "#121c2c",
+                        "surface-dim": "#d0daf1",
+                        "deep-navy": "#023448",
+                        "on-tertiary-fixed-variant": "#0f513a",
+                        "surface-gray": "#F8F8F8",
+                        "background": "#f9f9ff",
+                        "tertiary": "#002e1f",
+                        "tertiary-fixed": "#b1f0d1",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#7eaed1",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#9cccf0",
+                        "surface-tint": "#316383",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#e7eeff",
+                        "secondary-fixed-dim": "#b6c4ff",
+                        "outline-variant": "#c1c7ce",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#004260",
+                        "eco-lime": "#BED600",
+                        "success-teal": "#00C58F",
+                        "on-secondary-fixed-variant": "#274192",
+                        "secondary": "#4159ab",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary-container": "#1e398a",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface": "#121c2c",
+                        "surface-variant": "#d9e3f9",
+                        "on-tertiary-fixed": "#002115",
+                        "tertiary-container": "#004731",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#90a7ff",
+                        "tertiary-fixed-dim": "#96d4b6",
+                        "border-subtle": "#E5E5E5",
+                        "primary-fixed": "#c8e6ff",
+                        "surface-container-highest": "#d9e3f9",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#71787e",
+                        "on-surface-variant": "#41484d",
+                        "primary-fixed-dim": "#9cccf0",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "gutter": "24px",
+                        "stack-lg": "48px",
+                        "base": "8px",
+                        "stack-sm": "12px",
+                        "container-max": "1200px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "badge-xs": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "badge-xs": ["10px", {"lineHeight": "12px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .stepper-line {
+            height: 2px;
+            flex-grow: 1;
+            background-color: #E5E5E5;
+            margin: 0 12px;
+        }
+        .stepper-line.active {
+            background-color: #002b40;
+        }
+        .custom-select-trigger:focus-within {
+            border-color: #002b40;
+            box-shadow: 0 0 0 2px rgba(0, 66, 96, 0.1);
+        }
+        body > nav, body > header, body > footer { display: none !important; }
+        html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface docked full-width top-0 border-b border-border-subtle z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg" href="#">Marketplace</a>
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg" href="#">Claims</a>
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg" href="#">My Policies</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block font-label-lg text-label-lg text-primary hover:bg-surface-container-low px-4 py-2 rounded-lg transition-colors">Partner Login</button>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 hover:bg-surface-container-low rounded-full transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 hover:bg-surface-container-low rounded-full transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center py-stack-lg px-margin-mobile">
+<div class="w-full max-w-[560px] flex flex-col gap-stack-lg">
+<!-- Stepper -->
+<div class="w-full">
+<div class="flex items-center justify-between mb-8">
+<!-- Step 1: Done -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center text-label-lg font-bold">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="mt-2 font-label-sm text-label-sm text-on-surface-variant">Members</span>
+</div>
+<div class="stepper-line active"></div>
+<!-- Step 2: Active -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-label-lg font-bold">2</div>
+<span class="mt-2 font-label-sm text-label-sm text-primary font-semibold">Ages</span>
+</div>
+<div class="stepper-line"></div>
+<!-- Step 3: Pending -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-label-lg font-bold">3</div>
+<span class="mt-2 font-label-sm text-label-sm text-outline">Location</span>
+</div>
+<div class="stepper-line"></div>
+<!-- Step 4: Pending -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-label-lg font-bold">4</div>
+<span class="mt-2 font-label-sm text-label-sm text-outline">Plan</span>
+</div>
+</div>
+<!-- Page Header -->
+<div class="text-center mb-stack-md">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">How old are the members?</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Age helps us provide accurate premium estimates from our regional partners.</p>
+</div>
+</div>
+<!-- Central Age Selection Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-stack-md flex flex-col gap-6">
+<!-- Member Row: Self -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Self</p>
+<p class="font-label-sm text-label-sm text-outline">Primary Policyholder</p>
+</div>
+</div>
+<div class="relative w-28">
+<select class="appearance-none w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:border-primary outline-none cursor-pointer">
+<option>32</option>
+<option>18-25</option>
+<option>26-35</option>
+<option>36-45</option>
+<option>46-55</option>
+<option>56+</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<hr class="border-border-subtle"/>
+<!-- Member Row: Spouse -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Spouse</p>
+<p class="font-label-sm text-label-sm text-outline">Dependent</p>
+</div>
+</div>
+<div class="relative w-28">
+<select class="appearance-none w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:border-primary outline-none cursor-pointer">
+<option>30</option>
+<option>18-25</option>
+<option>26-35</option>
+<option>36-45</option>
+<option>46-55</option>
+<option>56+</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<hr class="border-border-subtle"/>
+<!-- Member Row: Son -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="child_care">child_care</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Son</p>
+<p class="font-label-sm text-label-sm text-outline">Dependent</p>
+</div>
+</div>
+<div class="relative w-28">
+<select class="appearance-none w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:border-primary outline-none cursor-pointer">
+<option>5</option>
+<option>0-2</option>
+<option>3-12</option>
+<option>13-17</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary text-white font-label-lg text-label-lg py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-all active:scale-95 shadow-sm" onclick="notifyParent('next')">
+                    Next: Your Location
+                    <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="w-full bg-transparent text-primary font-label-lg text-label-lg py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-surface-container transition-all" onclick="notifyParent('back')">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+                    Back to Selection
+                </button>
+</div>
+<!-- Trust Badge -->
+<div class="flex items-center justify-center gap-2 opacity-60 grayscale hover:grayscale-0 transition-all cursor-default">
+<img alt="Ecobank Logo" class="h-4 object-contain" data-alt="The official corporate logo of Ecobank group, featuring its distinct blue and white typography against a clean, professional studio background with soft ambient lighting for a corporate financial identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo-bJGW-Xyjlz14tFSd0W26iwm8ynsK0W8Rfv67zWR6BVLmvIyRR8Xy4Lyxr-fFWV511pRbLpCbPcDbhJHj9HdhZ4XUSrg7cRIzQG36gn0p_u3G--43oqgRSw9ERVKaaTiRdKcxsnFcaL_njIE2QASUQ0cXcA449pH0UYGpdNZvKFBv0mrfPgTonirEfv2xp8j3gI99ZUmXn1nLAB5y4M-M-Jj0UzEkZ8qlDmmLQOHEuPzHEixrCvtyvpqmLpqCymGEvfN34glQz4"/>
+<div class="h-4 w-[1px] bg-outline"></div>
+<p class="font-label-sm text-label-sm text-outline">Secured by Ecobank MaaS Protocol</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-border-subtle mt-auto">
+<div class="w-full py-stack-lg px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm text-center md:text-left">Building trust through transparent digital insurance solutions across the African continent.</p>
+</div>
+<div class="flex flex-col items-center md:items-end gap-4">
+<div class="flex gap-6 flex-wrap justify-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">FAQ</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Contact Us</a>
+</div>
+<p class="font-label-sm text-label-sm text-outline">© 2024 MaaS Insurance Marketplace. Powered by Ecobank.</p>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-border-subtle shadow-lg rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-2 scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-sm text-label-sm font-bold">Policies</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</div>
+</nav>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 -z-10 w-1/3 h-1/2 opacity-20 pointer-events-none overflow-hidden">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-container rounded-full blur-[120px]"></div>
+</div>
+<div class="fixed bottom-0 left-0 -z-10 w-1/3 h-1/2 opacity-10 pointer-events-none overflow-hidden">
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-eco-lime rounded-full blur-[120px]"></div>
+</div>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', function() {
+                this.parentElement.parentElement.classList.add('bg-primary-container/5');
+                setTimeout(() => {
+                    this.parentElement.parentElement.classList.remove('bg-primary-container/5');
+                }, 300);
+            });
+        });
+    </script>
+<script>
+function notifyParent(action) {
+  if (window.parent !== window) {
+    window.parent.postMessage({ source: 'maas-health-wizard', action: action }, '*');
+  }
+}
+</script>
+<script>
+(function() {
+  function reportHeight() {
+    window.parent.postMessage({ source: 'maas-iframe-resize', height: document.documentElement.scrollHeight }, '*');
+  }
+  if (window.parent !== window) {
+    new ResizeObserver(reportHeight).observe(document.documentElement);
+    setInterval(reportHeight, 500);
+    reportHeight();
+  }
+})();
+</script>
+
+</body></html>
