@@ -172,26 +172,6 @@
     </style>
 </head>
 <body class="bg-surface-gray text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed-variant min-h-screen flex flex-col">
-<!-- TopNavBar Implementation from SCREEN_69 -->
-<header class="bg-surface-container-lowest/80 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-border-subtle/50 shadow-sm">
-<nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto w-full">
-<div class="flex items-center">
-<img alt="Ecobank Logo" class="w-[100px] h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3Nt5OVToBPKxtyfZBReBtWk-ipo786E1W6qVtZVNOKYggz5n7Kk7TMSUfBwG7zajrZjYKCXGx37rtVDkP8EUQGhCuwT2ir47347C8mMzRQ2yqKV3Q0003dTKDFafVPEm1zYFSNk0h3lwQG-pRInnMGXtExh1B5IYLVxWJnlRQ4XRG3aEV7uRkc_k3y9dgKIHi9Vo6HE8cfDNYAVUydmgCTvqXdkirmOjjpVG5F_2m4_jKyWftN81LBvCm2x6z4ulqSOhJ4RX_v0c">
-</div>
-<div class="hidden md:flex items-center gap-6 font-label-lg text-label-lg">
-<a class="text-primary border-b-2 border-primary font-bold pb-1 hover:text-secondary transition-colors" href="#" data-nav="explore">Explore</a>
-<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors" href="#" data-nav="policies">My Policies</a>
-<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors" href="#" data-nav="claims">Claims</a>
-<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors" href="#">Support</a>
-</div>
-<div class="flex items-center gap-4">
-<div class="flex items-center">
-<img alt="nxtpe Logo" class="h-6 md:h-7 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0OJhkVGQEtK_BFI-bmLqZztV9fS3Gls2wnxVD5NFh6xubAVBbfMnxVRJU23cEFVsS8jH-v43TjslANVxyeuqXKCTo5c_LeYWUVGv02LyW29BJjnScXAxR-YHQ5IRMa3IJejFk6KyvqAFvndSh4X7TymlWk6E4HDSbhEtDt1j-VC0xTW2eRgTYLq17tEp5kYLPhurmnOboRc2tUC-wANQFT8h29dZCgXNBMJevqpQ7e5bk9M7zK4s9IaML-cMvoZxnDKzWuaMx5jI">
-</div>
-<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-150 md:hidden">menu</span>
-</div>
-</nav>
-</header>
 <!-- Main Content Layout -->
 <main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-8 flex flex-col md:flex-row gap-8">
 <!-- Sidebar -->
@@ -430,40 +410,6 @@ View Policy Wordings
 <button class="bg-eco-lime text-deep-navy px-7 py-2.5 rounded-xl font-extrabold text-label-lg hover:bg-white transition-colors shadow-md" id="compare-now-btn">Compare Now</button>
 <button class="material-symbols-outlined text-surface-variant/70 hover:text-white transition-colors" onclick="document.getElementById('compare-bar').classList.add('hidden')">close</button>
 </div>
-<!-- Mobile Bottom Nav -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface border-t border-border-subtle shadow-lg">
-<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
-<span class="material-symbols-outlined">home</span>
-<span class="text-label-sm font-label-sm">Home</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
-<span class="text-label-sm font-label-sm">Insurance</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
-<span class="material-symbols-outlined">receipt_long</span>
-<span class="text-label-sm font-label-sm">Claims</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
-<span class="material-symbols-outlined">person</span>
-<span class="text-label-sm font-label-sm">Profile</span>
-</a>
-</nav>
-<!-- Footer -->
-<footer class="bg-surface-gray dark:bg-surface-container border-t border-border-subtle mt-stack-lg">
-<div class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-6">
-<div class="flex flex-col items-center md:items-start gap-2">
-<span class="font-title-md text-title-md font-bold text-deep-navy">Ecobank Insurance</span>
-<p class="text-body-md text-on-surface-variant text-center md:text-left">&copy; 2026 Ecobank Insurance Marketplace. All rights reserved.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-6">
-<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">Privacy Policy</a>
-<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">Terms of Service</a>
-<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">FAQ</a>
-<a class="text-on-surface-variant font-body-md hover:underline transition-all" href="#">Contact Us</a>
-</div>
-</div>
-</footer>
 <script>
     // Logic for compare bar
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');

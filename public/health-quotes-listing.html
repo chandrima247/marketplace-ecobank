@@ -115,30 +115,6 @@
     </script>
 </head>
 <body class="bg-surface-gray min-h-screen">
-<!-- Top App Bar (MaaS) -->
-<header class="bg-surface sticky top-0 z-50 border-b border-border-subtle">
-<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
-<div class="flex items-center gap-8">
-<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<nav class="hidden md:flex gap-6 items-center">
-<a class="font-label-lg text-label-lg text-primary font-bold border-b-2 border-primary pb-1" href="#">Marketplace</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Claims</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">My Policies</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<div class="hidden lg:flex relative items-center">
-<input class="pl-10 pr-4 py-2 rounded-full border border-outline-variant bg-surface-container-low font-body-md text-body-md w-64 focus:ring-2 focus:ring-primary-container outline-none" placeholder="Search insurance..." type="text">
-<span class="material-symbols-outlined absolute left-3 text-outline">search</span>
-</div>
-<button class="text-primary font-label-lg text-label-lg hover:underline transition-all">Partner Login</button>
-<div class="flex gap-2">
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">notifications</span>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low p-2 rounded-full transition-colors">account_circle</span>
-</div>
-</div>
-</div>
-</header>
 <!-- Sub-header: Dynamic Info & Members -->
 <div class="bg-surface shadow-sm">
 <div class="max-w-container-max mx-auto px-margin-desktop py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -401,41 +377,6 @@
 </div>
 </div>
 </div>
-<!-- Footer -->
-<footer class="bg-surface-container-low border-t border-border-subtle mt-stack-lg">
-<div class="w-full py-stack-lg px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
-<div class="flex flex-col items-center md:items-start gap-4">
-<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">© 2026 Ecobank Insurance Marketplace. All rights reserved.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-6">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">FAQ</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Contact Us</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Partner Portal</a>
-</div>
-</div>
-</footer>
-<!-- Bottom Nav Bar (Mobile) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest border-t border-border-subtle flex justify-around items-center px-4 py-2 shadow-lg">
-<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
-<span class="material-symbols-outlined">home</span>
-<span class="font-label-sm text-label-sm">Home</span>
-</button>
-<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl p-2 transition-transform scale-90">
-<span class="material-symbols-outlined">explore</span>
-<span class="font-label-sm text-label-sm">Explore</span>
-</button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
-<span class="material-symbols-outlined">description</span>
-<span class="font-label-sm text-label-sm">Policies</span>
-</button>
-<button class="flex flex-col items-center justify-center text-on-surface-variant p-2">
-<span class="material-symbols-outlined">contact_support</span>
-<span class="font-label-sm text-label-sm">Support</span>
-</button>
-</nav>
 <script>
         function notifyParent(action, data) {
             if (window.parent !== window) {

@@ -130,31 +130,6 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-<!-- TopNavBar -->
-<header class="bg-surface docked full-width top-0 z-50 border-b border-border-subtle">
-<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
-<div class="flex items-center gap-4">
-<div class="flex flex-col">
-<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
-                        Partnered with <span class="font-bold text-eco-lime">Ecobank</span>
-</span>
-</div>
-<nav class="hidden md:flex items-center gap-6 ml-10">
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Marketplace</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Claims</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">My Policies</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="hidden lg:block font-label-lg text-label-lg text-primary hover:bg-surface-container-low px-4 py-2 rounded-lg transition-colors">Partner Login</button>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="notifications">notifications</span>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="account_circle">account_circle</span>
-</div>
-</div>
-</div>
-</header>
 <!-- Main Content Canvas -->
 <main class="flex-grow relative overflow-hidden flex flex-col items-center">
 <!-- Background Accents -->
@@ -276,48 +251,6 @@
 </div>
 </div>
 </main>
-<!-- Footer -->
-<footer class="w-full py-stack-lg px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-border-subtle bg-surface-container-low">
-<div class="flex flex-col items-center md:items-start gap-4">
-<div class="flex items-center gap-6">
-<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<div class="h-8 w-px bg-outline-variant"></div>
-<div class="flex items-center">
-<!-- Partner Logo Placeholder -->
-<div class="w-24 h-8 bg-surface-dim rounded flex items-center justify-center">
-<span class="font-bold text-eco-lime text-xs">Ecobank</span>
-</div>
-</div>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">© 2026 Ecobank Insurance Marketplace. All rights reserved.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-6">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">FAQ</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Contact Us</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Partner Portal</a>
-</div>
-</footer>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-border-subtle shadow-lg rounded-t-xl">
-<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
-<span class="material-symbols-outlined" data-icon="home">home</span>
-<span class="font-label-sm text-label-sm">Home</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl p-2 active:scale-90 transition-transform" href="#">
-<span class="material-symbols-outlined" data-icon="explore">explore</span>
-<span class="font-label-sm text-label-sm">Explore</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
-<span class="material-symbols-outlined" data-icon="description">description</span>
-<span class="font-label-sm text-label-sm">Policies</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
-<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
-<span class="font-label-sm text-label-sm">Support</span>
-</a>
-</nav>
 <script>
         // Simple micro-interactions
         document.querySelectorAll('select, input').forEach(el => {

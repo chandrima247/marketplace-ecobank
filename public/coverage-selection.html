@@ -132,24 +132,6 @@
     </style>
 </head>
 <body class="bg-surface-gray min-h-screen flex flex-col">
-<!-- TopNavBar (Shared Component) -->
-<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-border-subtle dark:border-outline-variant docked full-width top-0 z-50">
-<nav class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-16">
-<div class="flex items-center gap-gutter">
-<span class="text-title-md font-title-md font-bold text-primary dark:text-primary-fixed-dim">MaaS</span>
-<div class="hidden md:flex items-center gap-stack-md h-full">
-<a class="font-label-lg text-label-lg text-primary dark:text-primary-fixed-dim border-b-2 border-tertiary-container dark:border-tertiary-fixed-dim pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Vehicle</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Manual</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Coverage</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Plans</a>
-</div>
-</div>
-<div class="flex items-center gap-stack-md">
-<button class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant scale-95 active:scale-90 transition-transform">Help</button>
-<button class="bg-primary text-white font-label-lg text-label-lg px-6 py-2 rounded-lg scale-95 active:scale-90 transition-transform">Sign In</button>
-</div>
-</nav>
-</header>
 <!-- Main Content Canvas -->
 <main class="flex-grow relative overflow-hidden flex flex-col items-center">
 <!-- Background Decor -->
@@ -256,21 +238,6 @@
 </div>
 </div>
 </main>
-<!-- Footer Component -->
-<footer class="bg-surface-gray dark:bg-inverse-surface border-t border-border-subtle dark:border-outline-variant full-width py-stack-lg mt-auto">
-<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto gap-stack-md">
-<div class="flex flex-col items-center md:items-start gap-2">
-<span class="text-label-lg font-label-lg font-bold text-on-surface dark:text-surface-bright">MaaS Marketplace</span>
-<span class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant">© 2026 Ecobank Insurance Marketplace. All rights reserved.</span>
-</div>
-<div class="flex gap-stack-md">
-<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline decoration-primary dark:decoration-primary-fixed-dim transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline decoration-primary dark:decoration-primary-fixed-dim transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline decoration-primary dark:decoration-primary-fixed-dim transition-opacity opacity-80 hover:opacity-100" href="#">Contact Us</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:underline decoration-primary dark:decoration-primary-fixed-dim transition-opacity opacity-80 hover:opacity-100" href="#">Ecobank Security</a>
-</div>
-</div>
-</footer>
 <script>
         function selectCoverage(type, element) {
             // Remove active classes from all cards
