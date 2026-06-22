@@ -1,6 +1,6 @@
 {
-  "name": "MaaS Insurance",
-  "description": "Next-generation Pan-African insurance platform powered by MaaS technology & Ecobank.",
+  "name": "Ecobank Insurance",
+  "description": "Next-generation Pan-African bancassurance marketplace powered by Ecobank.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

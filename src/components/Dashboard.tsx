@@ -66,11 +66,13 @@ export default function Dashboard({
   onRemovePolicy,
   onBuyInsurance,
   onLogout,
-  userName = 'Chandrima Ghosh'
+  userName = 'Jane Doe'
 }: DashboardProps) {
   const [showFileClaim, setShowFileClaim] = useState(false);
   const [activeFilter, setActiveFilter] = useState('Overview');
   const [activePolicyIdx, setActivePolicyIdx] = useState(0);
+  const [selectedClaim, setSelectedClaim] = useState<Claim | null>(null);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const [selectedPolId, setSelectedPolId] = useState(policies[0]?.id || '');
   const [claimDesc, setClaimDesc] = useState('');
@@ -154,7 +156,7 @@ export default function Dashboard({
           { label: 'Insured Asset', value: activePol.insuredItemName.length > 28 ? activePol.insuredItemName.slice(0, 28) + '...' : activePol.insuredItemName },
           { label: 'Renewal Date', value: activePol.renewalDate },
         ]} />
-        <button className="mt-4 w-full h-9 bg-[#004260] text-white rounded-md text-[12px] font-bold hover:bg-[#005b82] transition-colors">
+        <button onClick={() => setActiveFilter('Policy')} className="mt-4 w-full h-9 bg-[#004260] text-white rounded-md text-[12px] font-bold hover:bg-[#005b82] transition-colors">
           View Full Details
         </button>
       </Widget>
@@ -175,7 +177,7 @@ export default function Dashboard({
       ) : (
         <div className="space-y-2">
           {claims.slice(0, 4).map(clm => (
-            <div key={clm.id} className="flex items-start justify-between gap-2 bg-white border border-[#e2e8f0] rounded-lg p-3 hover:border-[#cbd5e1] hover:shadow-sm transition-all cursor-pointer">
+            <div key={clm.id} onClick={() => setSelectedClaim(clm)} className="flex items-start justify-between gap-2 bg-white border border-[#e2e8f0] rounded-lg p-3 hover:border-[#cbd5e1] hover:shadow-sm transition-all cursor-pointer">
               <div className="min-w-0">
                 <span className="text-[11px] font-bold text-[#334155] block">{new Date(clm.dateSubmitted).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                 <span className="text-[10px] text-[#64748b] block mt-0.5 truncate">{clm.policyTitle}</span>
@@ -238,9 +240,10 @@ export default function Dashboard({
       </p>
       <div className="flex flex-wrap gap-2 mt-3">
         {['Policy Certificate', 'Claim Receipt', 'Tax Statement'].map(doc => (
-          <span key={doc} className="inline-flex items-center h-[26px] px-2.5 rounded-full bg-[#f8fafc] border border-[#e2e8f0] text-[11px] font-bold text-[#334155]">
+          <button key={doc} onClick={() => alert(`Downloading ${doc}...`)} className="inline-flex items-center h-[26px] px-2.5 rounded-full bg-[#f8fafc] border border-[#e2e8f0] text-[11px] font-bold text-[#334155] hover:bg-[#e2e8f0] hover:border-[#cbd5e1] transition-colors cursor-pointer gap-1">
+            <Download className="w-3 h-3 text-[#64748b]" />
             {doc}
-          </span>
+          </button>
         ))}
       </div>
       <button className="mt-4 h-9 px-4 bg-[#004260] text-white rounded-md text-[12px] font-bold hover:bg-[#005b82] transition-colors">
@@ -290,7 +293,7 @@ export default function Dashboard({
               </div>
               <div className="relative h-2 rounded-full bg-[#f3f4f6] overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#0ea5a4] to-[#10b981]"
+                  className="h-full rounded-full bg-[#10b981]"
                   style={{ width: `${item.pct}%` }}
                 />
               </div>
@@ -335,8 +338,8 @@ export default function Dashboard({
           <span className="text-[16px] text-[#000] block mb-2.5">Insurer</span>
           {[
             { icon: <Phone className="w-2 h-2 text-white" />, text: '+256 700 123 456' },
-            { icon: <Mail className="w-2 h-2 text-white" />, text: 'support@maas.ug' },
-            { icon: <Globe className="w-2 h-2 text-white" />, text: 'maas-insurance.com' },
+            { icon: <Mail className="w-2 h-2 text-white" />, text: 'support@ecobank-insurance.com' },
+            { icon: <Globe className="w-2 h-2 text-white" />, text: 'ecobank-insurance.com' },
           ].map((c, i) => (
             <div key={i} className="flex items-center gap-2 mb-2 text-[13px] font-bold text-[#1e293b]">
               <span className="w-3.5 h-3.5 rounded-full bg-[#059668] flex items-center justify-center shrink-0">{c.icon}</span>
@@ -348,7 +351,7 @@ export default function Dashboard({
           <span className="text-[16px] text-[#000] block mb-2.5">Agent</span>
           {[
             { icon: <Phone className="w-2 h-2 text-white" />, text: '+256 701 445 882' },
-            { icon: <Mail className="w-2 h-2 text-white" />, text: 'chandrima@nxt.pe' },
+            { icon: <Mail className="w-2 h-2 text-white" />, text: 'agent@ecobank.com' },
           ].map((c, i) => (
             <div key={i} className="flex items-center gap-2 mb-2 text-[13px] font-bold text-[#1e293b]">
               <span className="w-3.5 h-3.5 rounded-full bg-[#f59e0b] flex items-center justify-center shrink-0">{c.icon}</span>
@@ -397,7 +400,7 @@ export default function Dashboard({
 
   const renderRecommendedWidget = () => (
     <Widget title="Recommended for You" accent="#3b82f6">
-      <div className="border border-[#e2e8f0] rounded-lg bg-gradient-to-b from-white to-[#f8fbff] p-3.5">
+      <div className="border border-[#e2e8f0] rounded-lg bg-white p-3.5">
         <h4 className="text-[16px] font-extrabold text-[#1f2937] leading-snug mb-1.5">
           {activePol?.category === 'Motor' ? 'Add Roadside Assist+' : activePol?.category === 'Health' ? 'Upgrade to Family Plan' : 'Increase Your Cover'}
         </h4>
@@ -472,7 +475,7 @@ export default function Dashboard({
 
       {/* Hero Banner */}
       <div className="bg-white p-2 pb-0">
-        <div className="rounded-xl h-40 overflow-hidden relative bg-gradient-to-r from-[#004260] via-[#005b82] to-[#4159ab]">
+        <div className="rounded-xl h-40 overflow-hidden relative bg-[#004260]">
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 200">
               <path d="M0 200 C 200 0 500 0 1000 200" fill="none" stroke="white" strokeWidth="1" />
@@ -480,7 +483,7 @@ export default function Dashboard({
             </svg>
           </div>
           <div className="absolute top-4 left-5 z-10">
-            <span className="text-white text-[22px] font-bold block">MaaS Insurance</span>
+            <span className="text-white text-[22px] font-bold block">Ecobank Insurance</span>
             <span className="text-white/60 text-[11px] font-medium">Ecobank Partnership</span>
           </div>
           <div className="absolute top-4 right-5 flex items-center gap-2 z-10">
@@ -498,9 +501,40 @@ export default function Dashboard({
           <div className="flex items-center justify-between py-5">
             <h1 className="text-[23px] font-bold text-[#1f2937] tracking-tight">Account Dashboard</h1>
             <div className="flex items-center gap-3">
-              <button className="w-[34px] h-[34px] rounded-lg border border-[#e2e8f0] bg-white text-[#64748b] flex items-center justify-center hover:bg-[#f8fafc] transition-colors">
-                <Bell className="w-4 h-4" />
-              </button>
+              <div className="relative">
+                <button onClick={() => setShowNotifications(!showNotifications)} className="w-[34px] h-[34px] rounded-lg border border-[#e2e8f0] bg-white text-[#64748b] flex items-center justify-center hover:bg-[#f8fafc] transition-colors relative">
+                  <Bell className="w-4 h-4" />
+                  <span className="absolute -top-1 -right-1 w-[14px] h-[14px] bg-[#ef4444] rounded-full text-white text-[8px] font-bold flex items-center justify-center">4</span>
+                </button>
+                {showNotifications && (
+                  <div className="absolute right-0 top-[42px] w-[340px] bg-white rounded-xl border border-[#e2e8f0] shadow-lg z-50 overflow-hidden">
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-[#f1f5f9]">
+                      <span className="text-[13px] font-bold text-[#1e293b]">Notifications</span>
+                      <button onClick={() => setShowNotifications(false)} className="text-[#94a3b8] hover:text-[#1f2937] transition-colors">
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <div className="max-h-[320px] overflow-y-auto">
+                      {[
+                        { type: 'warning', icon: <AlertTriangle className="w-4 h-4 text-[#f59e0b]" />, bg: '#fef3c7', text: 'Your Motor policy renewal is due in 14 days', time: '2 hours ago' },
+                        { type: 'success', icon: <CheckCircle className="w-4 h-4 text-[#10b981]" />, bg: '#d1fae5', text: 'Claim CLM-2024-001 has been approved', time: '5 hours ago' },
+                        { type: 'info', icon: <Shield className="w-4 h-4 text-[#004260]" />, bg: '#e7eeff', text: 'New travel insurance deal: 20% off', time: 'Yesterday' },
+                        { type: 'info', icon: <CreditCard className="w-4 h-4 text-[#004260]" />, bg: '#e7eeff', text: 'Monthly premium of UGX 542,000 debited successfully', time: '2 days ago' },
+                      ].map((n, i) => (
+                        <div key={i} className="flex items-start gap-3 px-4 py-3 border-b border-[#f8fafc] hover:bg-[#f8fafc] transition-colors cursor-pointer">
+                          <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: n.bg }}>
+                            {n.icon}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-[12px] font-semibold text-[#1e293b] leading-snug">{n.text}</p>
+                            <span className="text-[10px] font-medium text-[#94a3b8] mt-1 block">{n.time}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
               <button className="w-[34px] h-[34px] rounded-lg border border-[#e2e8f0] bg-white text-[#64748b] flex items-center justify-center hover:bg-[#f8fafc] transition-colors">
                 <Search className="w-4 h-4" />
               </button>
@@ -663,6 +697,98 @@ export default function Dashboard({
           </div>
         </div>
       </div>
+
+      {/* Claim Detail Modal */}
+      {selectedClaim && (() => {
+        const clm = selectedClaim;
+        const linkedPolicy = policies.find(p => p.id === clm.policyId);
+        const statusSteps = ['Submitted', 'Under Review', clm.status === 'Declined' ? 'Declined' : 'Approved'];
+        const currentStepIdx = clm.status === 'Processing' ? 1 : 2;
+        return (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center bg-[#0f172a]/40 backdrop-blur-sm">
+            <div className="bg-white w-full max-w-lg rounded-2xl p-8 flex flex-col shadow-2xl mx-4 relative overflow-y-auto max-h-[90vh]">
+              <button onClick={() => setSelectedClaim(null)} className="absolute top-5 right-5 text-[#94a3b8] hover:text-[#1f2937] transition-colors p-1.5 rounded-lg hover:bg-[#f8fafc]">
+                <X className="w-5 h-5" />
+              </button>
+              <div className="mb-6">
+                <h3 className="text-[20px] font-bold text-[#1f2937]">Claim Details</h3>
+                <p className="text-[12px] text-[#64748b] mt-1">Review the status and details of your claim.</p>
+              </div>
+
+              {/* Claim info grid */}
+              <div className="space-y-0 mb-6">
+                {[
+                  ['Claim ID', clm.id],
+                  ['Date Submitted', new Date(clm.dateSubmitted).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })],
+                  ['Policy Reference', linkedPolicy?.code || clm.policyId],
+                  ['Policy', clm.policyTitle],
+                  ['Estimated Payout', `UGX ${formatUGX(clm.estimatedPayout)}`],
+                ].map(([label, val], i) => (
+                  <div key={i} className={`flex justify-between py-2.5 ${i < 4 ? 'border-b border-[#f1f5f9]' : ''}`}>
+                    <span className="text-[11px] font-medium text-[#64748b]">{label}</span>
+                    <span className="text-[12.5px] font-bold text-[#1e293b] text-right max-w-[60%] truncate">{val}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Description */}
+              {clm.description && (
+                <div className="mb-6">
+                  <span className="text-[11px] font-bold text-[#64748b] uppercase tracking-wider block mb-1.5">Description</span>
+                  <p className="text-[13px] text-[#334155] leading-relaxed bg-[#f8fafc] rounded-lg p-3 border border-[#e2e8f0]">{clm.description}</p>
+                </div>
+              )}
+
+              {/* Status Timeline */}
+              <div className="mb-6">
+                <span className="text-[11px] font-bold text-[#64748b] uppercase tracking-wider block mb-3">Status Timeline</span>
+                <div className="flex items-center justify-between">
+                  {statusSteps.map((step, i) => {
+                    const isActive = i <= currentStepIdx;
+                    const isCurrent = i === currentStepIdx;
+                    const isRejected = step === 'Declined' && isCurrent;
+                    return (
+                      <React.Fragment key={i}>
+                        <div className="flex flex-col items-center gap-1.5 flex-1">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold border-2 ${
+                            isRejected ? 'border-[#ef4444] bg-[#fef2f2] text-[#ef4444]'
+                              : isCurrent ? 'border-[#004260] bg-[#004260] text-white'
+                                : isActive ? 'border-[#10b981] bg-[#d1fae5] text-[#065f46]'
+                                  : 'border-[#e2e8f0] bg-[#f8fafc] text-[#94a3b8]'
+                          }`}>
+                            {isRejected ? <XCircle className="w-4 h-4" /> : isActive && !isCurrent ? <CheckCircle className="w-4 h-4" /> : (i + 1)}
+                          </div>
+                          <span className={`text-[10px] font-bold text-center ${
+                            isRejected ? 'text-[#ef4444]' : isCurrent ? 'text-[#004260]' : isActive ? 'text-[#065f46]' : 'text-[#94a3b8]'
+                          }`}>{step}</span>
+                        </div>
+                        {i < statusSteps.length - 1 && (
+                          <div className={`h-[2px] flex-1 mx-1 rounded ${i < currentStepIdx ? 'bg-[#10b981]' : 'bg-[#e2e8f0]'}`} />
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Attached document */}
+              {clm.fileName && (
+                <div className="mb-6">
+                  <span className="text-[11px] font-bold text-[#64748b] uppercase tracking-wider block mb-1.5">Attached Document</span>
+                  <div className="inline-flex items-center gap-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg px-3 py-2">
+                    <File className="w-4 h-4 text-[#004260]" />
+                    <span className="text-[12px] font-bold text-[#334155]">{clm.fileName}</span>
+                  </div>
+                </div>
+              )}
+
+              <button onClick={() => setSelectedClaim(null)} className="w-full h-10 bg-[#004260] text-white rounded-lg text-[13px] font-bold hover:bg-[#005b82] transition-colors">
+                Close
+              </button>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* File Claim Modal */}
       {showFileClaim && (

@@ -83,8 +83,8 @@ export default function InsuranceWizard({
   const [addonFilters, setAddonFilters] = useState<string[]>([]);
 
   // SECURE CHECKOUT / FINAL FORM STATES
-  const [fullName, setFullName] = useState('Chandrima Ghosh');
-  const [email, setEmail] = useState('chandrimaghosh2004@gmail.com');
+  const [fullName, setFullName] = useState('Jane Doe');
+  const [email, setEmail] = useState('jane.doe@ecobank.com');
   const [phone, setPhone] = useState('+256 701 445882');
   const [nationalId, setNationalId] = useState('NID-UG594031-Z');
   const [licenseNumber, setLicenseNumber] = useState('UG-DRV-9840212');
@@ -501,12 +501,12 @@ export default function InsuranceWizard({
             </div>
             
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-success-teal/10 text-success-teal rounded-full text-[10px] font-black uppercase tracking-widest mb-2">
-              <Shield className="w-3.5 h-3.5" /> MaaS Secure Certified
+              <Shield className="w-3.5 h-3.5" /> Ecobank Secure Certified
             </span>
             
             <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">Microinsurance Coverage Issued!</h2>
             <p className="text-gray-500 text-xs sm:text-sm mt-2 max-w-md mx-auto">
-              Your comprehensive protective coverage has been settled and registered securely on the MaaS Pan-African Ecobank system ledger.
+              Your comprehensive protective coverage has been settled and registered securely on the Ecobank Pan-African insurance ledger.
             </p>
 
             {/* Premium Microinsurance Certificate Block */}
@@ -1585,7 +1585,7 @@ export default function InsuranceWizard({
                 return [
                   { q: 'How quickly is my coverage activated?', a: 'Coverage is activated within minutes of your first successful payment.' },
                   { q: 'Can I cancel anytime?', a: 'Yes, you can cancel with 30 days notice. Unused premiums are refunded pro-rata.' },
-                  { q: 'How do I file a claim?', a: 'Through your MaaS dashboard — upload documents and track progress in real-time.' },
+                  { q: 'How do I file a claim?', a: 'Through your Ecobank Insurance dashboard — upload documents and track progress in real-time.' },
                   { q: 'Is my data secure?', a: 'All data is encrypted and secured through Ecobank\'s banking-grade infrastructure.' },
                 ];
               };
@@ -1609,7 +1609,7 @@ export default function InsuranceWizard({
               <div className="space-y-0 -mx-4" id="stage-details-view">
 
                 {/* ── HERO SECTION ── */}
-                <div className="bg-gradient-to-br from-primary via-[#005b82] to-secondary text-white px-5 sm:px-8 py-8 sm:py-12 rounded-2xl relative overflow-hidden">
+                <div className="bg-primary text-white px-5 sm:px-8 py-8 sm:py-12 rounded-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3"></div>
                   <div className="absolute bottom-0 left-0 w-40 h-40 bg-eco-lime/10 rounded-full translate-y-1/2 -translate-x-1/4"></div>
                   <div className="relative z-10 max-w-2xl">
@@ -1906,7 +1906,7 @@ export default function InsuranceWizard({
                 </div>
 
                 {/* ── CTA SECTION ── */}
-                <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 sm:p-10 text-center text-white">
+                <div className="bg-primary rounded-2xl p-6 sm:p-10 text-center text-white">
                   <h2 className="text-xl sm:text-2xl font-black mb-2">Ready to Get Protected?</h2>
                   <p className="text-white/70 text-sm mb-6 max-w-md mx-auto">
                     Join thousands of customers who trust {selectedProvider.name} for their {category.toLowerCase()} insurance needs.

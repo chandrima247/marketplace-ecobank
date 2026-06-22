@@ -7,7 +7,6 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -113,28 +112,11 @@
         body {
             font-family: 'Hanken Grotesk', sans-serif;
             background-color: #f9f9ff;
+            margin: 0;
+            padding: 0;
         }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .stepper-line {
-            height: 2px;
-            flex-grow: 1;
-            background-color: #E5E5E5;
-            margin: 0 8px;
-            margin-top: -16px;
-        }
-        .stepper-line.active {
-            background-color: #00C58F;
-        }
-        .member-row {
-            transition: all 0.15s ease;
-            border-radius: 12px;
-            padding: 12px;
-            margin: -12px;
-        }
-        .member-row:hover {
-            background-color: rgba(0, 42, 64, 0.03);
         }
         select.age-select {
             transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -143,197 +125,110 @@
             border-color: #004260 !important;
             box-shadow: 0 0 0 3px rgba(0, 66, 96, 0.12) !important;
         }
-        body > nav, body > header, body > footer { display: none !important; }
-        html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
+        html, body { min-height: 0 !important; height: auto !important; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col text-on-surface">
-<!-- TopNavBar -->
-<header class="bg-surface docked full-width top-0 border-b border-border-subtle z-50">
-<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
-<div class="flex items-center gap-stack-md">
-<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<nav class="hidden md:flex gap-6 items-center">
-<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg" href="#">Marketplace</a>
-<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg" href="#">Claims</a>
-<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg" href="#">My Policies</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="hidden md:block font-label-lg text-label-lg text-primary hover:bg-surface-container-low px-4 py-2 rounded-lg transition-colors">Partner Login</button>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 hover:bg-surface-container-low rounded-full transition-colors" data-icon="notifications">notifications</span>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-2 hover:bg-surface-container-low rounded-full transition-colors" data-icon="account_circle">account_circle</span>
-</div>
-</div>
-</header>
-<!-- Main Content Area -->
-<main class="flex-grow flex flex-col items-center py-stack-lg px-margin-mobile">
-<div class="w-full max-w-[560px] flex flex-col gap-stack-lg">
-<!-- Stepper -->
-<div class="w-full">
-<div class="flex items-center justify-between max-w-[460px] mx-auto mb-6">
-<!-- Step 1: Completed -->
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-success-teal text-white flex items-center justify-center">
-<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-<span class="text-[10px] uppercase tracking-wider font-bold text-success-teal">Members</span>
-</div>
-<div class="stepper-line active"></div>
-<!-- Step 2: Active -->
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-[11px] font-bold ring-4 ring-primary/10">2</div>
-<span class="text-[10px] uppercase tracking-wider font-bold text-primary">Ages</span>
-</div>
-<div class="stepper-line"></div>
-<!-- Step 3: Pending -->
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[11px] font-bold">3</div>
-<span class="text-[10px] uppercase tracking-wider font-medium text-on-surface-variant">Location</span>
-</div>
-<div class="stepper-line"></div>
-<!-- Step 4: Pending -->
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[11px] font-bold">4</div>
-<span class="text-[10px] uppercase tracking-wider font-medium text-on-surface-variant">Contact</span>
-</div>
-</div>
-<!-- Page Header -->
-<div class="text-center mb-stack-md">
-<h1 class="font-headline-lg text-headline-lg text-primary mb-2">How old are the members?</h1>
-<p class="font-body-md text-body-md text-on-surface-variant">Age helps us provide accurate premium estimates from our regional partners.</p>
-</div>
-</div>
-<!-- Central Age Selection Card -->
-<div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-stack-md flex flex-col gap-6 relative overflow-hidden">
-<!-- Eco-lime accent line at top -->
-<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-eco-lime via-success-teal to-eco-lime"></div>
-<!-- Member Row: Self -->
-<div class="member-row flex items-center justify-between group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-</div>
-<div>
-<p class="font-label-lg text-label-lg text-on-surface">Self</p>
-<p class="font-label-sm text-label-sm text-outline">Primary Policyholder</p>
-</div>
-</div>
-<div class="relative w-32">
-<select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-[16px] font-medium text-on-surface focus:ring-2 focus:ring-primary/15 focus:border-primary outline-none cursor-pointer">
-<option>32</option>
-<option>18-25</option>
-<option>26-35</option>
-<option>36-45</option>
-<option>46-55</option>
-<option>56+</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]" data-icon="expand_more">expand_more</span>
-</div>
-</div>
-<hr class="border-border-subtle"/>
-<!-- Member Row: Spouse -->
-<div class="member-row flex items-center justify-between group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="group">group</span>
-</div>
-<div>
-<p class="font-label-lg text-label-lg text-on-surface">Spouse</p>
-<p class="font-label-sm text-label-sm text-outline">Dependent</p>
-</div>
-</div>
-<div class="relative w-32">
-<select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-[16px] font-medium text-on-surface focus:ring-2 focus:ring-primary/15 focus:border-primary outline-none cursor-pointer">
-<option>30</option>
-<option>18-25</option>
-<option>26-35</option>
-<option>36-45</option>
-<option>46-55</option>
-<option>56+</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]" data-icon="expand_more">expand_more</span>
-</div>
-</div>
-<hr class="border-border-subtle"/>
-<!-- Member Row: Son -->
-<div class="member-row flex items-center justify-between group">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="child_care">child_care</span>
-</div>
-<div>
-<p class="font-label-lg text-label-lg text-on-surface">Son</p>
-<p class="font-label-sm text-label-sm text-outline">Dependent</p>
-</div>
-</div>
-<div class="relative w-32">
-<select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-[16px] font-medium text-on-surface focus:ring-2 focus:ring-primary/15 focus:border-primary outline-none cursor-pointer">
-<option>5</option>
-<option>0-2</option>
-<option>3-12</option>
-<option>13-17</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]" data-icon="expand_more">expand_more</span>
-</div>
-</div>
-</div>
-<!-- Action Buttons -->
-<div class="flex flex-col gap-4">
-<button class="w-full bg-primary text-white font-label-lg text-[16px] font-semibold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-deep-navy transition-all active:scale-[0.98] shadow-md" onclick="notifyParent('next')">
-                    Next: Your Location
-                    <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
-</button>
-<button class="w-full bg-transparent text-primary font-label-lg text-label-lg py-3 rounded-xl flex items-center justify-center gap-2 border border-outline-variant hover:bg-surface-container-low transition-all active:scale-[0.98]" onclick="notifyParent('back')">
-<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
-                    Back to Selection
-                </button>
-</div>
-<!-- Trust Badge -->
-<div class="flex items-center justify-center gap-2 opacity-60 grayscale hover:grayscale-0 transition-all cursor-default">
-<img alt="Ecobank Logo" class="h-4 object-contain" data-alt="The official corporate logo of Ecobank group, featuring its distinct blue and white typography against a clean, professional studio background with soft ambient lighting for a corporate financial identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo-bJGW-Xyjlz14tFSd0W26iwm8ynsK0W8Rfv67zWR6BVLmvIyRR8Xy4Lyxr-fFWV511pRbLpCbPcDbhJHj9HdhZ4XUSrg7cRIzQG36gn0p_u3G--43oqgRSw9ERVKaaTiRdKcxsnFcaL_njIE2QASUQ0cXcA449pH0UYGpdNZvKFBv0mrfPgTonirEfv2xp8j3gI99ZUmXn1nLAB5y4M-M-Jj0UzEkZ8qlDmmLQOHEuPzHEixrCvtyvpqmLpqCymGEvfN34glQz4"/>
-<div class="h-4 w-[1px] bg-outline"></div>
-<p class="font-label-sm text-label-sm text-outline">Secured by Ecobank MaaS Protocol</p>
-</div>
+<body>
+<main class="px-4 pt-3 pb-2">
+<div class="w-full max-w-[680px] mx-auto">
+    <!-- Slim Step Indicator -->
+    <div class="flex items-center gap-2 mb-3">
+        <span class="text-[11px] font-bold text-primary uppercase tracking-wider">Step 2 of 4</span>
+        <div class="flex-1 h-[3px] rounded-full bg-surface-container-high overflow-hidden">
+            <div class="h-full w-2/4 bg-primary rounded-full"></div>
+        </div>
+    </div>
+
+    <!-- Wizard Card -->
+    <div class="bg-surface-container-lowest rounded-xl border border-border-subtle p-4 relative overflow-hidden">
+        <!-- Eco-lime accent line at top -->
+        <div class="absolute top-0 left-0 right-0 h-[2px] bg-[#BED600]"></div>
+
+        <!-- Title -->
+        <div class="mb-3">
+            <h1 class="text-[18px] font-bold text-primary leading-tight">How old are the members?</h1>
+            <p class="text-[12px] text-on-surface-variant mt-0.5">Age helps us provide accurate premium estimates.</p>
+        </div>
+
+        <!-- 3 member cards side by side -->
+        <div class="grid grid-cols-3 gap-3 mb-4">
+            <!-- Self -->
+            <div class="border border-border-subtle rounded-lg p-3 flex flex-col items-center gap-2">
+                <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">person</span>
+                </div>
+                <div class="text-center">
+                    <p class="text-[13px] font-semibold text-on-surface">Self</p>
+                    <p class="text-[10px] text-outline">Primary</p>
+                </div>
+                <div class="relative w-full">
+                    <select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-[14px] font-medium text-on-surface text-center focus:ring-2 focus:ring-primary/15 outline-none cursor-pointer">
+                        <option>32</option>
+                        <option>18-25</option>
+                        <option>26-35</option>
+                        <option>36-45</option>
+                        <option>46-55</option>
+                        <option>56+</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[16px]">expand_more</span>
+                </div>
+            </div>
+            <!-- Spouse -->
+            <div class="border border-border-subtle rounded-lg p-3 flex flex-col items-center gap-2">
+                <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">group</span>
+                </div>
+                <div class="text-center">
+                    <p class="text-[13px] font-semibold text-on-surface">Spouse</p>
+                    <p class="text-[10px] text-outline">Dependent</p>
+                </div>
+                <div class="relative w-full">
+                    <select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-[14px] font-medium text-on-surface text-center focus:ring-2 focus:ring-primary/15 outline-none cursor-pointer">
+                        <option>30</option>
+                        <option>18-25</option>
+                        <option>26-35</option>
+                        <option>36-45</option>
+                        <option>46-55</option>
+                        <option>56+</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[16px]">expand_more</span>
+                </div>
+            </div>
+            <!-- Son -->
+            <div class="border border-border-subtle rounded-lg p-3 flex flex-col items-center gap-2">
+                <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">child_care</span>
+                </div>
+                <div class="text-center">
+                    <p class="text-[13px] font-semibold text-on-surface">Son</p>
+                    <p class="text-[10px] text-outline">Dependent</p>
+                </div>
+                <div class="relative w-full">
+                    <select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-[14px] font-medium text-on-surface text-center focus:ring-2 focus:ring-primary/15 outline-none cursor-pointer">
+                        <option>5</option>
+                        <option>0-2</option>
+                        <option>3-12</option>
+                        <option>13-17</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[16px]">expand_more</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="flex items-center gap-3 pt-3 border-t border-border-subtle">
+            <button class="px-6 py-2.5 bg-transparent text-primary rounded-lg font-semibold text-[13px] border border-outline-variant hover:bg-surface-container-low transition-all flex items-center gap-1" onclick="notifyParent('back')">
+                <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                Back
+            </button>
+            <button class="flex-1 py-2.5 bg-primary text-white rounded-lg font-bold text-[14px] hover:bg-deep-navy transition-all flex items-center justify-center gap-2 shadow-md" onclick="notifyParent('next')">
+                Next: Your Location
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </button>
+        </div>
+    </div>
 </div>
 </main>
-<!-- Footer -->
-<footer class="bg-surface-container-low border-t border-border-subtle mt-auto">
-<div class="w-full py-stack-lg px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
-<div class="flex flex-col gap-2">
-<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-sm text-center md:text-left">Building trust through transparent digital insurance solutions across the African continent.</p>
-</div>
-<div class="flex flex-col items-center md:items-end gap-4">
-<div class="flex gap-6 flex-wrap justify-center">
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Privacy Policy</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Terms of Service</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">FAQ</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Contact Us</a>
-</div>
-<p class="font-label-sm text-label-sm text-outline">© 2024 MaaS Insurance Marketplace. Powered by Ecobank.</p>
-</div>
-</div>
-</footer>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-border-subtle shadow-lg rounded-t-xl">
-<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
-<span class="material-symbols-outlined" data-icon="home">home</span>
-<span class="font-label-sm text-label-sm">Home</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
-<span class="material-symbols-outlined" data-icon="explore">explore</span>
-<span class="font-label-sm text-label-sm">Explore</span>
-</div>
-<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-2 scale-90 transition-transform">
-<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
-<span class="font-label-sm text-label-sm font-bold">Policies</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
-<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
-<span class="font-label-sm text-label-sm">Support</span>
-</div>
-</nav>
 <script>
         // Simple Interaction logic
         document.querySelectorAll('select').forEach(select => {

@@ -10,6 +10,7 @@ import LoginModal from './components/LoginModal';
 import VoiceAssistant from './components/VoiceAssistant';
 import InsuranceWizard from './components/InsuranceWizard';
 import Dashboard from './components/Dashboard';
+import AgentDashboard from './components/AgentDashboard';
 
 import { 
   CATEGORIES, 
@@ -22,11 +23,12 @@ import { Policy, Claim, User, InsuranceCategory } from './types';
 
 export default function App() {
   // Navigation states
-  const [activeView, setActiveView] = useState<'explore' | 'policies' | 'claims' | 'wizard'>('explore');
+  const [activeView, setActiveView] = useState<'explore' | 'policies' | 'claims' | 'wizard' | 'agent'>('explore');
   
   // Modals & Assistant States
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isVoiceOpen, setIsVoiceOpen] = useState(false);
+  const [loginRole, setLoginRole] = useState<NonNullable<User['role']>>('customer');
 
   // Core User / Core Ledger States
   const [user, setUser] = useState<User | null>(null);
@@ -59,8 +61,12 @@ export default function App() {
   // Handle successful login
   const handleLoginSuccess = (loggedInUser: User) => {
     setUser(loggedInUser);
+    if (loggedInUser.role && loggedInUser.role !== 'customer') {
+      setActiveView('agent');
+      return;
+    }
     // If they were trying to access lists, direct them there
-    if (activeView === 'explore') {
+    if (activeView === 'explore' || activeView === 'agent') {
       setActiveView('policies');
     }
   };
@@ -77,6 +83,21 @@ export default function App() {
     setActiveView('wizard');
   };
 
+  const openRoleLogin = (role: NonNullable<User['role']> = 'customer') => {
+    setLoginRole(role === 'agent' ? 'agent' : 'customer');
+    setIsLoginOpen(true);
+  };
+
+  const openBackoffice = () => {
+    setUser({
+      email: 'operations.control@ecobank.com',
+      name: 'Operations Control',
+      isLoggedIn: true,
+      role: 'ops',
+    });
+    setActiveView('agent');
+  };
+
   // Callback when a user completes a purchase
   const handlePolicyCreated = (newPolicy: Policy) => {
     // Add policy locally
@@ -87,8 +108,8 @@ export default function App() {
     // Automatically mock login if not logged in to let them view their dashboard
     if (!user) {
       setUser({
-        email: 'chandrimaghosh2004@gmail.com',
-        name: 'Chandrima Ghosh',
+        email: 'jane.doe@ecobank.com',
+        name: 'Jane Doe',
         isLoggedIn: true
       });
     }
@@ -130,16 +151,17 @@ export default function App() {
       {/* Structured Header Routing - hidden on dashboard (it has its own) and on the
           full-bleed Motor listing page (that page renders its own header) */}
       {activeView !== 'policies' && activeView !== 'claims' &&
+        activeView !== 'agent' &&
         !(activeView === 'wizard' && (wizardStage === 'listing' || wizardStage === 'questions') && wizardCategory === 'Motor') && (
         <Header
           user={user}
-          onLoginClick={() => setIsLoginOpen(true)}
+          onLoginClick={() => openRoleLogin('customer')}
           onLogout={handleLogout}
           activeView={activeView}
           onNavigate={(view) => setActiveView(view)}
           onBackClick={() => setActiveView('explore')}
           isSubPage={activeView === 'wizard'}
-          titleOverride={activeView === 'wizard' ? 'MaaS Insurance' : undefined}
+          titleOverride={activeView === 'wizard' ? 'Ecobank Insurance' : undefined}
         />
       )}
 
@@ -286,7 +308,7 @@ export default function App() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     {/* Dark premium gradients overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/45 to-transparent"></div>
+                    <div className="absolute inset-0 bg-primary/80"></div>
                   </div>
                   
                   <div className="p-8 sm:p-10 mt-auto relative z-10 space-y-4">
@@ -400,7 +422,7 @@ export default function App() {
                   </h2>
                   
                   <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
-                    Leveraging Ecobank's Pan-African coverage network and MaaS microprotect technology, we have cleared the friction out of traditional policies. Get certified in seconds, manage payouts in minutes, and lead your family's life with absolute confidence.
+                    Leveraging Ecobank's Pan-African network, this marketplace clears the friction out of traditional policies. Get certified in seconds, manage payouts in minutes, and keep your cover moving with confidence.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-4">
@@ -441,7 +463,15 @@ export default function App() {
             onRemovePolicy={handleRemovePolicy}
             onBuyInsurance={() => setActiveView('explore')}
             onLogout={handleLogout}
-            userName={user?.name || 'Chandrima Ghosh'}
+            userName={user?.name || 'Jane Doe'}
+          />
+        )}
+
+        {activeView === 'agent' && (
+          <AgentDashboard
+            user={user}
+            onLogout={handleLogout}
+            onStartCustomerQuote={() => handleLaunchWizard('Motor')}
           />
         )}
 
@@ -449,8 +479,9 @@ export default function App() {
 
       {/* Persistent global footer - hidden on dashboard and the full-bleed Motor listing */}
       {activeView !== 'policies' && activeView !== 'claims' &&
+        activeView !== 'agent' &&
         !(activeView === 'wizard' && (wizardStage === 'listing' || wizardStage === 'questions') && wizardCategory === 'Motor') && (
-        <Footer isSubPage={activeView === 'wizard'} />
+        <Footer isSubPage={activeView === 'wizard'} onRoleLogin={openRoleLogin} onBackofficeLogin={openBackoffice} />
       )}
 
       {/* INTERACTIVE LOGIN MODAL OVERLAY */}
@@ -458,6 +489,7 @@ export default function App() {
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
         onSuccess={handleLoginSuccess}
+        initialRole={loginRole}
       />
 
       {/* INTERACTIVE VOICE ASSISTANT MIC DIALOG OVERLAY */}

@@ -141,7 +141,7 @@ export const INITIAL_POLICES: Policy[] = [
     id: 'pol-02',
     category: 'Health',
     title: 'Ecobank Wellness Care Prime',
-    insuredItemName: 'Chandrima Ghosh (Self + Family)',
+    insuredItemName: 'Jane Doe (Self + Family)',
     premium: 28,
     renewalDate: '2026-09-15',
     status: 'Active',

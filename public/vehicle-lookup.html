@@ -123,13 +123,13 @@
         .stepper-fill {
             height: 100%;
             border-radius: 3px;
-            background: linear-gradient(90deg, #004260, #00C58F);
+            background: #004260;
             transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* License plate input styling */
         .plate-input-wrapper {
-            background: linear-gradient(135deg, #FFFDE8 0%, #FFFFFF 100%);
+            background: #FFFFFF;
             border: 2px solid #d9e3f9;
             border-radius: 12px;
             transition: border-color 0.2s, box-shadow 0.2s;
@@ -146,7 +146,7 @@
 
         /* Lookup button */
         .lookup-btn {
-            background: linear-gradient(135deg, #004260 0%, #005b82 100%);
+            background: #004260;
             box-shadow: 0 4px 12px rgba(0, 66, 96, 0.3);
             transition: all 0.2s;
         }
@@ -181,85 +181,28 @@
             background: #9ca3af;
         }
 
-        /* Trust badge cards */
-        .trust-badge {
-            background: rgba(255,255,255,0.95);
-            border: 1px solid #E5E5E5;
-            border-radius: 12px;
-            padding: 16px 20px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-            transition: box-shadow 0.2s, transform 0.2s;
-        }
-        .trust-badge:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transform: translateY(-1px);
-        }
+        /* Trust badge cards (removed - now inline text) */
 
         /* Eco-lime accent gradient bar */
         .eco-accent-bar {
             height: 4px;
             border-radius: 12px 12px 0 0;
-            background: linear-gradient(90deg, #BED600 0%, #00C58F 100%);
+            background: #BED600;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-<!-- Top Navigation (simplified) -->
-<header class="bg-white sticky top-0 z-50 border-b border-border-subtle/60">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-3 flex justify-between items-center">
-<div class="flex items-center gap-3">
-<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container rounded-full transition-colors active:scale-90 duration-150 -ml-1">
-<span class="material-symbols-outlined text-primary" style="font-size:22px;">arrow_back</span>
-</button>
-<h1 class="font-display-lg text-[18px] md:text-title-md font-bold text-primary tracking-tight">MaaS Insurance</h1>
-</div>
-<div class="flex items-center gap-2">
-<button class="px-4 py-1.5 font-label-lg text-label-sm text-primary border border-primary/30 rounded-full hover:bg-surface-container transition-colors active:scale-95" onclick="document.getElementById('auth-modal').classList.remove('hidden')">Login</button>
-<button class="w-9 h-9 flex items-center justify-center hover:bg-surface-container rounded-full transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px;">help_outline</span>
-</button>
-<button class="w-9 h-9 flex items-center justify-center hover:bg-surface-container rounded-full transition-colors">
-<span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px;">close</span>
-</button>
-</div>
-</div>
-</header>
+<body class="flex flex-col" style="min-height:0;">
 
-<!-- Polished Stepper Progress Bar -->
-<div class="px-margin-mobile md:px-margin-desktop py-3 bg-white">
-<div class="max-w-container-max mx-auto">
-<div class="flex items-center gap-3 mb-2">
-<div class="flex items-center gap-2">
-<div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-[11px] font-bold">1</div>
-<span class="text-label-sm font-semibold text-primary">Vehicle</span>
-</div>
-<div class="flex-1 h-px bg-outline-variant"></div>
-<div class="flex items-center gap-2">
-<div class="w-6 h-6 rounded-full bg-outline-variant text-on-surface-variant flex items-center justify-center text-[11px] font-bold">2</div>
-<span class="text-label-sm text-on-surface-variant">Coverage</span>
-</div>
-<div class="flex-1 h-px bg-outline-variant"></div>
-<div class="flex items-center gap-2">
-<div class="w-6 h-6 rounded-full bg-outline-variant text-on-surface-variant flex items-center justify-center text-[11px] font-bold">3</div>
-<span class="text-label-sm text-on-surface-variant">Confirm</span>
-</div>
-</div>
-<div class="stepper-track">
-<div class="stepper-fill" style="width: 33%;"></div>
-</div>
-</div>
+<!-- Thin progress bar replaces stepper -->
+<div class="w-full" style="height:2px;background:#e7eeff;">
+<div class="stepper-fill" style="width:33%;height:100%;"></div>
 </div>
 
-<main class="flex-grow flex flex-col items-center px-margin-mobile py-6 md:py-8">
-<!-- Step Indicator Text (tighter spacing) -->
-<div class="w-full max-w-[800px] mb-4 flex justify-between items-end">
-<div>
-<p class="font-label-lg text-label-sm text-secondary uppercase tracking-wider mb-0.5">Step 1 of 3</p>
-<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Vehicle Information</h2>
-</div>
-<div class="hidden md:block text-right">
-<p class="font-label-sm text-label-sm text-on-surface-variant">Est. time: 40 seconds</p>
-</div>
+<main class="flex-grow flex flex-col items-center px-margin-mobile py-3">
+<!-- Compact step indicator + title on one line -->
+<div class="w-full max-w-[800px] mb-2 flex items-baseline gap-3">
+<span class="font-label-sm text-[11px] text-secondary uppercase tracking-wider whitespace-nowrap">Step 1 of 3</span>
+<h2 class="font-headline-lg-mobile text-[20px] font-bold text-primary leading-tight">Vehicle Information</h2>
 </div>
 
 <!-- Focused Purchase Flow Card -->
@@ -267,24 +210,24 @@
 <!-- Eco-lime accent gradient bar at top -->
 <div class="eco-accent-bar"></div>
 
-<div class="p-6 md:p-10 flex flex-col gap-stack-md">
+<div class="p-4 md:p-6 flex flex-col gap-3">
 <div>
-<label class="font-label-lg text-label-lg text-primary mb-2 block" for="plate">Enter License Plate Number</label>
-<div class="plate-input-wrapper flex items-center p-1.5">
-<input class="w-full h-14 md:h-16 border-0 focus:ring-0 text-headline-lg-mobile md:text-headline-lg font-bold px-4 uppercase placeholder:normal-case placeholder:font-normal placeholder:text-outline placeholder:tracking-normal" id="plate" placeholder="e.g. UBM 492X" type="text">
-<button class="lookup-btn flex-shrink-0 text-white px-6 md:px-8 h-12 md:h-14 rounded-lg font-label-lg text-label-lg flex items-center gap-2" id="lookupBtn" onclick="simulateLookup()">
+<label class="font-label-lg text-label-lg text-primary mb-1 block" for="plate">Enter License Plate Number</label>
+<div class="plate-input-wrapper flex items-center p-1">
+<input class="w-full h-11 md:h-12 border-0 focus:ring-0 text-[18px] md:text-[22px] font-bold px-3 uppercase placeholder:normal-case placeholder:font-normal placeholder:text-outline placeholder:tracking-normal" id="plate" placeholder="e.g. UBM 492X" type="text">
+<button class="lookup-btn flex-shrink-0 text-white px-5 md:px-6 h-10 md:h-11 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5" id="lookupBtn" onclick="simulateLookup()">
 <span class="">Lookup</span>
-<span class="material-symbols-outlined text-[20px]">search</span>
+<span class="material-symbols-outlined text-[18px]">search</span>
 </button>
 </div>
 </div>
 <!-- Popular Search Chips -->
 <div>
-<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Popular Searches</p>
-<div class="flex flex-wrap gap-2">
-<button class="chip px-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-label-lg text-label-lg text-secondary" onclick="fillPlate('UBM 492X')">UBM 492X</button>
-<button class="chip px-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-label-lg text-label-lg text-secondary" onclick="fillPlate('UBA 123Z')">UBA 123Z</button>
-<button class="chip px-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-label-lg text-label-lg text-secondary" onclick="fillPlate('UAS 999K')">UAS 999K</button>
+<p class="font-label-sm text-[11px] text-on-surface-variant mb-1.5">Popular Searches</p>
+<div class="flex flex-wrap gap-1.5">
+<button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UBM 492X')">UBM 492X</button>
+<button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UBA 123Z')">UBA 123Z</button>
+<button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UAS 999K')">UAS 999K</button>
 </div>
 </div>
 <!-- Vehicle Result Card (Hidden by default) -->
@@ -307,58 +250,24 @@
 <span class="text-title-md font-bold text-primary">$45,000</span>
 </div>
 </div>
-<div class="pt-stack-md flex flex-col md:flex-row justify-between items-center gap-4">
-<button class="w-full md:w-auto px-8 py-3 font-label-lg text-label-lg text-primary border-2 border-primary rounded-lg hover:bg-surface-container transition-colors active:scale-95">
+<div class="pt-3 flex flex-row justify-between items-center gap-3">
+<button class="flex-1 px-4 py-2.5 font-label-lg text-[13px] text-primary border-2 border-primary rounded-lg hover:bg-surface-container transition-colors active:scale-95">
                         Enter Details Manually
                     </button>
-<button class="w-full md:w-auto px-10 py-3.5 font-label-lg text-label-lg rounded-lg transition-all btn-next-disabled text-white" disabled="" id="nextBtn">
+<button class="flex-1 px-4 py-2.5 font-label-lg text-[13px] rounded-lg transition-all btn-next-disabled text-white" disabled="" id="nextBtn">
                         Confirm &amp; Next Step
                     </button>
 </div>
 </div>
 </div>
 
-<!-- Trust Badges -->
-<div class="w-full max-w-[800px] mt-8">
-<div class="rounded-xl bg-gradient-to-br from-white to-surface-container-low p-1" style="background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(231,238,255,0.5) 100%);">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-3">
-<div class="trust-badge flex items-center gap-4">
-<span class="material-symbols-outlined p-2.5 rounded-xl" style="color: #00C58F; background: rgba(0, 197, 143, 0.1); font-size: 22px;">security</span>
-<div>
-<p class="font-label-lg text-label-lg text-primary leading-tight">Secure Lookup</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Direct DMV integration</p>
-</div>
-</div>
-<div class="trust-badge flex items-center gap-4">
-<span class="material-symbols-outlined p-2.5 rounded-xl" style="color: #00C58F; background: rgba(190, 214, 0, 0.12); font-size: 22px;">speed</span>
-<div>
-<p class="font-label-lg text-label-lg text-primary leading-tight">40-Second Flow</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Fast, easy &amp; paperless</p>
-</div>
-</div>
-<div class="trust-badge flex items-center gap-4">
-<span class="material-symbols-outlined p-2.5 rounded-xl" style="color: #004260; background: rgba(0, 66, 96, 0.08); font-size: 22px;">handshake</span>
-<div>
-<p class="font-label-lg text-label-lg text-primary leading-tight">Ecobank Partner</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Trusted financial network</p>
-</div>
-</div>
-</div>
-</div>
+<!-- Trust text (compact) -->
+<div class="w-full max-w-[800px] mt-3">
+<p class="text-[11px] text-on-surface-variant text-center">
+Secure DMV Lookup &nbsp;&middot;&nbsp; 40-Second Flow &nbsp;&middot;&nbsp; Ecobank Partner
+</p>
 </div>
 </main>
-<!-- Sub-page Footer -->
-<footer class="bg-surface-gray border-t border-border-subtle py-8 mt-auto">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
-                &copy; 2024 MaaS Insurance Marketplace. Partnered with Ecobank.
-            </p>
-<div class="flex gap-6">
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
-</div>
-</div>
-</footer>
 <script>
         function fillPlate(val) {
             const input = document.getElementById('plate');

@@ -15,7 +15,7 @@ export interface Policy {
   insuredItemName: string;
   premium: number;
   renewalDate: string;
-  status: 'Active' | 'Pending' | 'Expired';
+  status: 'Active' | 'Pending' | 'Expired' | 'Renewal';
   coverageAmount: number;
   code: string;
 }
@@ -38,6 +38,7 @@ export interface User {
   name: string;
   isLoggedIn: boolean;
   phone?: string;
+  role?: 'customer' | 'agent' | 'ops' | 'admin';
 }
 
 export interface VehicleLookupResult {

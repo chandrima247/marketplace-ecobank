@@ -13,15 +13,13 @@
         }
         .active-card {
             border-color: #004260 !important;
-            border-left: 3px solid #004260 !important;
-            background: linear-gradient(135deg, #f0f3ff 0%, #e7eeff 100%) !important;
+            background: #f9f9ff !important;
             box-shadow: 0 2px 8px rgba(0, 66, 96, 0.10) !important;
         }
         .selection-card {
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
         .selection-card:hover {
-            transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         .wizard-container {
@@ -31,15 +29,10 @@
         body {
             font-family: 'Hanken Grotesk', sans-serif;
             background-color: #f9f9ff;
+            margin: 0;
+            padding: 0;
         }
-        .stepper-line {
-            height: 2px;
-            background-color: #e7eeff;
-            flex-grow: 1;
-            margin: 0 8px;
-        }
-        body > nav, body > header, body > footer { display: none !important; }
-        html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
+        html, body { min-height: 0 !important; height: auto !important; }
     </style>
 <script id="tailwind-config">
         tailwind.config = {
@@ -143,149 +136,88 @@
         }
     </script>
 </head>
-<body class="flex flex-col min-h-screen">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container-lowest border-b border-border-subtle">
-<div class="font-display-lg text-display-lg font-bold text-primary tracking-tight">Ecobank MaaS</div>
-<div class="flex items-center gap-2">
-<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
-<span class="material-symbols-outlined text-[20px]">help_outline</span>
-</button>
-<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
-<span class="material-symbols-outlined text-[20px]">account_circle</span>
-</button>
-</div>
-</nav>
-<main class="flex-grow pt-24 pb-12 px-margin-mobile">
+<body>
+<main class="px-4 pt-3 pb-2">
 <div class="wizard-container">
-<!-- Minimal Progress Stepper -->
-<div class="mb-6">
-<div class="flex items-center justify-between max-w-[460px] mx-auto">
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-[11px] font-bold ring-4 ring-primary/10">1</div>
-<span class="text-[10px] uppercase tracking-wider font-bold text-primary">Who's covered</span>
+<!-- Slim Step Indicator -->
+<div class="flex items-center gap-2 mb-3">
+    <span class="text-[11px] font-bold text-primary uppercase tracking-wider">Step 1 of 4</span>
+    <div class="flex-1 h-[3px] rounded-full bg-surface-container-high overflow-hidden">
+        <div class="h-full w-1/4 bg-primary rounded-full"></div>
+    </div>
 </div>
-<div class="stepper-line mt-[-16px]"></div>
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[11px] font-bold">2</div>
-<span class="text-[10px] uppercase tracking-wider font-medium text-on-surface-variant">Ages</span>
-</div>
-<div class="stepper-line mt-[-16px]"></div>
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[11px] font-bold">3</div>
-<span class="text-[10px] uppercase tracking-wider font-medium text-on-surface-variant">Location</span>
-</div>
-<div class="stepper-line mt-[-16px]"></div>
-<div class="flex flex-col items-center gap-1 flex-1">
-<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[11px] font-bold">4</div>
-<span class="text-[10px] uppercase tracking-wider font-medium text-on-surface-variant">Contact</span>
-</div>
-</div>
-</div>
+
 <!-- Wizard Card -->
-<div class="bg-surface-container-lowest rounded-xl border border-border-subtle p-6 md:p-8 relative overflow-hidden">
-<!-- Eco-lime accent line at top -->
-<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-eco-lime via-success-teal to-eco-lime"></div>
-<div class="text-center mb-4">
-<h1 class="font-headline-lg text-headline-lg text-on-surface mb-1">Who are you covering?</h1>
-<div class="flex items-center justify-center gap-3 mt-2">
-<p class="font-body-md text-body-md text-on-surface-variant">Select family members for your health plan</p>
-<span class="text-on-surface-variant opacity-40">|</span>
-<!-- Inline Gender Toggle -->
-<div class="inline-flex p-0.5 bg-surface-container-low rounded-md border border-border-subtle" id="gender-toggle">
-<button class="px-3 py-1 rounded text-[12px] font-semibold transition-all bg-primary text-on-primary" id="toggle-male" onclick="setGender('male')">Male</button>
-<button class="px-3 py-1 rounded text-[12px] font-semibold transition-all text-on-surface-variant" id="toggle-female" onclick="setGender('female')">Female</button>
-</div>
-</div>
-</div>
-<!-- Minimal Relationship Grid -->
-<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-<!-- Self -->
-<div class="selection-card flex flex-col items-center justify-center p-4 border border-border-subtle rounded-xl cursor-pointer shadow-sm hover:shadow-md active-card" onclick="toggleSelection(this)">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
-<span class="material-symbols-outlined text-[22px]">person</span>
-</div>
-<span class="text-label-lg text-on-surface font-medium">Self</span>
-<div class="mt-1 selection-indicator">
-<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-</div>
-<!-- Spouse -->
-<div class="selection-card flex flex-col items-center justify-center p-4 border border-border-subtle rounded-xl cursor-pointer shadow-sm hover:shadow-md" onclick="toggleSelection(this)">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
-<span class="material-symbols-outlined text-[22px]" id="spouse-icon">favorite</span>
-</div>
-<span class="text-label-lg text-on-surface font-medium" id="spouse-label">Wife</span>
-<div class="mt-1 opacity-0 selection-indicator">
-<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-</div>
-<!-- Son -->
-<div class="selection-card flex flex-col items-center justify-center p-4 border border-border-subtle rounded-xl cursor-pointer shadow-sm hover:shadow-md" onclick="toggleSelection(this)">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
-<span class="material-symbols-outlined text-[22px]">child_care</span>
-</div>
-<span class="text-label-lg text-on-surface font-medium">Son</span>
-<div class="mt-1 opacity-0 selection-indicator">
-<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-</div>
-<!-- Daughter -->
-<div class="selection-card flex flex-col items-center justify-center p-4 border border-border-subtle rounded-xl cursor-pointer shadow-sm hover:shadow-md" onclick="toggleSelection(this)">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
-<span class="material-symbols-outlined text-[22px]">child_friendly</span>
-</div>
-<span class="text-label-lg text-on-surface font-medium">Daughter</span>
-<div class="mt-1 opacity-0 selection-indicator">
-<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-</div>
-<!-- Father -->
-<div class="selection-card flex flex-col items-center justify-center p-4 border border-border-subtle rounded-xl cursor-pointer shadow-sm hover:shadow-md" onclick="toggleSelection(this)">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
-<span class="material-symbols-outlined text-[22px]">elderly</span>
-</div>
-<span class="text-label-lg text-on-surface font-medium">Father</span>
-<div class="mt-1 opacity-0 selection-indicator">
-<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-</div>
-<!-- Mother -->
-<div class="selection-card flex flex-col items-center justify-center p-4 border border-border-subtle rounded-xl cursor-pointer shadow-sm hover:shadow-md" onclick="toggleSelection(this)">
-<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-2">
-<span class="material-symbols-outlined text-[22px]">elderly_woman</span>
-</div>
-<span class="text-label-lg text-on-surface font-medium">Mother</span>
-<div class="mt-1 opacity-0 selection-indicator">
-<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-</div>
-</div>
-</div>
-<!-- Streamlined Action Footer -->
-<div class="mt-8 pt-5 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
-<div class="flex items-center gap-2 text-on-surface-variant">
-<span class="material-symbols-outlined text-[16px]">info</span>
-<p class="text-[12px]">Add more dependents in the next step.</p>
-</div>
-<button class="w-full sm:w-auto px-10 py-3.5 bg-primary text-on-primary rounded-lg font-bold text-[15px] hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg" onclick="notifyParent('next')">
-                    Next: Enter Ages
-                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle p-4 relative overflow-hidden">
+    <!-- Eco-lime accent line at top -->
+    <div class="absolute top-0 left-0 right-0 h-[2px] bg-[#BED600]"></div>
+
+    <!-- Title row with gender toggle inline -->
+    <div class="flex items-center justify-between mb-3">
+        <div>
+            <h1 class="text-[18px] font-bold text-on-surface leading-tight">Who are you covering?</h1>
+            <p class="text-[12px] text-on-surface-variant mt-0.5">Select family members for your health plan</p>
+        </div>
+        <div class="inline-flex p-0.5 bg-surface-container-low rounded-md border border-border-subtle" id="gender-toggle">
+            <button class="px-3 py-1 rounded text-[12px] font-semibold transition-all bg-primary text-on-primary" id="toggle-male" onclick="setGender('male')">Male</button>
+            <button class="px-3 py-1 rounded text-[12px] font-semibold transition-all text-on-surface-variant" id="toggle-female" onclick="setGender('female')">Female</button>
+        </div>
+    </div>
+
+    <!-- 6 compact selection chips in a single row -->
+    <div class="grid grid-cols-6 gap-2 mb-4">
+        <!-- Self -->
+        <div class="selection-card flex flex-col items-center justify-center py-3 px-1 border border-border-subtle rounded-lg cursor-pointer active-card" onclick="toggleSelection(this)">
+            <span class="material-symbols-outlined text-primary text-[20px]">person</span>
+            <span class="text-[11px] font-semibold text-on-surface mt-1">Self</span>
+            <span class="material-symbols-outlined text-primary text-[14px] mt-0.5 selection-indicator" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        </div>
+        <!-- Spouse -->
+        <div class="selection-card flex flex-col items-center justify-center py-3 px-1 border border-border-subtle rounded-lg cursor-pointer" onclick="toggleSelection(this)">
+            <span class="material-symbols-outlined text-primary text-[20px]">favorite</span>
+            <span class="text-[11px] font-semibold text-on-surface mt-1" id="spouse-label">Wife</span>
+            <span class="material-symbols-outlined text-primary text-[14px] mt-0.5 selection-indicator opacity-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        </div>
+        <!-- Son -->
+        <div class="selection-card flex flex-col items-center justify-center py-3 px-1 border border-border-subtle rounded-lg cursor-pointer" onclick="toggleSelection(this)">
+            <span class="material-symbols-outlined text-primary text-[20px]">child_care</span>
+            <span class="text-[11px] font-semibold text-on-surface mt-1">Son</span>
+            <span class="material-symbols-outlined text-primary text-[14px] mt-0.5 selection-indicator opacity-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        </div>
+        <!-- Daughter -->
+        <div class="selection-card flex flex-col items-center justify-center py-3 px-1 border border-border-subtle rounded-lg cursor-pointer" onclick="toggleSelection(this)">
+            <span class="material-symbols-outlined text-primary text-[20px]">child_friendly</span>
+            <span class="text-[11px] font-semibold text-on-surface mt-1">Daughter</span>
+            <span class="material-symbols-outlined text-primary text-[14px] mt-0.5 selection-indicator opacity-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        </div>
+        <!-- Father -->
+        <div class="selection-card flex flex-col items-center justify-center py-3 px-1 border border-border-subtle rounded-lg cursor-pointer" onclick="toggleSelection(this)">
+            <span class="material-symbols-outlined text-primary text-[20px]">elderly</span>
+            <span class="text-[11px] font-semibold text-on-surface mt-1">Father</span>
+            <span class="material-symbols-outlined text-primary text-[14px] mt-0.5 selection-indicator opacity-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        </div>
+        <!-- Mother -->
+        <div class="selection-card flex flex-col items-center justify-center py-3 px-1 border border-border-subtle rounded-lg cursor-pointer" onclick="toggleSelection(this)">
+            <span class="material-symbols-outlined text-primary text-[20px]">elderly_woman</span>
+            <span class="text-[11px] font-semibold text-on-surface mt-1">Mother</span>
+            <span class="material-symbols-outlined text-primary text-[14px] mt-0.5 selection-indicator opacity-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        </div>
+    </div>
+
+    <!-- CTA row -->
+    <div class="flex items-center justify-between pt-3 border-t border-border-subtle">
+        <span class="text-[11px] text-on-surface-variant flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">info</span>
+            Add more dependents in the next step.
+        </span>
+        <button class="px-8 py-2.5 bg-primary text-on-primary rounded-lg font-bold text-[14px] hover:opacity-95 transition-all flex items-center gap-2 shadow-md" onclick="notifyParent('next')">
+            Next: Enter Ages
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </button>
+    </div>
 </div>
 </div>
 </main>
-<footer class="w-full py-6 px-margin-mobile md:px-margin-desktop mt-auto bg-surface-container-low border-t border-border-subtle">
-<div class="flex flex-col md:flex-row justify-between items-center gap-4">
-<div class="font-bold text-primary opacity-80">Ecobank MaaS</div>
-<div class="flex gap-6">
-<a class="text-[12px] text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
-<a class="text-[12px] text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
-<a class="text-[12px] text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
-</div>
-<p class="text-[11px] text-on-surface-variant opacity-60">© 2024 Ecobank Insurance</p>
-</div>
-</footer>
 <script>
     function setGender(gender) {
         const maleBtn = document.getElementById('toggle-male');

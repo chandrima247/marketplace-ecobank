@@ -3,11 +3,10 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MaaS Insurance - Contact Details</title>
+<title>Ecobank Insurance - Contact Details</title>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -113,165 +112,85 @@
       }
     </script>
 <style>
-        body { font-family: 'Hanken Grotesk', sans-serif; }
+        body { font-family: 'Hanken Grotesk', sans-serif; margin: 0; padding: 0; }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
             vertical-align: middle;
         }
-        .step-completed { @apply text-success-teal; }
-        .step-active { @apply text-primary font-bold; }
-        .step-inactive { @apply text-outline; }
-        body > nav, body > header, body > footer { display: none !important; }
-        html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
+        html, body { min-height: 0 !important; height: auto !important; overflow: hidden; }
     </style>
 </head>
-<body class="bg-surface text-on-surface flex flex-col min-h-screen">
-<!-- TopNavBar (Shared Component Reference) -->
-<header class="bg-surface docked full-width top-0 z-50 border-b border-border-subtle">
-<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
-<div class="flex items-center gap-4">
-<span class="font-headline-lg text-headline-lg font-extrabold text-primary">MaaS</span>
+<body class="bg-surface text-on-surface">
+
+<!-- Compact content wrapper -->
+<div class="w-full max-w-lg mx-auto px-4 py-3">
+
+<!-- Slim step indicator -->
+<div class="flex items-center justify-center gap-2 mb-3">
+    <div class="h-[2px] flex-1 bg-success-teal rounded-full"></div>
+    <span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">Step 4 of 4</span>
+    <div class="h-[2px] flex-1 bg-outline-variant rounded-full"></div>
 </div>
-<nav class="hidden md:flex gap-gutter">
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Marketplace</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Claims</a>
-<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">My Policies</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors">Partner Login</button>
-<span class="material-symbols-outlined text-primary cursor-pointer">account_circle</span>
-<span class="material-symbols-outlined text-primary cursor-pointer">notifications</span>
-</div>
-</div>
-</header>
-<!-- Wizard Stepper (Contextual Component) -->
-<div class="w-full bg-surface-container-lowest py-4 border-b border-border-subtle">
-<div class="max-w-container-max mx-auto px-margin-desktop">
-<div class="flex items-center justify-center gap-2 md:gap-6 overflow-x-auto no-scrollbar">
-<!-- Step 1: Members (completed) -->
-<div class="flex items-center gap-1.5">
-<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
-</div>
-<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Members</span>
-</div>
-<div class="h-px w-6 md:w-12 bg-success-teal/40"></div>
-<!-- Step 2: Ages (completed) -->
-<div class="flex items-center gap-1.5">
-<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
-</div>
-<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Ages</span>
-</div>
-<div class="h-px w-6 md:w-12 bg-success-teal/40"></div>
-<!-- Step 3: Location (completed) -->
-<div class="flex items-center gap-1.5">
-<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
-</div>
-<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Location</span>
-</div>
-<div class="h-px w-6 md:w-12 bg-outline-variant"></div>
-<!-- Step 4: Contact (active) -->
-<div class="flex items-center gap-1.5">
-<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white font-bold text-[13px] ring-[3px] ring-primary/20">
-                        4
+
+<!-- Main card -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-4 relative overflow-hidden">
+    <!-- Eco-lime accent gradient bar -->
+    <div class="absolute top-0 left-0 right-0 h-[3px]" style="background: #BED600;"></div>
+
+    <div class="relative z-10">
+        <h1 class="font-headline-lg text-[22px] leading-7 font-bold text-primary mb-1">Almost there!</h1>
+        <p class="font-label-sm text-label-sm text-on-surface-variant mb-3">We need your contact details to finalize your quotes.</p>
+
+        <form>
+            <!-- Two fields side by side -->
+            <div class="grid grid-cols-2 gap-3 mb-3">
+                <!-- Full Name -->
+                <div class="space-y-1">
+                    <label class="font-label-lg text-label-lg text-on-surface" for="full_name">Full Name</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">person</span>
+                        <input class="w-full pl-9 pr-3 py-2.5 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all font-body-md text-[14px]" id="full_name" placeholder="John Doe" type="text"/>
                     </div>
-<span class="font-label-lg text-label-lg text-primary font-bold whitespace-nowrap">Contact</span>
+                </div>
+                <!-- Phone Number -->
+                <div class="space-y-1">
+                    <label class="font-label-lg text-label-lg text-on-surface" for="phone">Phone Number</label>
+                    <div class="flex gap-1.5">
+                        <div class="relative w-[72px] flex-shrink-0">
+                            <div class="absolute left-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                                <img alt="Uganda Flag" class="w-4 h-3 rounded-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjzssXgsCOarQko1yMal4emR8oG9nZR8X8i33iokbLrauKhI8QXq4Y1YBestyETA-RyOZF9aYVC2DFu6rykZN9yHeCba_Jzn-KL_WnQr9oRHTrybz4lbb_o9_gcQ5Bn6pd5WWEz_NMll_NdxiN2BnGinJxWBVZWqLjfCkbgk9HhHCTnelD6zhPumrxDo0EzVHllviqwv2pmaDuCMtfQlWEijKcuOFhCliKLAFMjy4WWi25KF1YcR-TVpIIjLgCguTAymNArYfF3Hk"/>
+                                <span class="text-[12px]">+256</span>
+                            </div>
+                            <input class="w-full pl-[60px] pr-1 py-2.5 bg-surface-container-low rounded-lg border border-border-subtle outline-none cursor-not-allowed text-[14px]" disabled="" type="text" value=""/>
+                        </div>
+                        <div class="relative flex-grow">
+                            <input class="w-full px-3 py-2.5 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all text-[14px]" id="phone" placeholder="700 000 000" type="tel"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compact security line -->
+            <div class="flex items-center gap-2 text-on-surface-variant mb-3 py-1">
+                <span class="material-symbols-outlined text-success-teal text-[16px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                <span class="font-label-sm text-label-sm">Your data is secure &mdash; 256-bit encryption, used only for your quotes.</span>
+            </div>
+
+            <!-- CTA -->
+            <button class="w-full py-3 bg-primary text-on-primary rounded-full font-bold text-[16px] flex items-center justify-center gap-2 hover:bg-deep-navy transition-all active:scale-95 shadow-md" type="button" onclick="notifyParent('next')">
+                View Your Quotes
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+            <button class="w-full py-1.5 mt-1 text-on-surface-variant hover:text-primary font-label-lg text-label-lg underline transition-colors" type="button" onclick="notifyParent('back')">
+                Back to Step 3
+            </button>
+        </form>
+    </div>
 </div>
+
 </div>
-</div>
-</div>
-<!-- Main Content (Wizard Step 4) -->
-<main class="flex-grow flex items-center justify-center py-6 md:py-8 px-margin-mobile">
-<div class="w-full max-w-lg">
-<div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-8 md:p-10 relative overflow-hidden">
-<!-- Eco-lime accent gradient bar -->
-<div class="absolute top-0 left-0 right-0 h-[3px]" style="background: linear-gradient(90deg, #BED600, #00C58F, #BED600);"></div>
-<!-- Background Pattern -->
-<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-<span class="material-symbols-outlined text-9xl">contact_mail</span>
-</div>
-<div class="relative z-10">
-<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Almost there!</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">We need your contact details to finalize your personalized health insurance quotes.</p>
-<form class="space-y-6">
-<!-- Full Name -->
-<div class="space-y-1">
-<label class="font-label-lg text-label-lg text-on-surface" for="full_name">Full Name</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">person</span>
-<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all font-body-md text-body-md" id="full_name" placeholder="John Doe" type="text"/>
-</div>
-</div>
-<!-- Phone Number -->
-<div class="space-y-1">
-<label class="font-label-lg text-label-lg text-on-surface" for="phone">Phone Number</label>
-<div class="flex gap-2">
-<div class="relative w-32">
-<div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-<img alt="Uganda Flag" class="w-5 h-3.5 rounded-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjzssXgsCOarQko1yMal4emR8oG9nZR8X8i33iokbLrauKhI8QXq4Y1YBestyETA-RyOZF9aYVC2DFu6rykZN9yHeCba_Jzn-KL_WnQr9oRHTrybz4lbb_o9_gcQ5Bn6pd5WWEz_NMll_NdxiN2BnGinJxWBVZWqLjfCkbgk9HhHCTnelD6zhPumrxDo0EzVHllviqwv2pmaDuCMtfQlWEijKcuOFhCliKLAFMjy4WWi25KF1YcR-TVpIIjLgCguTAymNArYfF3Hk"/>
-<span class="font-body-md text-body-md">+256</span>
-</div>
-<input class="w-full pl-20 pr-2 py-4 bg-surface-container-low rounded-lg border border-border-subtle outline-none cursor-not-allowed" disabled="" type="text" value=""/>
-</div>
-<div class="relative flex-grow">
-<input class="w-full px-4 py-4 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all font-body-md text-body-md" id="phone" placeholder="700 000 000" type="tel"/>
-</div>
-</div>
-</div>
-<!-- Trust Indicators -->
-<div class="bg-surface-container-low rounded-lg p-4 flex gap-4 items-start border border-border-subtle border-l-[3px] border-l-success-teal">
-<span class="material-symbols-outlined text-success-teal" style="font-variation-settings: 'FILL' 1;">verified_user</span>
-<div>
-<p class="font-label-lg text-label-lg text-primary">Your data is secure</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">We use bank-grade 256-bit encryption. Your contact details will only be used to provide and manage your quotes.</p>
-</div>
-</div>
-<!-- Primary Action -->
-<div class="pt-4 flex flex-col gap-4">
-<button class="w-full py-3.5 bg-primary text-on-primary rounded-full font-bold text-body-lg flex items-center justify-center gap-2 hover:bg-deep-navy transition-all active:scale-95 shadow-md" onclick="notifyParent('next')">
-                                View Your Quotes
-                                <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="w-full py-2 text-on-surface-variant hover:text-primary font-label-lg text-label-lg underline transition-colors" type="button" onclick="notifyParent('back')">
-                                Back to Step 3
-                            </button>
-</div>
-</form>
-</div>
-</div>
-<!-- Contextual Social Proof -->
-<div class="mt-8 flex flex-wrap justify-center items-center gap-gutter opacity-60">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-on-surface-variant">lock</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">GDPR Compliant</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-on-surface-variant">verified</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Licensed Broker</span>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer (Shared Component Reference) -->
-<footer class="w-full bg-surface-container-low py-stack-lg border-t border-border-subtle">
-<div class="px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
-<div class="flex flex-col items-center md:items-start gap-2">
-<span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<p class="font-label-sm text-label-sm text-on-surface-variant">&copy; 2024 MaaS Insurance Marketplace. Powered by Ecobank.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-6">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">FAQ</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Contact Us</a>
-</div>
-</div>
-</footer>
-<!-- Mobile Bottom Navigation (Conditional suppression for task focus) -->
-<!-- Navigation hidden as per 'Relevance Check' rule for linear task flow -->
+
 <script>
         // Micro-interactions for form focus
         const inputs = document.querySelectorAll('input');

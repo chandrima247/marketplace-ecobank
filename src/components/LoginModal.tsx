@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Shield, Mail, Smartphone, ArrowRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { X, Shield, Mail, Smartphone, ArrowRight, Headset } from 'lucide-react';
 import { METADATA_IMAGES } from '../data';
 import { User } from '../types';
 
@@ -7,12 +7,59 @@ interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: (user: User) => void;
+  initialRole?: User['role'];
 }
 
-export default function LoginModal({ isOpen, onClose, onSuccess }: LoginModalProps) {
+const ROLE_OPTIONS: { role: NonNullable<User['role']>; label: string; helper: string; icon: React.ReactNode }[] = [
+  { role: 'customer', label: 'Customer', helper: 'Policies, claims, renewals', icon: <Shield className="w-4 h-4" /> },
+  { role: 'agent', label: 'Agent', helper: 'Assisted service workspace', icon: <Headset className="w-4 h-4" /> },
+];
+
+function getRoleIdentity(role: NonNullable<User['role']>, inputVal: string, provider?: 'Ecobank' | 'Google'): User {
+  const isPhone = /^\+?[0-9\s-]{7,15}$/.test(inputVal);
+  const fallbackEmail = {
+    customer: 'customer@ecobank-insurance.com',
+    agent: 'amina.agent@ecobank.com',
+    ops: 'operations.control@ecobank.com',
+    admin: 'platform.admin@ecobank.com',
+  }[role];
+  const fallbackName = {
+    customer: 'Valued Customer',
+    agent: 'Amina RM',
+    ops: 'Operations Control',
+    admin: 'Platform Admin',
+  }[role];
+
+  const email = provider === 'Ecobank'
+    ? fallbackEmail
+    : provider === 'Google'
+      ? 'google.partner@ecobank-insurance.com'
+      : isPhone
+        ? fallbackEmail
+        : inputVal;
+
+  const derivedName = isPhone || provider
+    ? fallbackName
+    : inputVal.split('@')[0].replace(/[._-]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+  return {
+    email,
+    name: derivedName || fallbackName,
+    isLoggedIn: true,
+    phone: isPhone ? inputVal : undefined,
+    role,
+  };
+}
+
+export default function LoginModal({ isOpen, onClose, onSuccess, initialRole = 'customer' }: LoginModalProps) {
   const [inputVal, setInputVal] = useState('');
   const [errorText, setErrorText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedRole, setSelectedRole] = useState<NonNullable<User['role']>>(initialRole || 'customer');
+
+  useEffect(() => {
+    if (isOpen) setSelectedRole(initialRole || 'customer');
+  }, [initialRole, isOpen]);
 
   if (!isOpen) return null;
 
@@ -26,18 +73,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess }: LoginModalPro
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      // Simulate successful login
-      const isPhone = /^\+?[0-9\s-]{7,15}$/.test(inputVal);
-      const name = isPhone 
-        ? 'Client Mobile User' 
-        : inputVal.split('@')[0].replace(/[._-]/g, ' ');
-      
-      onSuccess({
-        email: isPhone ? 'user-phone@ecobank-maas.com' : inputVal,
-        name: name.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') || 'Valued Partner',
-        isLoggedIn: true,
-        phone: isPhone ? inputVal : undefined
-      });
+      onSuccess(getRoleIdentity(selectedRole, inputVal));
       onClose();
     }, 1000);
   };
@@ -46,22 +82,14 @@ export default function LoginModal({ isOpen, onClose, onSuccess }: LoginModalPro
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      onSuccess({
-        email: provider === 'Ecobank' 
-          ? 'chandrimaghosh2004@gmail.com' 
-          : 'google.guest@gmail.com',
-        name: provider === 'Ecobank' 
-          ? 'Chandrima Ghosh' 
-          : 'Google Partner',
-        isLoggedIn: true
-      });
+      onSuccess(getRoleIdentity(selectedRole, inputVal, provider));
       onClose();
     }, 1200);
   };
 
   return (
     <div className="fixed inset-0 z-110 flex items-center justify-center bg-black/40 backdrop-blur-xs animate-in fade-in duration-300">
-      <div className="bg-white w-full max-w-md rounded-[2.5rem] p-10 flex flex-col shadow-2xl mx-4 relative">
+      <div className="bg-white w-full max-w-md rounded-[2rem] p-8 sm:p-10 flex flex-col shadow-2xl mx-4 relative">
         {/* Close Button */}
         <button 
           onClick={onClose}
@@ -72,14 +100,35 @@ export default function LoginModal({ isOpen, onClose, onSuccess }: LoginModalPro
         </button>
 
         {/* Brand Banner */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-4">
-            <Shield className="w-8 h-8 text-primary" />
+        <div className="flex flex-col items-center mb-6">
+          <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-4">
+            <Shield className="w-7 h-7 text-primary" />
           </div>
-          <h2 className="font-sans text-2xl font-bold text-gray-900" id="login-welcome-title">Welcome Back</h2>
+          <h2 className="font-sans text-2xl font-bold text-gray-900" id="login-welcome-title">Sign in</h2>
           <p className="text-gray-500 text-sm text-center mt-2 px-2">
-            Secure client identity and contract verification for your MaaS ecosystem.
+            Access your Ecobank insurance policies, claims, and renewals.
           </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 mb-6 rounded-2xl bg-gray-50 p-1" id="login-role-selector">
+          {ROLE_OPTIONS.map(option => (
+            <button
+              key={option.role}
+              type="button"
+              onClick={() => setSelectedRole(option.role)}
+              className={`text-left rounded-xl border px-3 py-2.5 transition-all ${
+                selectedRole === option.role
+                  ? 'border-primary bg-white text-primary shadow-sm'
+                  : 'border-transparent text-gray-500 hover:text-primary'
+              }`}
+            >
+              <span className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wide">
+                {option.icon}
+                {option.label}
+              </span>
+              <span className="block mt-0.5 text-[10px] leading-snug text-gray-500">{option.helper}</span>
+            </button>
+          ))}
         </div>
 
         {/* Input Form */}

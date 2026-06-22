@@ -6,7 +6,7 @@ interface HeaderProps {
   user: UserType | null;
   onLoginClick: () => void;
   onLogout: () => void;
-  activeView: 'explore' | 'policies' | 'claims' | 'wizard';
+  activeView: 'explore' | 'policies' | 'claims' | 'wizard' | 'agent';
   onNavigate: (view: 'explore' | 'policies' | 'claims') => void;
   onBackClick?: () => void;
   titleOverride?: string;
@@ -45,7 +45,7 @@ export default function Header({
                 <Shield className="w-5 h-5" />
               </div>
               <span className="font-sans font-bold text-lg md:text-xl text-primary tracking-tight" id="subpage-title-branding">
-                {titleOverride || 'MaaS Insurance'}
+                {titleOverride || 'Ecobank Insurance'}
               </span>
             </div>
           ) : (
