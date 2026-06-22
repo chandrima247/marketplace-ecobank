@@ -1,0 +1,411 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MaaS Insurance | Compare Motor Plans</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "on-primary": "#ffffff", "primary": "#004260", "primary-container": "#005b82",
+        "secondary": "#4159ab", "secondary-container": "#8fa7ff",
+        "deep-navy": "#023448", "eco-lime": "#BED600", "success-teal": "#00C58F",
+        "on-surface": "#121c2c", "on-surface-variant": "#40484e",
+        "surface": "#f9f9ff", "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f0f3ff", "surface-container": "#e7eeff",
+        "surface-container-high": "#dee8ff", "surface-gray": "#F8F8F8",
+        "border-subtle": "#E5E5E5", "outline-variant": "#c0c7cf",
+        "error": "#ba1a1a", "on-primary-fixed-variant": "#004c6d",
+        "primary-fixed": "#c8e6ff",
+      },
+      spacing: { "margin-mobile": "20px", "margin-desktop": "40px", "container-max": "1200px", "gutter": "24px", "stack-md": "24px", "stack-lg": "48px" },
+      fontFamily: { "title-md": ["Hanken Grotesk"], "body-md": ["Hanken Grotesk"], "label-lg": ["Hanken Grotesk"], "label-sm": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"] },
+      fontSize: {
+        "title-md": ["20px", {"lineHeight":"28px","fontWeight":"600"}],
+        "body-md": ["16px", {"lineHeight":"24px","fontWeight":"400"}],
+        "label-lg": ["14px", {"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],
+        "label-sm": ["12px", {"lineHeight":"16px","fontWeight":"500"}],
+        "headline-lg-mobile": ["24px", {"lineHeight":"32px","fontWeight":"700"}],
+        "headline-lg": ["32px", {"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"700"}],
+      }
+    }
+  }
+}
+</script>
+<style>
+body { font-family: 'Hanken Grotesk', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+body > nav, body > header, body > footer { display: none !important; }
+html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
+</style>
+</head>
+<body class="bg-surface-gray text-on-surface">
+
+<!-- Compare Page -->
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-desktop py-6">
+
+  <!-- Back + Title -->
+  <div class="flex items-center gap-3 mb-2">
+    <button onclick="notifyParent('back')" class="w-9 h-9 rounded-full bg-surface-container-low border border-border-subtle flex items-center justify-center hover:bg-surface-container transition-colors">
+      <span class="material-symbols-outlined text-[20px] text-on-surface-variant">arrow_back</span>
+    </button>
+    <div>
+      <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-deep-navy leading-tight">Compare Plans</h1>
+      <p class="text-label-sm text-on-surface-variant">Side-by-side comparison of your selected motor insurance quotes</p>
+    </div>
+  </div>
+
+  <!-- Selected Plans Chips -->
+  <div class="flex items-center gap-2 mb-6 flex-wrap" id="plan-chips">
+    <span class="text-label-sm text-on-surface-variant font-bold">Comparing:</span>
+    <!-- chips injected by JS -->
+  </div>
+
+  <!-- Compare Table (scrollable on mobile) -->
+  <div class="overflow-x-auto hide-scrollbar -mx-margin-mobile md:mx-0 px-margin-mobile md:px-0">
+    <div class="min-w-[720px]">
+
+      <!-- Provider Header Cards -->
+      <div class="grid gap-3 mb-1" id="provider-grid" style="grid-template-columns: 170px repeat(3, 1fr);">
+        <div></div>
+        <div class="bg-surface-container-lowest rounded-t-xl border border-border-subtle border-b-0 p-4 text-center relative" id="col-0">
+          <div class="w-14 h-14 mx-auto mb-2 rounded-xl overflow-hidden border border-border-subtle bg-white flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Kwif4olBwECfw70kIFT0KqXXXyj8_VYLBeWB9GI7EelLQflhsE0HQL6yN_madxmLyiMEIOzJONTjU5k5KHzxwLswCJBhjYQcQbpuCYE27uMR8sw9BajvDxVwWy82oESSoWx6h2NfQRirUV3IgKa_okC7q75NmcKju4L3drY74AJgDIL4-le74o47hVHb5fnMjDM319hxiH9mIb4oxbVxMKn1JqPVFighkbMPf28cYje-iRiekHtyrQRlopTrh-k0nskRUlKSssk" alt="ICEA Lion" class="w-full h-full object-contain">
+          </div>
+          <h3 class="font-bold text-label-lg text-deep-navy">ICEA Lion</h3>
+          <p class="text-label-sm text-on-surface-variant">Simba Motor Policy</p>
+          <span class="inline-block mt-1.5 bg-success-teal/10 text-success-teal text-[10px] font-bold px-2 py-0.5 rounded border border-success-teal/20 uppercase">Top Rated</span>
+          <button class="absolute top-2 right-2 w-6 h-6 rounded-full bg-surface-container hover:bg-error/10 hover:text-error flex items-center justify-center transition-colors hidden" data-remove="0" title="Remove from compare">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+        <div class="bg-surface-container-lowest rounded-t-xl border border-border-subtle border-b-0 p-4 text-center relative" id="col-1">
+          <div class="w-14 h-14 mx-auto mb-2 rounded-xl overflow-hidden border border-border-subtle bg-white flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADL7bfHB2Yo2_W0Q_Y0z5xnfHNRlGsobh-_lDenLKxePhnjWx8wO5jjWevTwYhvKcfngjHhLlWnwqx3RWUsE6S4POHkPwUIldHv5Zn6TBgTYPUYsJoHdv1krfTBFqxDY1joJWRq2uvf6D7lMmBe7cpaAAmuR5GfsR_RboDy9rBWqoUyR-987dKmpWDEHn8L9T0bjsukUYTamPLNfuLCZ4wX08PPKuR5Jc5Al82ro6Vq1PFhodNZlStJFPICZVhN0Ta3oz9kBnFD3s" alt="Britam" class="w-full h-full object-contain">
+          </div>
+          <h3 class="font-bold text-label-lg text-deep-navy">Britam</h3>
+          <p class="text-label-sm text-on-surface-variant">Motor Insurance</p>
+          <span class="inline-block mt-1.5 bg-eco-lime/20 text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded border border-eco-lime/40 uppercase">Best Value</span>
+          <button class="absolute top-2 right-2 w-6 h-6 rounded-full bg-surface-container hover:bg-error/10 hover:text-error flex items-center justify-center transition-colors hidden" data-remove="1" title="Remove from compare">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+        <div class="bg-surface-container-lowest rounded-t-xl border-2 border-secondary/30 border-b-0 p-4 text-center relative" id="col-2">
+          <div class="absolute -top-0.5 left-1/2 -translate-x-1/2 bg-secondary text-on-primary px-3 py-0.5 rounded-b-lg text-[9px] font-bold uppercase tracking-widest">Recommended</div>
+          <div class="w-14 h-14 mx-auto mb-2 mt-2 rounded-xl overflow-hidden border border-border-subtle bg-white flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuARkUSO4u-B0dNP4edm6krOB8fVO_OoFREpjPOot15AsTl0j8pcJp2CWcM7ls9Raty6j7sZAc6NLGTgPULB-BnyTXOI4j8pTfP94K8U0CtWMURzqqF1CqOiodu97QJ8MBoB-YqM86xNc-MiCYqC2MASQaoBemA4UZj18bpIwVGQFoB3JWIWjp7ae06TAx9jk2bb694zmJHD75Lq9s4ClKETd9DKRPISvSJQzLBjeoCuJ5argtMLNOp4t5wFOeoKrX0TdMuUF7cNt1M" alt="Old Mutual" class="w-full h-full object-contain">
+          </div>
+          <h3 class="font-bold text-label-lg text-deep-navy">Old Mutual</h3>
+          <p class="text-label-sm text-on-surface-variant">Car Insurance</p>
+          <span class="inline-block mt-1.5 bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5 rounded border border-secondary/20 uppercase">Ecobank Priority</span>
+          <button class="absolute top-2 right-2 w-6 h-6 rounded-full bg-surface-container hover:bg-error/10 hover:text-error flex items-center justify-center transition-colors hidden" data-remove="2" title="Remove from compare">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Comparison Rows -->
+      <div class="border border-border-subtle rounded-b-xl overflow-hidden" id="compare-table">
+
+        <!-- Price Row -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3.5 bg-surface-container-low font-bold text-label-lg text-deep-navy flex items-center gap-2 border-r border-border-subtle">
+            <span class="material-symbols-outlined text-[18px] text-primary">payments</span> Annual Premium
+          </div>
+          <div class="px-4 py-3.5 text-center border-r border-border-subtle">
+            <span class="text-label-sm text-on-surface-variant line-through block">UGX 680,000</span>
+            <span class="text-title-md font-bold text-primary">UGX 542,000</span>
+          </div>
+          <div class="px-4 py-3.5 text-center border-r border-border-subtle">
+            <span class="text-title-md font-bold text-primary">UGX 485,000</span>
+          </div>
+          <div class="px-4 py-3.5 text-center">
+            <span class="text-title-md font-bold text-secondary">UGX 720,000</span>
+          </div>
+        </div>
+
+        <!-- Monthly Row -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low font-bold text-label-lg text-deep-navy flex items-center gap-2 border-r border-border-subtle">
+            <span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span> Monthly (IPF)
+          </div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg text-on-surface">UGX 51,100/mo</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg text-on-surface">UGX 45,700/mo</div>
+          <div class="px-4 py-3 text-center text-label-lg text-on-surface">UGX 67,900/mo</div>
+        </div>
+
+        <!-- Coverage Type -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low font-bold text-label-lg text-deep-navy flex items-center gap-2 border-r border-border-subtle">
+            <span class="material-symbols-outlined text-[18px] text-primary">shield</span> Coverage Type
+          </div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg">Comprehensive</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg">Comprehensive</div>
+          <div class="px-4 py-3 text-center text-label-lg">Comprehensive+</div>
+        </div>
+
+        <!-- IDV / Sum Insured -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low font-bold text-label-lg text-deep-navy flex items-center gap-2 border-r border-border-subtle">
+            <span class="material-symbols-outlined text-[18px] text-primary">account_balance</span> Sum Insured
+          </div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg font-bold">UGX 28M</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg font-bold">UGX 26M</div>
+          <div class="px-4 py-3 text-center text-label-lg font-bold">UGX 32M</div>
+        </div>
+
+        <!-- Claim Settlement -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low font-bold text-label-lg text-deep-navy flex items-center gap-2 border-r border-border-subtle">
+            <span class="material-symbols-outlined text-[18px] text-primary">verified</span> Claim Settlement
+          </div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg font-bold text-success-teal">96.2%</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg font-bold text-success-teal">94.8%</span></div>
+          <div class="px-4 py-3 text-center"><span class="text-label-lg font-bold text-success-teal">98.1%</span></div>
+        </div>
+
+        <!-- Cashless Garages -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low font-bold text-label-lg text-deep-navy flex items-center gap-2 border-r border-border-subtle">
+            <span class="material-symbols-outlined text-[18px] text-primary">garage_home</span> Cashless Garages
+          </div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg">120+</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle text-label-lg">85+</div>
+          <div class="px-4 py-3 text-center text-label-lg font-bold text-primary">200+</div>
+        </div>
+
+        <!-- Section: Key Features -->
+        <div class="grid gap-0" style="grid-template-columns: 1fr;">
+          <div class="px-4 py-2.5 bg-primary/5 font-bold text-label-sm text-primary uppercase tracking-wider border-t border-border-subtle">Key Features Comparison</div>
+        </div>
+
+        <!-- Zero Depreciation -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Zero Depreciation</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-on-surface-variant/30 text-[20px]">cancel</span></div>
+          <div class="px-4 py-3 text-center"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+        </div>
+
+        <!-- Engine Protection -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Engine Protection</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+          <div class="px-4 py-3 text-center"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+        </div>
+
+        <!-- Roadside Assistance -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Roadside Assistance</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">Add-on</span></div>
+          <div class="px-4 py-3 text-center"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+        </div>
+
+        <!-- Passenger Cover -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Passenger Cover</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">Up to 5</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">Up to 4</span></div>
+          <div class="px-4 py-3 text-center"><span class="text-label-lg font-bold text-primary">Unlimited</span></div>
+        </div>
+
+        <!-- Windshield Cover -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Windshield Cover</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-on-surface-variant/30 text-[20px]">cancel</span></div>
+          <div class="px-4 py-3 text-center"><span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1">check_circle</span></div>
+        </div>
+
+        <!-- Courtesy Car -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Courtesy Car</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">Add-on</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="material-symbols-outlined text-on-surface-variant/30 text-[20px]">cancel</span></div>
+          <div class="px-4 py-3 text-center"><span class="text-label-lg font-bold text-primary">12 days free</span></div>
+        </div>
+
+        <!-- Towing Limit -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Towing Distance</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">50 km</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">25 km</span></div>
+          <div class="px-4 py-3 text-center"><span class="text-label-lg font-bold text-primary">Unlimited</span></div>
+        </div>
+
+        <!-- Deductible -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">Deductible</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">UGX 150,000</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">UGX 200,000</span></div>
+          <div class="px-4 py-3 text-center"><span class="text-label-lg font-bold text-success-teal">UGX 0 (Waived)</span></div>
+        </div>
+
+        <!-- No Claim Bonus -->
+        <div class="grid gap-0 compare-row" style="grid-template-columns: 170px repeat(3, 1fr);">
+          <div class="px-4 py-3 bg-surface-container-low text-label-lg text-deep-navy border-r border-border-subtle">No Claim Bonus</div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">Up to 30%</span></div>
+          <div class="px-4 py-3 text-center border-r border-border-subtle"><span class="text-label-lg">Up to 25%</span></div>
+          <div class="px-4 py-3 text-center"><span class="text-label-lg font-bold text-primary">Up to 50%</span></div>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons Row -->
+      <div class="grid gap-3 mt-5" style="grid-template-columns: 170px repeat(3, 1fr);">
+        <div></div>
+        <div class="flex flex-col gap-2" id="action-0">
+          <button onclick="notifyParent('buy', {provider:'ICEA Lion'})" class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-bold text-label-lg hover:bg-deep-navy transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            Buy Plan <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </button>
+          <button onclick="notifyParent('details', {provider:'ICEA Lion'})" class="w-full border border-primary text-primary py-2 rounded-lg font-bold text-label-sm hover:bg-primary/5 transition-all">
+            View Details
+          </button>
+        </div>
+        <div class="flex flex-col gap-2" id="action-1">
+          <button onclick="notifyParent('buy', {provider:'Britam'})" class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-bold text-label-lg hover:bg-deep-navy transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            Buy Plan <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </button>
+          <button onclick="notifyParent('details', {provider:'Britam'})" class="w-full border border-primary text-primary py-2 rounded-lg font-bold text-label-sm hover:bg-primary/5 transition-all">
+            View Details
+          </button>
+        </div>
+        <div class="flex flex-col gap-2" id="action-2">
+          <button onclick="notifyParent('buy', {provider:'Old Mutual'})" class="w-full bg-secondary text-on-primary py-2.5 rounded-lg font-bold text-label-lg hover:bg-secondary/90 transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            Buy Plan <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </button>
+          <button onclick="notifyParent('details', {provider:'Old Mutual'})" class="w-full border border-secondary text-secondary py-2 rounded-lg font-bold text-label-sm hover:bg-secondary/5 transition-all">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Another Plan CTA (shown when < 3 selected) -->
+  <div class="mt-6 p-4 bg-surface-container-low border border-dashed border-primary/30 rounded-xl text-center hidden" id="add-plan-cta">
+    <p class="text-label-lg text-on-surface-variant mb-2">Want to compare more options?</p>
+    <button onclick="notifyParent('back')" class="inline-flex items-center gap-1.5 px-5 py-2 bg-primary/10 text-primary rounded-lg font-bold text-label-lg hover:bg-primary/20 transition-colors">
+      <span class="material-symbols-outlined text-[18px]">add</span> Add Another Plan
+    </button>
+  </div>
+
+  <!-- Tip Banner -->
+  <div class="mt-6 flex items-start gap-3 p-4 bg-eco-lime/10 rounded-xl border border-eco-lime/20">
+    <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">lightbulb</span>
+    <div>
+      <p class="text-label-lg font-bold text-deep-navy">Pro Tip</p>
+      <p class="text-label-sm text-on-surface-variant">Don't just compare price — look at claim settlement ratio, cashless garage network, and deductible amounts. A slightly higher premium with zero deductible can save you more in the long run.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Plan data
+const plans = [
+  { name: 'ICEA Lion', sub: 'Simba Motor Policy' },
+  { name: 'Britam', sub: 'Motor Insurance' },
+  { name: 'Old Mutual', sub: 'Car Insurance' },
+];
+
+let selected = [0, 1, 2]; // default all 3
+
+// Listen for parent telling us which plans are selected
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.source === 'maas-compare-init' && Array.isArray(e.data.selectedIndices)) {
+    selected = e.data.selectedIndices;
+    updateVisibility();
+  }
+});
+
+function updateVisibility() {
+  // Show/hide columns based on selected plans
+  for (let i = 0; i < 3; i++) {
+    const show = selected.includes(i);
+    const col = document.getElementById('col-' + i);
+    const action = document.getElementById('action-' + i);
+    if (col) col.style.display = show ? '' : 'none';
+    if (action) action.style.display = show ? '' : 'none';
+
+    // Show remove buttons when more than 2 selected
+    const removeBtn = col ? col.querySelector('[data-remove]') : null;
+    if (removeBtn) removeBtn.classList.toggle('hidden', selected.length <= 2);
+
+    // Toggle table cells in each row
+    document.querySelectorAll('#compare-table .compare-row').forEach(row => {
+      const cells = row.children;
+      // cells[0] is label, cells[1..3] are provider columns
+      if (cells[i + 1]) cells[i + 1].style.display = show ? '' : 'none';
+    });
+  }
+
+  // Update grid columns
+  const colCount = selected.length;
+  const colTemplate = '170px repeat(' + colCount + ', 1fr)';
+  document.getElementById('provider-grid').style.gridTemplateColumns = colTemplate;
+  document.querySelectorAll('#compare-table > div').forEach(row => {
+    if (row.children.length > 1) row.style.gridTemplateColumns = colTemplate;
+  });
+  document.querySelector('[style*="170px repeat(3"]')  // action grid
+  const actionGrid = document.getElementById('action-0').parentElement;
+  if (actionGrid) actionGrid.style.gridTemplateColumns = colTemplate;
+
+  // Show "add plan" CTA if < 3
+  document.getElementById('add-plan-cta').classList.toggle('hidden', selected.length >= 3);
+
+  // Build chips
+  const chips = document.getElementById('plan-chips');
+  chips.innerHTML = '<span class="text-label-sm text-on-surface-variant font-bold">Comparing:</span>';
+  selected.forEach(idx => {
+    const chip = document.createElement('span');
+    chip.className = 'inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-label-sm font-bold';
+    chip.textContent = plans[idx].name;
+    chips.appendChild(chip);
+  });
+}
+
+// Remove button handlers
+document.querySelectorAll('[data-remove]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const idx = parseInt(btn.getAttribute('data-remove'));
+    selected = selected.filter(i => i !== idx);
+    if (selected.length < 2) {
+      notifyParent('back');
+      return;
+    }
+    updateVisibility();
+  });
+});
+
+function notifyParent(action, data) {
+  if (window.parent !== window) {
+    window.parent.postMessage(Object.assign({ source: 'maas-motor-compare', action: action }, data || {}), '*');
+  }
+}
+
+// Height reporter for iframe auto-resize
+(function() {
+  function reportHeight() {
+    window.parent.postMessage({ source: 'maas-iframe-resize', height: document.documentElement.scrollHeight }, '*');
+  }
+  if (window.parent !== window) {
+    new ResizeObserver(reportHeight).observe(document.documentElement);
+    setInterval(reportHeight, 500);
+    reportHeight();
+  }
+})();
+
+// Init
+updateVisibility();
+</script>
+
+</body></html>

@@ -331,7 +331,7 @@
 </div>
 <div class="h-6 w-px bg-surface-variant/30"></div>
 <div class="text-label-lg font-bold">2 Plans Selected</div>
-<button class="bg-primary-fixed text-on-primary-fixed-variant px-6 py-2 rounded-full font-bold hover:bg-white transition-colors">Compare Now</button>
+<button class="bg-primary-fixed text-on-primary-fixed-variant px-6 py-2 rounded-full font-bold hover:bg-white transition-colors" id="compare-now-btn">Compare Now</button>
 <button class="material-symbols-outlined text-surface-variant/70 hover:text-white" onclick="document.getElementById('compare-bar').classList.add('hidden')">close</button>
 </div>
 <!-- Mobile Bottom Nav -->
@@ -416,6 +416,18 @@
             e.preventDefault();
             post('navigate', { target: el.getAttribute('data-nav') });
         });
+    });
+    // Compare Now → send selected plans to parent
+    document.getElementById('compare-now-btn').addEventListener('click', () => {
+        const cards = document.querySelectorAll('article');
+        const selected = [];
+        cards.forEach((card, i) => {
+            const cb = card.querySelector('input[type="checkbox"]');
+            if (cb && cb.checked) {
+                selected.push(i);
+            }
+        });
+        post('compare', { selectedIndices: selected });
     });
 </script>
 

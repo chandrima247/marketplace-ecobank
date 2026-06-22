@@ -96,6 +96,9 @@ export default function InsuranceWizard({
   // Health multi-step state
   const [healthStep, setHealthStep] = useState(1);
 
+  // Motor compare state
+  const [motorCompare, setMotorCompare] = useState<{ active: boolean; indices: number[] }>({ active: false, indices: [] });
+
   // Dynamic iframe height for embedded pages (no scroll)
   const [iframeHeight, setIframeHeight] = useState(800);
 
@@ -136,6 +139,9 @@ export default function InsuranceWizard({
         setSelectedProviderId((match || providers[0]).id);
         setStage('details');
         window.scrollTo(0, 0);
+      } else if (data.action === 'compare') {
+        setMotorCompare({ active: true, indices: data.selectedIndices || [0, 1, 2] });
+        window.scrollTo(0, 0);
       } else if (data.action === 'navigate') {
         if (data.target === 'edit') {
           setStage('questions');
@@ -148,6 +154,38 @@ export default function InsuranceWizard({
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
   }, [onBack]);
+
+  // Bridge: receive actions from Motor Compare page
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const data = e.data;
+      if (!data || data.source !== 'maas-motor-compare') return;
+      if (data.action === 'buy') {
+        const providers = getProvidersForCategory('Motor');
+        const match = providers.find(p =>
+          (data.provider || '').toLowerCase().includes(p.name.toLowerCase().split(' ')[0])
+        );
+        setSelectedProviderId((match || providers[0]).id);
+        setMotorCompare({ active: false, indices: [] });
+        setStage('details');
+        window.scrollTo(0, 0);
+      } else if (data.action === 'details') {
+        const providers = getProvidersForCategory('Motor');
+        const match = providers.find(p =>
+          (data.provider || '').toLowerCase().includes(p.name.toLowerCase().split(' ')[0])
+        );
+        setSelectedProviderId((match || providers[0]).id);
+        setMotorCompare({ active: false, indices: [] });
+        setStage('details');
+        window.scrollTo(0, 0);
+      } else if (data.action === 'back') {
+        setMotorCompare({ active: false, indices: [] });
+        window.scrollTo(0, 0);
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
 
   // Bridge: receive actions from Vehicle Lookup Stitch page
   useEffect(() => {
@@ -1065,7 +1103,7 @@ export default function InsuranceWizard({
 
             {/* STAGE 2: MARKETPLACE PRODUCT LISTING */}
             {/* MOTOR LISTING — full-bleed Stitch iframe */}
-            {stage === 'listing' && category === 'Motor' && (
+            {stage === 'listing' && category === 'Motor' && !motorCompare.active && (
               <div
                 className="w-screen relative left-1/2 -translate-x-1/2 -mt-6"
                 id="stage-listing-view"
@@ -1075,6 +1113,32 @@ export default function InsuranceWizard({
                   title="Motor Insurance Quotes"
                   className="w-full border-0 block"
                   style={{ height: 'calc(100vh - 56px)', minHeight: '600px' }}
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
+                />
+              </div>
+            )}
+
+            {/* MOTOR COMPARE — full-bleed Stitch iframe */}
+            {stage === 'listing' && category === 'Motor' && motorCompare.active && (
+              <div
+                className="w-screen relative left-1/2 -translate-x-1/2 -mt-6"
+                id="stage-compare-view"
+              >
+                <iframe
+                  ref={(iframe) => {
+                    if (iframe) {
+                      iframe.onload = () => {
+                        iframe.contentWindow?.postMessage({
+                          source: 'maas-compare-init',
+                          selectedIndices: motorCompare.indices
+                        }, '*');
+                      };
+                    }
+                  }}
+                  src="/motor-compare.html"
+                  title="Compare Motor Insurance Plans"
+                  className="w-full border-0 block"
+                  style={{ height: `${iframeHeight}px`, minHeight: '600px' }}
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
                 />
               </div>
