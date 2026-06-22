@@ -1,4 +1,4 @@
-import { LogIn, User, LogOut, Menu, X, HelpCircle, ArrowLeft, Shield } from 'lucide-react';
+import { LogIn, User, LogOut, Menu, ArrowLeft } from 'lucide-react';
 import { METADATA_IMAGES } from '../data';
 import { User as UserType } from '../types';
 
@@ -39,25 +39,14 @@ export default function Header({
             </button>
           ) : null}
 
-          {isSubPage ? (
-            <div className="flex items-center gap-2" id="subpage-logo-container">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white" id="subpage-shield-logo">
-                <Shield className="w-5 h-5" />
-              </div>
-              <span className="font-sans font-bold text-lg md:text-xl text-primary tracking-tight" id="subpage-title-branding">
-                {titleOverride || 'Ecobank Insurance'}
-              </span>
-            </div>
-          ) : (
-            <div className="flex items-center" id="homepage-logo-container">
-              <img
-                src={METADATA_IMAGES.ecobankLogo}
-                alt="Ecobank Logo"
-                className="h-10 md:h-12 w-auto object-contain"
-                id="header-ecobank-logo"
-              />
-            </div>
-          )}
+          <div className="flex items-center" id="homepage-logo-container">
+            <img
+              src={METADATA_IMAGES.ecobankLogo}
+              alt="Ecobank Logo"
+              className="h-10 md:h-12 w-auto object-contain"
+              id="header-ecobank-logo"
+            />
+          </div>
         </div>
 
         {/* Center Navigation Links (Hidden on wizards/subpages to focus conversion) */}
@@ -161,12 +150,6 @@ export default function Header({
               className="h-8 md:h-9 object-contain"
               id="header-nexus-logo"
             />
-            {isSubPage && (
-              <div className="hidden sm:flex items-center gap-2 text-gray-400" id="subpage-help-actions">
-                <HelpCircle className="w-5 h-5 cursor-pointer hover:text-primary transition-colors" title="Get Help" />
-                <X className="w-5 h-5 cursor-pointer hover:text-primary transition-colors" title="Exit Flow" onClick={onBackClick} />
-              </div>
-            )}
           </div>
         </div>
       </div>
