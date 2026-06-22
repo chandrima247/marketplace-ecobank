@@ -191,18 +191,18 @@
         }
     </style>
 </head>
-<body class="flex flex-col" style="min-height:0;">
+<body class="flex flex-col">
 
 <!-- Thin progress bar replaces stepper -->
 <div class="w-full" style="height:2px;background:#e7eeff;">
 <div class="stepper-fill" style="width:33%;height:100%;"></div>
 </div>
 
-<main class="flex-grow flex flex-col items-center px-margin-mobile py-3">
+<main class="flex-grow flex flex-col items-center px-margin-mobile md:px-margin-desktop py-8">
 <!-- Compact step indicator + title on one line -->
-<div class="w-full max-w-[800px] mb-2 flex items-baseline gap-3">
-<span class="font-label-sm text-[11px] text-secondary uppercase tracking-wider whitespace-nowrap">Step 1 of 3</span>
-<h2 class="font-headline-lg-mobile text-[20px] font-bold text-primary leading-tight">Vehicle Information</h2>
+<div class="w-full max-w-[800px] mb-5 flex items-baseline gap-3">
+<span class="font-label-sm text-[12px] text-secondary uppercase tracking-wider whitespace-nowrap">Step 1 of 3</span>
+<h2 class="font-headline-lg-mobile text-[26px] md:text-[30px] font-bold text-primary leading-tight">Vehicle Information</h2>
 </div>
 
 <!-- Focused Purchase Flow Card -->
@@ -210,12 +210,12 @@
 <!-- Eco-lime accent gradient bar at top -->
 <div class="eco-accent-bar"></div>
 
-<div class="p-4 md:p-6 flex flex-col gap-3">
+<div class="p-6 md:p-8 flex flex-col gap-5">
 <div>
-<label class="font-label-lg text-label-lg text-primary mb-1 block" for="plate">Enter License Plate Number</label>
-<div class="plate-input-wrapper flex items-center p-1">
-<input class="w-full h-11 md:h-12 border-0 focus:ring-0 text-[18px] md:text-[22px] font-bold px-3 uppercase placeholder:normal-case placeholder:font-normal placeholder:text-outline placeholder:tracking-normal" id="plate" placeholder="e.g. UBM 492X" type="text">
-<button class="lookup-btn flex-shrink-0 text-white px-5 md:px-6 h-10 md:h-11 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5" id="lookupBtn" onclick="simulateLookup()">
+<label class="font-label-lg text-label-lg text-primary mb-2 block" for="plate">Enter License Plate Number</label>
+<div class="plate-input-wrapper flex items-center p-1.5">
+<input class="w-full h-14 md:h-16 border-0 focus:ring-0 text-[20px] md:text-[24px] font-bold px-4 uppercase placeholder:normal-case placeholder:font-normal placeholder:text-outline placeholder:tracking-normal" id="plate" placeholder="e.g. UBM 492X" type="text">
+<button class="lookup-btn flex-shrink-0 text-white px-5 md:px-6 h-12 md:h-14 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5" id="lookupBtn" onclick="simulateLookup()">
 <span class="">Lookup</span>
 <span class="material-symbols-outlined text-[18px]">search</span>
 </button>
@@ -223,8 +223,8 @@
 </div>
 <!-- Popular Search Chips -->
 <div>
-<p class="font-label-sm text-[11px] text-on-surface-variant mb-1.5">Popular Searches</p>
-<div class="flex flex-wrap gap-1.5">
+<p class="font-label-sm text-[12px] text-on-surface-variant mb-2">Popular Searches</p>
+<div class="flex flex-wrap gap-2">
 <button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UBM 492X')">UBM 492X</button>
 <button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UBA 123Z')">UBA 123Z</button>
 <button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UAS 999K')">UAS 999K</button>
@@ -250,11 +250,11 @@
 <span class="text-title-md font-bold text-primary">$45,000</span>
 </div>
 </div>
-<div class="pt-3 flex flex-row justify-between items-center gap-3">
-<button class="flex-1 px-4 py-2.5 font-label-lg text-[13px] text-primary border-2 border-primary rounded-lg hover:bg-surface-container transition-colors active:scale-95">
+<div class="pt-4 flex flex-row justify-between items-center gap-4">
+<button class="flex-1 px-4 h-12 font-label-lg text-[14px] text-primary border-2 border-primary rounded-lg hover:bg-surface-container transition-colors active:scale-95">
                         Enter Details Manually
                     </button>
-<button class="flex-1 px-4 py-2.5 font-label-lg text-[13px] rounded-lg transition-all btn-next-disabled text-white" disabled="" id="nextBtn">
+<button class="flex-1 px-4 h-12 font-label-lg text-[14px] rounded-lg transition-all btn-next-disabled text-white" disabled="" id="nextBtn">
                         Confirm &amp; Next Step
                     </button>
 </div>
@@ -262,8 +262,8 @@
 </div>
 
 <!-- Trust text (compact) -->
-<div class="w-full max-w-[800px] mt-3">
-<p class="text-[11px] text-on-surface-variant text-center">
+<div class="w-full max-w-[800px] mt-6">
+<p class="text-[12px] text-on-surface-variant text-center">
 Secure DMV Lookup &nbsp;&middot;&nbsp; 40-Second Flow &nbsp;&middot;&nbsp; Ecobank Partner
 </p>
 </div>

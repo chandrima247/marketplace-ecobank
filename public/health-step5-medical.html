@@ -139,40 +139,40 @@
             border-color: #00C58F;
         }
 
-        html, body { min-height: 0 !important; height: auto !important; }
+        /* removed cramped constraints */
     </style>
 </head>
-<body class="bg-background text-on-background flex flex-col" style="height: 100vh; max-height: 100vh; overflow: hidden;">
+<body class="bg-background text-on-background flex flex-col">
 
 <!-- Compact content wrapper that fills viewport minus footer -->
-<div class="flex-1 overflow-hidden px-4 py-3 max-w-[720px] mx-auto w-full flex flex-col">
+<div class="flex-1 px-6 py-8 max-w-[720px] mx-auto w-full flex flex-col">
 
     <!-- Slim step indicator -->
-    <div class="flex items-center justify-center gap-2 mb-2 flex-shrink-0">
+    <div class="flex items-center justify-center gap-3 mb-6 flex-shrink-0">
         <div class="h-[2px] flex-1 bg-success-teal rounded-full"></div>
         <span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">Step 5 of 5</span>
         <div class="h-[2px] flex-1 bg-outline-variant rounded-full"></div>
     </div>
 
     <!-- Priority onboarding - single compact line -->
-    <div class="flex items-center gap-2 bg-primary/5 border border-primary/15 rounded-lg px-3 py-1.5 mb-2 flex-shrink-0">
+    <div class="flex items-center gap-2 bg-primary/5 border border-primary/15 rounded-lg px-4 py-3 mb-5 flex-shrink-0">
         <span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
         <span class="font-label-sm text-label-sm text-primary">Ecobank Gold Member &mdash; expedited medical underwriting with instant approval.</span>
     </div>
 
     <!-- Main card -->
-    <div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-4 relative overflow-hidden flex-shrink-0">
+    <div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-6 relative flex-shrink-0">
         <!-- Eco-lime accent gradient bar -->
         <div class="absolute top-0 left-0 right-0 h-[2px]" style="background: #BED600;"></div>
 
-        <h1 class="font-headline-lg text-[20px] leading-6 font-bold text-primary mb-1">Medical History</h1>
-        <p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Select any pre-existing conditions that apply to you.</p>
+        <h1 class="font-headline-lg text-headline-lg-mobile font-bold text-primary mb-2">Medical History</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-5">Select any pre-existing conditions that apply to you.</p>
 
         <!-- Condition pills - 3 columns compact -->
-        <div class="grid grid-cols-3 gap-2 mb-3" id="medical-checklist">
+        <div class="grid grid-cols-3 gap-3 mb-5" id="medical-checklist">
             <div class="condition-pill relative">
                 <input class="peer hidden" id="cond-1" type="checkbox" value="diabetes"/>
-                <label class="flex items-center gap-2 px-3 py-2 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[13px]" for="cond-1">
+                <label class="flex items-center gap-2.5 px-3.5 py-3 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[14px]" for="cond-1">
                     <div class="pill-check w-4 h-4 border-2 border-outline-variant rounded flex items-center justify-center flex-shrink-0 transition-all">
                         <span class="material-symbols-outlined text-white text-[12px] opacity-0 transition-all">check</span>
                     </div>
@@ -181,7 +181,7 @@
             </div>
             <div class="condition-pill relative">
                 <input class="peer hidden" id="cond-2" type="checkbox" value="blood_pressure"/>
-                <label class="flex items-center gap-2 px-3 py-2 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[13px]" for="cond-2">
+                <label class="flex items-center gap-2.5 px-3.5 py-3 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[14px]" for="cond-2">
                     <div class="pill-check w-4 h-4 border-2 border-outline-variant rounded flex items-center justify-center flex-shrink-0 transition-all">
                         <span class="material-symbols-outlined text-white text-[12px] opacity-0 transition-all">check</span>
                     </div>
@@ -190,7 +190,7 @@
             </div>
             <div class="condition-pill relative">
                 <input class="peer hidden" id="cond-3" type="checkbox" value="heart_disease"/>
-                <label class="flex items-center gap-2 px-3 py-2 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[13px]" for="cond-3">
+                <label class="flex items-center gap-2.5 px-3.5 py-3 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[14px]" for="cond-3">
                     <div class="pill-check w-4 h-4 border-2 border-outline-variant rounded flex items-center justify-center flex-shrink-0 transition-all">
                         <span class="material-symbols-outlined text-white text-[12px] opacity-0 transition-all">check</span>
                     </div>
@@ -199,7 +199,7 @@
             </div>
             <div class="condition-pill relative">
                 <input class="peer hidden" id="cond-4" type="checkbox" value="asthma"/>
-                <label class="flex items-center gap-2 px-3 py-2 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[13px]" for="cond-4">
+                <label class="flex items-center gap-2.5 px-3.5 py-3 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[14px]" for="cond-4">
                     <div class="pill-check w-4 h-4 border-2 border-outline-variant rounded flex items-center justify-center flex-shrink-0 transition-all">
                         <span class="material-symbols-outlined text-white text-[12px] opacity-0 transition-all">check</span>
                     </div>
@@ -208,7 +208,7 @@
             </div>
             <div class="condition-pill relative">
                 <input class="peer hidden" id="cond-5" type="checkbox" value="kidney_disease"/>
-                <label class="flex items-center gap-2 px-3 py-2 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[13px]" for="cond-5">
+                <label class="flex items-center gap-2.5 px-3.5 py-3 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[14px]" for="cond-5">
                     <div class="pill-check w-4 h-4 border-2 border-outline-variant rounded flex items-center justify-center flex-shrink-0 transition-all">
                         <span class="material-symbols-outlined text-white text-[12px] opacity-0 transition-all">check</span>
                     </div>
@@ -217,7 +217,7 @@
             </div>
             <div class="condition-pill relative">
                 <input class="peer hidden" id="cond-6" type="checkbox" value="cancer"/>
-                <label class="flex items-center gap-2 px-3 py-2 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[13px]" for="cond-6">
+                <label class="flex items-center gap-2.5 px-3.5 py-3 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low text-[14px]" for="cond-6">
                     <div class="pill-check w-4 h-4 border-2 border-outline-variant rounded flex items-center justify-center flex-shrink-0 transition-all">
                         <span class="material-symbols-outlined text-white text-[12px] opacity-0 transition-all">check</span>
                     </div>
@@ -227,9 +227,9 @@
         </div>
 
         <!-- None of these - inline -->
-        <div class="condition-pill relative mb-3">
+        <div class="condition-pill relative mb-5">
             <input class="peer hidden" id="cond-none" type="checkbox" value="none"/>
-            <label class="flex items-center gap-2 px-3 py-2 border-2 border-dashed border-success-teal/40 rounded-lg cursor-pointer transition-all hover:bg-success-teal/5" for="cond-none">
+            <label class="flex items-center gap-2.5 px-3.5 py-3 border-2 border-dashed border-success-teal/40 rounded-lg cursor-pointer transition-all hover:bg-success-teal/5" for="cond-none">
                 <div class="pill-check w-4 h-4 border-2 border-success-teal/50 rounded flex items-center justify-center flex-shrink-0 transition-all">
                     <span class="material-symbols-outlined text-white text-[12px] opacity-0 transition-all">check</span>
                 </div>
@@ -239,7 +239,7 @@
         </div>
 
         <!-- WhatsApp toggle - compact inline -->
-        <div class="flex items-center justify-between bg-surface-container-low rounded-lg px-3 py-2 border border-secondary-fixed">
+        <div class="flex items-center justify-between bg-surface-container-low rounded-lg px-4 py-3 border border-secondary-fixed">
             <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-success-teal text-[18px]">chat</span>
                 <span class="font-label-sm text-label-sm text-primary">WhatsApp updates for policy docs &amp; alerts</span>
@@ -252,20 +252,20 @@
     </div>
 
     <!-- Compact security line -->
-    <div class="flex items-center gap-2 text-on-surface-variant mt-2 flex-shrink-0">
+    <div class="flex items-center gap-2 text-on-surface-variant mt-4 flex-shrink-0">
         <span class="material-symbols-outlined text-success-teal text-[14px]" style="font-variation-settings: 'FILL' 1;">encrypted</span>
         <span class="font-label-sm text-label-sm">AES-256 encrypted. Only shared with underwriters as needed.</span>
     </div>
 </div>
 
 <!-- Navigation Footer - always visible -->
-<footer class="w-full bg-surface-container-lowest border-t border-border-subtle py-3 px-4 flex-shrink-0">
+<footer class="w-full bg-surface-container-lowest border-t border-border-subtle py-4 px-6 flex-shrink-0">
     <div class="max-w-[720px] mx-auto flex items-center justify-between">
-        <button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-primary font-label-lg border border-border-subtle hover:bg-surface-container-low transition-all active:scale-95" onclick="notifyParent('back')">
+        <button class="flex items-center gap-2 px-6 h-12 rounded-full text-primary font-label-lg border border-border-subtle hover:bg-surface-container-low transition-all active:scale-95" onclick="notifyParent('back')">
             <span class="material-symbols-outlined text-[18px]">arrow_back</span>
             Back
         </button>
-        <button class="bg-primary text-on-primary px-7 py-2.5 rounded-full font-label-lg font-bold flex items-center gap-2 hover:bg-deep-navy shadow-md active:scale-95 transition-all" onclick="notifyParent('complete')">
+        <button class="bg-primary text-on-primary px-8 h-12 rounded-full font-label-lg font-bold flex items-center gap-2 hover:bg-deep-navy shadow-md active:scale-95 transition-all" onclick="notifyParent('complete')">
             Save &amp; Continue
             <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
         </button>

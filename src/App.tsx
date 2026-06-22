@@ -151,8 +151,7 @@ export default function App() {
       {/* Structured Header Routing - hidden on dashboard (it has its own) and on the
           full-bleed Motor listing page (that page renders its own header) */}
       {activeView !== 'policies' && activeView !== 'claims' &&
-        activeView !== 'agent' &&
-        !(activeView === 'wizard' && (wizardStage === 'listing' || wizardStage === 'questions') && wizardCategory === 'Motor') && (
+        activeView !== 'agent' && (
         <Header
           user={user}
           onLoginClick={() => openRoleLogin('customer')}
@@ -479,8 +478,7 @@ export default function App() {
 
       {/* Persistent global footer - hidden on dashboard and the full-bleed Motor listing */}
       {activeView !== 'policies' && activeView !== 'claims' &&
-        activeView !== 'agent' &&
-        !(activeView === 'wizard' && (wizardStage === 'listing' || wizardStage === 'questions') && wizardCategory === 'Motor') && (
+        activeView !== 'agent' && (
         <Footer isSubPage={activeView === 'wizard'} onRoleLogin={openRoleLogin} onBackofficeLogin={openBackoffice} />
       )}
 
