@@ -22,7 +22,7 @@
                     "surface": "#f9f9ff",
                     "on-secondary": "#ffffff",
                     "on-primary-fixed": "#001e2e",
-                    "primary": "#002b40",
+                    "primary": "#004260",
                     "on-secondary-fixed": "#001550",
                     "surface-container-high": "#dee8ff",
                     "on-primary-fixed-variant": "#124b6a",
@@ -146,36 +146,36 @@
 </div>
 </header>
 <!-- Wizard Stepper (Contextual Component) -->
-<div class="w-full bg-surface-container-lowest py-8 border-b border-border-subtle">
+<div class="w-full bg-surface-container-lowest py-4 border-b border-border-subtle">
 <div class="max-w-container-max mx-auto px-margin-desktop">
-<div class="flex items-center justify-center gap-2 md:gap-8 overflow-x-auto no-scrollbar">
-<!-- Step 1 -->
-<div class="flex items-center gap-2 opacity-60">
-<div class="w-8 h-8 rounded-full bg-success-teal/10 flex items-center justify-center text-success-teal border border-success-teal">
-<span class="material-symbols-outlined text-[18px]">check</span>
+<div class="flex items-center justify-center gap-2 md:gap-6 overflow-x-auto no-scrollbar">
+<!-- Step 1: Members (completed) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
 </div>
-<span class="font-label-lg text-label-lg whitespace-nowrap">Plan Type</span>
+<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Members</span>
 </div>
-<div class="h-px w-8 md:w-16 bg-outline-variant"></div>
-<!-- Step 2 -->
-<div class="flex items-center gap-2 opacity-60">
-<div class="w-8 h-8 rounded-full bg-success-teal/10 flex items-center justify-center text-success-teal border border-success-teal">
-<span class="material-symbols-outlined text-[18px]">check</span>
+<div class="h-px w-6 md:w-12 bg-success-teal/40"></div>
+<!-- Step 2: Ages (completed) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
 </div>
-<span class="font-label-lg text-label-lg whitespace-nowrap">Beneficiaries</span>
+<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Ages</span>
 </div>
-<div class="h-px w-8 md:w-16 bg-outline-variant"></div>
-<!-- Step 3 -->
-<div class="flex items-center gap-2 opacity-60">
-<div class="w-8 h-8 rounded-full bg-success-teal/10 flex items-center justify-center text-success-teal border border-success-teal">
-<span class="material-symbols-outlined text-[18px]">check</span>
+<div class="h-px w-6 md:w-12 bg-success-teal/40"></div>
+<!-- Step 3: Location (completed) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
 </div>
-<span class="font-label-lg text-label-lg whitespace-nowrap">Details</span>
+<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Location</span>
 </div>
-<div class="h-px w-8 md:w-16 bg-outline-variant"></div>
-<!-- Step 4 Active -->
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+<div class="h-px w-6 md:w-12 bg-outline-variant"></div>
+<!-- Step 4: Contact (active) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white font-bold text-[13px] ring-[3px] ring-primary/20">
                         4
                     </div>
 <span class="font-label-lg text-label-lg text-primary font-bold whitespace-nowrap">Contact</span>
@@ -184,9 +184,11 @@
 </div>
 </div>
 <!-- Main Content (Wizard Step 4) -->
-<main class="flex-grow flex items-center justify-center py-stack-lg px-margin-mobile">
+<main class="flex-grow flex items-center justify-center py-6 md:py-8 px-margin-mobile">
 <div class="w-full max-w-lg">
 <div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-8 md:p-10 relative overflow-hidden">
+<!-- Eco-lime accent gradient bar -->
+<div class="absolute top-0 left-0 right-0 h-[3px]" style="background: linear-gradient(90deg, #BED600, #00C58F, #BED600);"></div>
 <!-- Background Pattern -->
 <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
 <span class="material-symbols-outlined text-9xl">contact_mail</span>
@@ -200,7 +202,7 @@
 <label class="font-label-lg text-label-lg text-on-surface" for="full_name">Full Name</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">person</span>
-<input class="w-full pl-12 pr-4 py-3.5 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md text-body-md" id="full_name" placeholder="John Doe" type="text"/>
+<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all font-body-md text-body-md" id="full_name" placeholder="John Doe" type="text"/>
 </div>
 </div>
 <!-- Phone Number -->
@@ -212,15 +214,15 @@
 <img alt="Uganda Flag" class="w-5 h-3.5 rounded-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjzssXgsCOarQko1yMal4emR8oG9nZR8X8i33iokbLrauKhI8QXq4Y1YBestyETA-RyOZF9aYVC2DFu6rykZN9yHeCba_Jzn-KL_WnQr9oRHTrybz4lbb_o9_gcQ5Bn6pd5WWEz_NMll_NdxiN2BnGinJxWBVZWqLjfCkbgk9HhHCTnelD6zhPumrxDo0EzVHllviqwv2pmaDuCMtfQlWEijKcuOFhCliKLAFMjy4WWi25KF1YcR-TVpIIjLgCguTAymNArYfF3Hk"/>
 <span class="font-body-md text-body-md">+256</span>
 </div>
-<input class="w-full pl-20 pr-2 py-3.5 bg-surface-container-low rounded-lg border border-border-subtle outline-none cursor-not-allowed" disabled="" type="text" value=""/>
+<input class="w-full pl-20 pr-2 py-4 bg-surface-container-low rounded-lg border border-border-subtle outline-none cursor-not-allowed" disabled="" type="text" value=""/>
 </div>
 <div class="relative flex-grow">
-<input class="w-full px-4 py-3.5 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-1 focus:ring-primary-container outline-none transition-all font-body-md text-body-md" id="phone" placeholder="700 000 000" type="tel"/>
+<input class="w-full px-4 py-4 bg-surface rounded-lg border border-border-subtle focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all font-body-md text-body-md" id="phone" placeholder="700 000 000" type="tel"/>
 </div>
 </div>
 </div>
 <!-- Trust Indicators -->
-<div class="bg-surface-container-low rounded-lg p-4 flex gap-4 items-start border border-border-subtle">
+<div class="bg-surface-container-low rounded-lg p-4 flex gap-4 items-start border border-border-subtle border-l-[3px] border-l-success-teal">
 <span class="material-symbols-outlined text-success-teal" style="font-variation-settings: 'FILL' 1;">verified_user</span>
 <div>
 <p class="font-label-lg text-label-lg text-primary">Your data is secure</p>
@@ -229,7 +231,7 @@
 </div>
 <!-- Primary Action -->
 <div class="pt-4 flex flex-col gap-4">
-<button class="w-full py-4 bg-primary text-on-primary rounded-full font-bold text-body-lg flex items-center justify-center gap-2 hover:bg-primary-container transition-all active:scale-95" onclick="notifyParent('next')">
+<button class="w-full py-3.5 bg-primary text-on-primary rounded-full font-bold text-body-lg flex items-center justify-center gap-2 hover:bg-deep-navy transition-all active:scale-95 shadow-md" onclick="notifyParent('next')">
                                 View Your Quotes
                                 <span class="material-symbols-outlined">arrow_forward</span>
 </button>
@@ -258,7 +260,7 @@
 <div class="px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
 <div class="flex flex-col items-center md:items-start gap-2">
 <span class="font-headline-lg text-headline-lg font-bold text-primary">MaaS</span>
-<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 MaaS Insurance Marketplace. Powered by Ecobank.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">&copy; 2024 MaaS Insurance Marketplace. Powered by Ecobank.</p>
 </div>
 <div class="flex flex-wrap justify-center gap-6">
 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Privacy Policy</a>

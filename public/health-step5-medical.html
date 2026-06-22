@@ -37,7 +37,7 @@
                     "background": "#f9f9ff",
                     "on-background": "#121c2c",
                     "primary-container": "#004260",
-                    "primary": "#002b40",
+                    "primary": "#004260",
                     "secondary-fixed": "#dce1ff",
                     "on-surface-variant": "#41484d",
                     "on-primary": "#ffffff",
@@ -117,13 +117,15 @@
         .step-active { color: var(--primary); }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
+
         /* Custom Checkbox Styling */
         input[type="checkbox"]:checked + label .check-icon { opacity: 1; transform: scale(1); }
-        input[type="checkbox"]:checked + label { border-color: #002b40; background-color: #f0f3ff; }
+        input[type="checkbox"]:checked + label { border-color: #004260; background-color: #f0f3ff; }
 
-        /* Smooth transition for side drawer */
-        .priority-sidebar { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* None-of-these special checked style */
+        #cond-none:checked + label { border-color: #00C58F; background-color: #f0fff8; }
+        #cond-none:checked + label .check-box { background-color: #00C58F; border-color: #00C58F; }
+
         body > nav, body > header { display: none !important; }
         html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
         footer.fixed { position: relative !important; }
@@ -140,60 +142,81 @@
 <button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors" data-icon="account_circle">account_circle</button>
 </div>
 </header>
-<main class="mt-20 mb-32 flex-grow max-w-[1200px] mx-auto w-full px-margin-mobile md:px-margin-desktop">
+<main class="mt-4 mb-8 flex-grow max-w-[720px] mx-auto w-full px-margin-mobile md:px-margin-desktop">
 <!-- Progress Stepper -->
-<nav class="mb-stack-lg overflow-x-auto hide-scrollbar">
-<div class="flex items-center justify-between min-w-[600px] py-4">
-<div class="flex flex-col items-center gap-2 group opacity-60">
-<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
-<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+<nav class="mb-6 overflow-x-auto hide-scrollbar">
+<div class="flex items-center justify-center gap-2 md:gap-4 py-4">
+<!-- Step 1: Members (completed) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;" data-icon="check">check</span>
 </div>
-<span class="font-label-sm text-label-sm">Basic Info</span>
+<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Members</span>
 </div>
-<div class="h-[2px] flex-grow bg-success-teal mx-4 opacity-30"></div>
-<div class="flex flex-col items-center gap-2 group opacity-60">
-<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
-<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+<div class="h-px w-4 md:w-8 bg-success-teal/40"></div>
+<!-- Step 2: Ages (completed) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;" data-icon="check">check</span>
 </div>
-<span class="font-label-sm text-label-sm">Plan Selection</span>
+<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Ages</span>
 </div>
-<div class="h-[2px] flex-grow bg-success-teal mx-4 opacity-30"></div>
-<div class="flex flex-col items-center gap-2 group opacity-60">
-<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
-<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+<div class="h-px w-4 md:w-8 bg-success-teal/40"></div>
+<!-- Step 3: Location (completed) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;" data-icon="check">check</span>
 </div>
-<span class="font-label-sm text-label-sm">Beneficiaries</span>
+<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Location</span>
 </div>
-<div class="h-[2px] flex-grow bg-success-teal mx-4 opacity-30"></div>
-<div class="flex flex-col items-center gap-2 group opacity-60">
-<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center font-label-lg">
-<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+<div class="h-px w-4 md:w-8 bg-success-teal/40"></div>
+<!-- Step 4: Contact (completed) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-success-teal flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;" data-icon="check">check</span>
 </div>
-<span class="font-label-sm text-label-sm">Contact</span>
+<span class="font-label-sm text-label-sm text-success-teal whitespace-nowrap">Contact</span>
 </div>
-<div class="h-[2px] flex-grow bg-primary-container mx-4"></div>
-<div class="flex flex-col items-center gap-2 group">
-<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-lg shadow-md ring-4 ring-primary-container ring-opacity-20">
+<div class="h-px w-4 md:w-8 bg-outline-variant"></div>
+<!-- Step 5: Medical History (active) -->
+<div class="flex items-center gap-1.5">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white font-bold text-[13px] ring-[3px] ring-primary/20">
                         5
                     </div>
-<span class="font-label-lg text-label-lg text-primary">Medical History</span>
+<span class="font-label-lg text-label-lg text-primary font-bold whitespace-nowrap">Medical</span>
 </div>
 </div>
 </nav>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
-<!-- Left Side: Wizard Content -->
-<div class="md:col-span-8 space-y-stack-md">
-<section class="bg-surface-container-lowest p-stack-md md:p-stack-lg rounded-xl shadow-sm border border-border-subtle">
+
+<!-- Priority Onboarding Banner -->
+<div class="bg-primary text-on-primary p-4 rounded-xl relative overflow-hidden shadow-md mb-6 flex items-center gap-4">
+<div class="absolute top-0 right-0 bg-eco-lime text-primary px-3 py-1 font-badge-xs text-badge-xs uppercase tracking-wider rounded-bl-lg">
+                    Ecobank Priority
+                </div>
+<div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-eco-lime" style="font-variation-settings: 'FILL' 1;" data-icon="verified_user">verified_user</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-label-lg text-label-lg font-bold">Priority Onboarding</h3>
+<p class="font-label-sm text-label-sm opacity-80">As an Ecobank Gold Member, your medical underwriting is expedited with instant approval for standard conditions.</p>
+</div>
+</div>
+
+<!-- Main Card -->
+<section class="bg-surface-container-lowest p-stack-md md:p-stack-lg rounded-xl shadow-sm border border-border-subtle relative overflow-hidden">
+<!-- Eco-lime accent gradient bar -->
+<div class="absolute top-0 left-0 right-0 h-[3px]" style="background: linear-gradient(90deg, #BED600, #00C58F, #BED600);"></div>
+
 <div class="mb-stack-md">
 <h1 class="font-headline-lg text-headline-lg text-primary mb-2">Medical History</h1>
 <p class="font-body-md text-body-md text-on-surface-variant">Please select any pre-existing conditions that apply to you. This helps us ensure your coverage is tailored to your needs.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="medical-checklist">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="medical-checklist">
 <!-- Checklist Items -->
 <div class="relative">
 <input class="peer hidden" id="cond-1" type="checkbox" value="diabetes"/>
-<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-1">
-<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary">
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-xl cursor-pointer transition-all duration-200 hover:bg-surface-container-low hover:shadow-sm hover:border-outline-variant peer-checked:border-primary peer-checked:bg-surface-container-low shadow-sm" for="cond-1">
+<div class="check-box w-6 h-6 border-2 border-outline-variant rounded-md flex items-center justify-center transition-all">
 <span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
 </div>
 <span class="font-label-lg text-label-lg">Diabetes</span>
@@ -201,8 +224,8 @@
 </div>
 <div class="relative">
 <input class="peer hidden" id="cond-2" type="checkbox" value="blood_pressure"/>
-<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-2">
-<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-xl cursor-pointer transition-all duration-200 hover:bg-surface-container-low hover:shadow-sm hover:border-outline-variant peer-checked:border-primary peer-checked:bg-surface-container-low shadow-sm" for="cond-2">
+<div class="check-box w-6 h-6 border-2 border-outline-variant rounded-md flex items-center justify-center transition-all">
 <span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
 </div>
 <span class="font-label-lg text-label-lg">High Blood Pressure</span>
@@ -210,8 +233,8 @@
 </div>
 <div class="relative">
 <input class="peer hidden" id="cond-3" type="checkbox" value="heart_disease"/>
-<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-3">
-<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-xl cursor-pointer transition-all duration-200 hover:bg-surface-container-low hover:shadow-sm hover:border-outline-variant peer-checked:border-primary peer-checked:bg-surface-container-low shadow-sm" for="cond-3">
+<div class="check-box w-6 h-6 border-2 border-outline-variant rounded-md flex items-center justify-center transition-all">
 <span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
 </div>
 <span class="font-label-lg text-label-lg">Heart Disease</span>
@@ -219,8 +242,8 @@
 </div>
 <div class="relative">
 <input class="peer hidden" id="cond-4" type="checkbox" value="asthma"/>
-<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-4">
-<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-xl cursor-pointer transition-all duration-200 hover:bg-surface-container-low hover:shadow-sm hover:border-outline-variant peer-checked:border-primary peer-checked:bg-surface-container-low shadow-sm" for="cond-4">
+<div class="check-box w-6 h-6 border-2 border-outline-variant rounded-md flex items-center justify-center transition-all">
 <span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
 </div>
 <span class="font-label-lg text-label-lg">Asthma</span>
@@ -228,8 +251,8 @@
 </div>
 <div class="relative">
 <input class="peer hidden" id="cond-5" type="checkbox" value="kidney_disease"/>
-<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-5">
-<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-xl cursor-pointer transition-all duration-200 hover:bg-surface-container-low hover:shadow-sm hover:border-outline-variant peer-checked:border-primary peer-checked:bg-surface-container-low shadow-sm" for="cond-5">
+<div class="check-box w-6 h-6 border-2 border-outline-variant rounded-md flex items-center justify-center transition-all">
 <span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
 </div>
 <span class="font-label-lg text-label-lg">Kidney Disease</span>
@@ -237,27 +260,31 @@
 </div>
 <div class="relative">
 <input class="peer hidden" id="cond-6" type="checkbox" value="cancer"/>
-<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-surface-container-low" for="cond-6">
-<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center">
+<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-xl cursor-pointer transition-all duration-200 hover:bg-surface-container-low hover:shadow-sm hover:border-outline-variant peer-checked:border-primary peer-checked:bg-surface-container-low shadow-sm" for="cond-6">
+<div class="check-box w-6 h-6 border-2 border-outline-variant rounded-md flex items-center justify-center transition-all">
 <span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
 </div>
 <span class="font-label-lg text-label-lg">Cancer</span>
 </label>
 </div>
 </div>
+<!-- None of these -->
 <div class="mt-stack-md pt-stack-md border-t border-border-subtle">
 <div class="relative">
 <input class="peer hidden" id="cond-none" type="checkbox" value="none"/>
-<label class="flex items-center gap-4 p-4 border border-border-subtle rounded-lg cursor-pointer transition-all hover:bg-surface-container-low peer-checked:border-success-teal peer-checked:bg-surface-container-low" for="cond-none">
-<div class="w-6 h-6 border-2 border-outline-variant rounded flex items-center justify-center peer-checked:bg-success-teal peer-checked:border-success-teal">
+<label class="flex items-center gap-4 p-4 border-2 border-dashed border-success-teal/40 rounded-xl cursor-pointer transition-all duration-200 hover:bg-success-teal/5 hover:border-success-teal/60 peer-checked:border-solid peer-checked:border-success-teal peer-checked:bg-success-teal/5 shadow-sm" for="cond-none">
+<div class="check-box w-6 h-6 border-2 border-success-teal/50 rounded-md flex items-center justify-center transition-all">
 <span class="material-symbols-outlined text-white text-[16px] opacity-0 check-icon transition-all scale-50" data-icon="check">check</span>
 </div>
-<span class="font-label-lg text-label-lg font-bold">None of these</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-success-teal text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-lg text-label-lg font-bold text-success-teal">None of these apply to me</span>
+</div>
 </label>
 </div>
 </div>
 <!-- WhatsApp Toggle -->
-<div class="mt-stack-lg p-4 bg-surface-container-low rounded-lg flex items-center justify-between border border-secondary-fixed">
+<div class="mt-stack-lg p-4 bg-surface-container-low rounded-xl flex items-center justify-between border border-secondary-fixed">
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 bg-success-teal bg-opacity-10 rounded-full flex items-center justify-center">
 <span class="material-symbols-outlined text-success-teal" data-icon="chat">chat</span>
@@ -273,41 +300,20 @@
 </label>
 </div>
 </section>
+
+<!-- Security & Privacy info -->
+<div class="mt-6 bg-surface-container-lowest p-4 rounded-xl border border-border-subtle border-l-[3px] border-l-success-teal flex items-start gap-3">
+<div class="w-9 h-9 bg-primary-container rounded-lg flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary-container text-[18px]" data-icon="encrypted">encrypted</span>
 </div>
-<!-- Right Side: Sticky Info Sidebar -->
-<aside class="md:col-span-4 sticky top-24 space-y-stack-md">
-<!-- Ecobank Priority Card -->
-<div class="bg-primary text-on-primary p-stack-md rounded-xl relative overflow-hidden shadow-md">
-<div class="absolute top-0 right-0 bg-eco-lime text-primary px-3 py-1 font-badge-xs text-badge-xs uppercase tracking-wider rounded-bl-lg">
-                        Ecobank Priority
-                    </div>
-<div class="mt-4">
-<h3 class="font-title-md text-title-md mb-2">Priority Onboarding</h3>
-<p class="font-label-sm text-label-sm opacity-80 mb-4">As an Ecobank Gold Member, your medical underwriting is expedited. You'll receive instant approval for standard conditions.</p>
-<div class="flex items-center gap-2 text-eco-lime">
-<span class="material-symbols-outlined text-[18px]" data-icon="verified_user">verified_user</span>
-<span class="font-label-sm text-label-sm font-bold">Fast-Track Coverage Enabled</span>
+<div>
+<p class="font-label-lg text-label-lg text-primary mb-1">Data Privacy</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-relaxed">Your medical data is encrypted using AES-256 standards. We only share necessary information with underwriters.</p>
 </div>
 </div>
-</div>
-<!-- Security Assurance -->
-<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-border-subtle shadow-sm">
-<div class="flex items-center gap-3 mb-4">
-<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-on-primary-container" data-icon="encrypted">encrypted</span>
-</div>
-<h4 class="font-label-lg text-label-lg text-primary uppercase">Data Privacy</h4>
-</div>
-<p class="font-label-sm text-label-sm text-on-surface-variant mb-4 leading-relaxed">
-                        Your medical data is encrypted using AES-256 standards. We only share necessary information with underwriters to calculate your premium. Ecobank never stores your raw medical records.
-                    </p>
-<a class="text-secondary font-label-sm text-label-sm hover:underline flex items-center gap-1" href="#">
-                        View Privacy Policy
-                        <span class="material-symbols-outlined text-[14px]" data-icon="open_in_new">open_in_new</span>
-</a>
-</div>
-<!-- Support Card -->
-<div class="bg-surface-container-high p-stack-md rounded-xl flex items-center justify-between group cursor-pointer hover:bg-secondary-fixed transition-colors">
+
+<!-- Support link -->
+<div class="mt-4 mb-4 bg-surface-container-high p-4 rounded-xl flex items-center justify-between group cursor-pointer hover:bg-secondary-fixed transition-colors">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-primary" data-icon="support_agent">support_agent</span>
 <div class="text-primary">
@@ -317,23 +323,21 @@
 </div>
 <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
 </div>
-</aside>
-</div>
 </main>
 <!-- Navigation Footer -->
-<footer class="fixed bottom-0 w-full z-50 bg-surface-container-low dark:bg-surface-container border-t border-border-subtle dark:border-outline-variant py-4 px-margin-mobile md:px-margin-desktop shadow-lg">
-<div class="max-w-[1200px] mx-auto flex items-center justify-between">
-<button class="flex items-center gap-2 px-6 py-3 rounded-lg text-primary font-label-lg hover:bg-surface-container transition-colors Active:scale-95 transition-transform" onclick="notifyParent('back')">
-<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<footer class="w-full z-50 bg-surface-container-lowest border-t border-border-subtle py-4 px-margin-mobile md:px-margin-desktop shadow-[0_-2px_8px_rgba(0,0,0,0.06)]">
+<div class="max-w-[720px] mx-auto flex items-center justify-between">
+<button class="flex items-center gap-2 px-6 py-3 rounded-full text-primary font-label-lg border border-border-subtle hover:bg-surface-container-low transition-all active:scale-95" onclick="notifyParent('back')">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
                 Back
             </button>
-<div class="flex items-center gap-4">
-<button class="hidden md:flex px-6 py-3 rounded-lg text-on-surface-variant font-label-lg hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<button class="hidden md:flex px-5 py-3 rounded-full text-on-surface-variant font-label-lg border border-border-subtle hover:bg-surface-container-low transition-colors">
                     Save as Draft
                 </button>
-<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-lg font-bold flex items-center gap-2 hover:bg-primary-container shadow-sm Active:scale-95 transition-transform" onclick="notifyParent('complete')">
+<button class="bg-primary text-on-primary px-8 py-3.5 rounded-full font-label-lg font-bold flex items-center gap-2 hover:bg-deep-navy shadow-md active:scale-95 transition-all" onclick="notifyParent('complete')">
                     Save &amp; Continue
-                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                    <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
 </div>

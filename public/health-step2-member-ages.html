@@ -121,14 +121,27 @@
             height: 2px;
             flex-grow: 1;
             background-color: #E5E5E5;
-            margin: 0 12px;
+            margin: 0 8px;
+            margin-top: -16px;
         }
         .stepper-line.active {
-            background-color: #002b40;
+            background-color: #00C58F;
         }
-        .custom-select-trigger:focus-within {
-            border-color: #002b40;
-            box-shadow: 0 0 0 2px rgba(0, 66, 96, 0.1);
+        .member-row {
+            transition: all 0.15s ease;
+            border-radius: 12px;
+            padding: 12px;
+            margin: -12px;
+        }
+        .member-row:hover {
+            background-color: rgba(0, 42, 64, 0.03);
+        }
+        select.age-select {
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        select.age-select:focus {
+            border-color: #004260 !important;
+            box-shadow: 0 0 0 3px rgba(0, 66, 96, 0.12) !important;
         }
         body > nav, body > header, body > footer { display: none !important; }
         html, body, .flex.flex-col.min-h-screen { min-height: 0 !important; height: auto !important; }
@@ -158,31 +171,31 @@
 <div class="w-full max-w-[560px] flex flex-col gap-stack-lg">
 <!-- Stepper -->
 <div class="w-full">
-<div class="flex items-center justify-between mb-8">
-<!-- Step 1: Done -->
-<div class="flex flex-col items-center">
-<div class="w-8 h-8 rounded-full bg-success-teal text-white flex items-center justify-center text-label-lg font-bold">
-<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+<div class="flex items-center justify-between max-w-[460px] mx-auto mb-6">
+<!-- Step 1: Completed -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-7 h-7 rounded-full bg-success-teal text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
 </div>
-<span class="mt-2 font-label-sm text-label-sm text-on-surface-variant">Members</span>
+<span class="text-[10px] uppercase tracking-wider font-bold text-success-teal">Members</span>
 </div>
 <div class="stepper-line active"></div>
 <!-- Step 2: Active -->
-<div class="flex flex-col items-center">
-<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-label-lg font-bold">2</div>
-<span class="mt-2 font-label-sm text-label-sm text-primary font-semibold">Ages</span>
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-[11px] font-bold ring-4 ring-primary/10">2</div>
+<span class="text-[10px] uppercase tracking-wider font-bold text-primary">Ages</span>
 </div>
 <div class="stepper-line"></div>
 <!-- Step 3: Pending -->
-<div class="flex flex-col items-center">
-<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-label-lg font-bold">3</div>
-<span class="mt-2 font-label-sm text-label-sm text-outline">Location</span>
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[11px] font-bold">3</div>
+<span class="text-[10px] uppercase tracking-wider font-medium text-on-surface-variant">Location</span>
 </div>
 <div class="stepper-line"></div>
 <!-- Step 4: Pending -->
-<div class="flex flex-col items-center">
-<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-label-lg font-bold">4</div>
-<span class="mt-2 font-label-sm text-label-sm text-outline">Plan</span>
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[11px] font-bold">4</div>
+<span class="text-[10px] uppercase tracking-wider font-medium text-on-surface-variant">Contact</span>
 </div>
 </div>
 <!-- Page Header -->
@@ -192,11 +205,13 @@
 </div>
 </div>
 <!-- Central Age Selection Card -->
-<div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-stack-md flex flex-col gap-6">
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm p-stack-md flex flex-col gap-6 relative overflow-hidden">
+<!-- Eco-lime accent line at top -->
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-eco-lime via-success-teal to-eco-lime"></div>
 <!-- Member Row: Self -->
-<div class="flex items-center justify-between group">
+<div class="member-row flex items-center justify-between group">
 <div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-symbols-outlined" data-icon="person">person</span>
 </div>
 <div>
@@ -204,8 +219,8 @@
 <p class="font-label-sm text-label-sm text-outline">Primary Policyholder</p>
 </div>
 </div>
-<div class="relative w-28">
-<select class="appearance-none w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:border-primary outline-none cursor-pointer">
+<div class="relative w-32">
+<select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-[16px] font-medium text-on-surface focus:ring-2 focus:ring-primary/15 focus:border-primary outline-none cursor-pointer">
 <option>32</option>
 <option>18-25</option>
 <option>26-35</option>
@@ -213,14 +228,14 @@
 <option>46-55</option>
 <option>56+</option>
 </select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]" data-icon="expand_more">expand_more</span>
 </div>
 </div>
 <hr class="border-border-subtle"/>
 <!-- Member Row: Spouse -->
-<div class="flex items-center justify-between group">
+<div class="member-row flex items-center justify-between group">
 <div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-symbols-outlined" data-icon="group">group</span>
 </div>
 <div>
@@ -228,8 +243,8 @@
 <p class="font-label-sm text-label-sm text-outline">Dependent</p>
 </div>
 </div>
-<div class="relative w-28">
-<select class="appearance-none w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:border-primary outline-none cursor-pointer">
+<div class="relative w-32">
+<select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-[16px] font-medium text-on-surface focus:ring-2 focus:ring-primary/15 focus:border-primary outline-none cursor-pointer">
 <option>30</option>
 <option>18-25</option>
 <option>26-35</option>
@@ -237,14 +252,14 @@
 <option>46-55</option>
 <option>56+</option>
 </select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]" data-icon="expand_more">expand_more</span>
 </div>
 </div>
 <hr class="border-border-subtle"/>
 <!-- Member Row: Son -->
-<div class="flex items-center justify-between group">
+<div class="member-row flex items-center justify-between group">
 <div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
 <span class="material-symbols-outlined" data-icon="child_care">child_care</span>
 </div>
 <div>
@@ -252,24 +267,24 @@
 <p class="font-label-sm text-label-sm text-outline">Dependent</p>
 </div>
 </div>
-<div class="relative w-28">
-<select class="appearance-none w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md focus:ring-2 focus:ring-primary-container focus:border-primary outline-none cursor-pointer">
+<div class="relative w-32">
+<select class="age-select appearance-none w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-[16px] font-medium text-on-surface focus:ring-2 focus:ring-primary/15 focus:border-primary outline-none cursor-pointer">
 <option>5</option>
 <option>0-2</option>
 <option>3-12</option>
 <option>13-17</option>
 </select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="expand_more">expand_more</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]" data-icon="expand_more">expand_more</span>
 </div>
 </div>
 </div>
 <!-- Action Buttons -->
 <div class="flex flex-col gap-4">
-<button class="w-full bg-primary text-white font-label-lg text-label-lg py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-all active:scale-95 shadow-sm" onclick="notifyParent('next')">
+<button class="w-full bg-primary text-white font-label-lg text-[16px] font-semibold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-deep-navy transition-all active:scale-[0.98] shadow-md" onclick="notifyParent('next')">
                     Next: Your Location
                     <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
-<button class="w-full bg-transparent text-primary font-label-lg text-label-lg py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-surface-container transition-all" onclick="notifyParent('back')">
+<button class="w-full bg-transparent text-primary font-label-lg text-label-lg py-3 rounded-xl flex items-center justify-center gap-2 border border-outline-variant hover:bg-surface-container-low transition-all active:scale-[0.98]" onclick="notifyParent('back')">
 <span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
                     Back to Selection
                 </button>
@@ -319,13 +334,6 @@
 <span class="font-label-sm text-label-sm">Support</span>
 </div>
 </nav>
-<!-- Background Decoration -->
-<div class="fixed top-0 right-0 -z-10 w-1/3 h-1/2 opacity-20 pointer-events-none overflow-hidden">
-<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-container rounded-full blur-[120px]"></div>
-</div>
-<div class="fixed bottom-0 left-0 -z-10 w-1/3 h-1/2 opacity-10 pointer-events-none overflow-hidden">
-<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-eco-lime rounded-full blur-[120px]"></div>
-</div>
 <script>
         // Simple Interaction logic
         document.querySelectorAll('select').forEach(select => {
