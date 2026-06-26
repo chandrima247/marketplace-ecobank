@@ -2725,7 +2725,11 @@
     <style>
         /* Iframe embedding: hide page chrome so parent app nav is used */
         .app-header { display: none !important; }
-        body { padding-top: 0 !important; }
+        /* Render the embedded form at 90% so it reads correctly at 100% browser zoom
+           (matches the proportions the form was designed for). The 430px shell stays
+           centered; the extra gutter blends with the #f4f6f7 background. */
+        html { background: #f4f6f7; }
+        body { padding-top: 0 !important; zoom: 0.9; background: #f4f6f7; }
     </style>
 </head>
 <body>
