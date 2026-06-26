@@ -9,7 +9,7 @@ import {
   MapPin, Mail, UserCheck, FileCheck, BadgeCheck, CircleDollarSign,
   ShieldCheck, HeartPulse, CarFront, Cpu, PlaneTakeoff, Wheat, Building
 } from 'lucide-react';
-import { VEHICLE_DATABASE, POPULAR_PLATES, getVehicleForPlate, getProvidersForCategory, InsuranceProvider } from '../data';
+import { VEHICLE_DATABASE, POPULAR_PLATES, getVehicleForPlate, getProvidersForCategory, InsuranceProvider, METADATA_IMAGES } from '../data';
 import { Policy, InsuranceCategory, VehicleLookupResult } from '../types';
 
 interface InsuranceWizardProps {
@@ -206,6 +206,23 @@ export default function InsuranceWizard({
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
   }, [onBack]);
+
+  // Bridge: receive actions from Motor Product page
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const data = e.data;
+      if (!data || data.source !== 'maas-motor-product') return;
+      if (data.action === 'apply') {
+        setStage('application');
+        window.scrollTo(0, 0);
+      } else if (data.action === 'back') {
+        setStage('listing');
+        window.scrollTo(0, 0);
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
 
   // Bridge: receive actions from Health wizard Stitch pages
   useEffect(() => {
@@ -1431,7 +1448,29 @@ export default function InsuranceWizard({
             })()}
 
             {/* STAGE 3: PRODUCT PAGE (Britam-style full product page) */}
-            {stage === 'details' && (() => {
+            {/* MOTOR product/coverage page — full-bleed iframe in the new design */}
+            {stage === 'details' && category === 'Motor' && (
+              <div className="w-screen relative left-1/2 -translate-x-1/2 -mt-6" id="stage-motor-product-view">
+                <iframe
+                  ref={(el) => {
+                    if (el) {
+                      el.onload = () => {
+                        const provs = getProvidersForCategory('Motor');
+                        const sel = provs.find(p => p.id === selectedProviderId) || provs[0];
+                        el.contentWindow?.postMessage({ source: 'maas-product-init', provider: sel.name }, '*');
+                      };
+                    }
+                  }}
+                  src="/motor-product.html"
+                  title="Product Details"
+                  className="w-full border-0 block"
+                  style={{ height: `${iframeHeight}px`, minHeight: '700px' }}
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
+                />
+              </div>
+            )}
+
+            {stage === 'details' && category !== 'Motor' && (() => {
               const providers = getProvidersForCategory(category);
               const selectedProvider = providers.find(p => p.id === selectedProviderId) || providers[0];
               const providerIdx = providers.indexOf(selectedProvider);
@@ -1945,18 +1984,50 @@ export default function InsuranceWizard({
               );
             })()}
 
-            {/* STAGE 4: APPLICATION FORM — intent form iframe */}
+            {/* STAGE 4: APPLICATION FORM — clean full-bleed layout: nav + intent embed + small footer */}
             {stage === 'application' && (
-              <div id="stage-application-view">
-                <iframe
-                  src="/intent-form.html"
-                  title="Application"
-                  className="w-full border-0 block"
-                  scrolling="no"
-                  style={{ height: `${iframeHeight}px`, overflow: 'hidden' }}
-                  allow="camera; microphone; geolocation"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
-                />
+              <div
+                className="w-screen relative left-1/2 -translate-x-1/2 -mt-6 min-h-screen flex flex-col"
+                style={{ background: '#f4f6f7' }}
+                id="stage-application-view"
+              >
+                {/* Slim nav bar */}
+                <div className="bg-white border-b border-[#eef0f1] sticky top-0 z-50">
+                  <div className="max-w-[1180px] mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
+                    <button
+                      onClick={() => setStage('details')}
+                      className="flex items-center gap-1.5 text-[#5b6578] hover:text-[#023448] text-sm font-semibold transition-colors"
+                      id="application-back-btn"
+                    >
+                      <ArrowLeft className="w-4 h-4" /> Back
+                    </button>
+                    <img src={METADATA_IMAGES.ecobankLogo} alt="Ecobank" className="h-8 w-auto object-contain" />
+                    <div className="hidden sm:flex items-center gap-2 text-[#5b6578]">
+                      <Shield className="w-4 h-4 text-[#023448]" />
+                      <span className="text-xs font-semibold tracking-wide" style={{ fontFamily: "'Space Grotesk', monospace" }}>STEP 3 OF 3 · APPLICATION</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Intent embed — stretched end to end; #f4f6f7 shows in the side gutters */}
+                <div className="flex-grow w-full" style={{ background: '#f4f6f7' }}>
+                  <iframe
+                    src="/intent-form.html"
+                    title="Application"
+                    className="w-full border-0 block"
+                    style={{ width: '100%', height: `${iframeHeight}px`, minHeight: 'calc(100vh - 116px)', background: '#f4f6f7' }}
+                    allow="camera; microphone; geolocation"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
+                  />
+                </div>
+
+                {/* Small footer */}
+                <div className="bg-white border-t border-[#eef0f1]">
+                  <div className="max-w-[1180px] mx-auto px-5 sm:px-10 h-[52px] flex items-center justify-between text-[#9aa6ad]">
+                    <span className="text-xs" style={{ fontFamily: "'Space Grotesk', monospace" }}>© 2026 Ecobank · Powered by NxtPe</span>
+                    <span className="text-xs flex items-center gap-1.5"><Lock className="w-3.5 h-3.5" /> Bank-grade encryption</span>
+                  </div>
+                </div>
               </div>
             )}
 

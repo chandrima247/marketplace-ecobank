@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motor — Plan Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f4f6f7; color: #16242b; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: 'Space Grotesk', monospace; }
+  svg { display: block; }
+  button { font-family: inherit; }
+  .softcard { background: #fff; border-radius: 20px; border: 1px solid #eef0f1; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  .layout { display: grid; grid-template-columns: 1fr 360px; gap: 28px; align-items: start; }
+  .yes { color: #00a878; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .sticky-card { position: static !important; } .grid2 { grid-template-columns: 1fr !important; } }
+  @media (max-width: 560px) { .wrap { padding: 0 18px; } .hero-stats { flex-wrap: wrap; gap: 18px !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="padding: 28px 0 80px;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 24px;">
+      <span id="backLink" class="mono" style="font-size: 13px; color: #5b6578; cursor: pointer;">← Back to quotes</span>
+    </div>
+
+    <div class="layout">
+      <!-- left content -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- hero -->
+        <div class="softcard" style="padding: 32px;">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div id="logo" class="mono" style="width: 72px; height: 72px; border-radius: 18px; background: #f3f8d6; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 22px; color: #5a6a00; flex-shrink: 0;">BR</div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><h1 id="pname" style="font-size: 28px; font-weight: 700; letter-spacing: -0.02em;">Britam Motor Insurance</h1><span id="ptag" style="font-size: 10px; color: #5a6a00; background: #eaf3b8; padding: 4px 10px; border-radius: 999px; font-weight: 600;">BEST VALUE</span></div>
+              <div id="psub" class="mono" style="font-size: 13px; color: #7c8890; margin-top: 6px;">Comprehensive Motor · Underwritten by Britam Insurance</div>
+            </div>
+          </div>
+          <div class="hero-stats" style="display: flex; gap: 28px; margin-top: 26px; padding-top: 24px; border-top: 1px solid #eef0f1;">
+            <div><div class="mono" style="font-size: 11px; color: #9aa6ad;">RATING</div><div id="srating" style="font-size: 17px; font-weight: 700; margin-top: 4px;">4.6 ★</div></div>
+            <div><div class="mono" style="font-size: 11px; color: #9aa6ad;">CLAIMS PAID</div><div id="sclaims" style="font-size: 17px; font-weight: 700; margin-top: 4px;">98.2%</div></div>
+            <div><div class="mono" style="font-size: 11px; color: #9aa6ad;">AVG. PAYOUT</div><div id="spayout" style="font-size: 17px; font-weight: 700; margin-top: 4px;">3 days</div></div>
+            <div><div class="mono" style="font-size: 11px; color: #9aa6ad;">GARAGES</div><div id="sgarages" style="font-size: 17px; font-weight: 700; margin-top: 4px;">240+</div></div>
+          </div>
+        </div>
+
+        <!-- coverage details -->
+        <div class="softcard" style="padding: 28px 32px;">
+          <h2 style="font-size: 19px; font-weight: 700; margin-bottom: 6px;">Coverage details</h2>
+          <p style="font-size: 14px; color: #6b7780; line-height: 1.6; margin-bottom: 18px;">A full comprehensive policy protecting your vehicle against accident, theft, fire and third-party liability.</p>
+          <div class="grid2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;"><span class="yes" style="margin-top: 2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><div style="font-weight: 600; font-size: 14px;">Own damage</div><div class="mono" style="font-size: 12px; color: #9aa6ad;">Up to full vehicle value</div></div></div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;"><span class="yes" style="margin-top: 2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><div style="font-weight: 600; font-size: 14px;">Third-party liability</div><div class="mono" style="font-size: 12px; color: #9aa6ad;">Up to <span class="cur-label">UGX</span> 50M</div></div></div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;"><span class="yes" style="margin-top: 2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><div style="font-weight: 600; font-size: 14px;">Theft &amp; fire</div><div class="mono" style="font-size: 12px; color: #9aa6ad;">Full cover incl. attempted theft</div></div></div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;"><span class="yes" style="margin-top: 2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><div style="font-weight: 600; font-size: 14px;">24/7 roadside assist</div><div class="mono" style="font-size: 12px; color: #9aa6ad;">Towing within 50km free</div></div></div>
+          </div>
+        </div>
+
+        <!-- inclusions / exclusions -->
+        <div class="grid2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="softcard" style="padding: 26px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;"><span class="yes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span><h3 style="font-size: 16px; font-weight: 700;">What's included</h3></div>
+            <div style="display: flex; flex-direction: column; gap: 11px;">
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span class="yes">+</span> Accidental damage &amp; collision</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span class="yes">+</span> Cashless repair at partner garages</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span class="yes">+</span> Windscreen &amp; glass cover</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span class="yes">+</span> Personal accident for driver</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span class="yes">+</span> Natural disaster &amp; flood</div>
+            </div>
+          </div>
+          <div class="softcard" style="padding: 26px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;"><span style="color: #c4452f;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span><h3 style="font-size: 16px; font-weight: 700;">What's not covered</h3></div>
+            <div style="display: flex; flex-direction: column; gap: 11px;">
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span style="color: #c4452f;">−</span> Driving under the influence</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span style="color: #c4452f;">−</span> Use without a valid licence</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span style="color: #c4452f;">−</span> Wear, tear &amp; mechanical breakdown</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span style="color: #c4452f;">−</span> Racing or off-road events</div>
+              <div style="font-size: 14px; color: #3e4a52; display: flex; gap: 10px;"><span style="color: #c4452f;">−</span> Commercial use (unless declared)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- requirements -->
+        <div class="softcard" style="padding: 28px 32px;">
+          <h2 style="font-size: 19px; font-weight: 700; margin-bottom: 16px;">What you need before applying</h2>
+          <div class="grid2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div style="display: flex; gap: 12px; align-items: center; background: #f8fafb; border-radius: 12px; padding: 14px 16px;"><span style="color: #023448;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span style="font-size: 14px; font-weight: 500;">Vehicle logbook</span></div>
+            <div style="display: flex; gap: 12px; align-items: center; background: #f8fafb; border-radius: 12px; padding: 14px 16px;"><span style="color: #023448;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h.01M7 12h.01M11 8h6M11 12h6"/></svg></span><span style="font-size: 14px; font-weight: 500;">National ID</span></div>
+            <div style="display: flex; gap: 12px; align-items: center; background: #f8fafb; border-radius: 12px; padding: 14px 16px;"><span style="color: #023448;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="9" cy="12" r="2"/></svg></span><span style="font-size: 14px; font-weight: 500;">Valid driving licence</span></div>
+            <div style="display: flex; gap: 12px; align-items: center; background: #f8fafb; border-radius: 12px; padding: 14px 16px;"><span style="color: #023448;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.3-4.3"/><circle cx="11" cy="11" r="8"/></svg></span><span style="font-size: 14px; font-weight: 500;">Recent vehicle photos</span></div>
+          </div>
+        </div>
+
+        <!-- process -->
+        <div class="softcard" style="padding: 28px 32px;">
+          <h2 style="font-size: 19px; font-weight: 700; margin-bottom: 20px;">How it works</h2>
+          <div style="display: flex; gap: 0; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 130px; position: relative;"><div class="mono" style="width: 36px; height: 36px; border-radius: 999px; background: #023448; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600;">1</div><div style="font-weight: 600; font-size: 14px; margin-top: 12px;">Apply online</div><div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 4px; padding-right: 16px;">Fill the short form &amp; upload docs.</div></div>
+            <div style="flex: 1; min-width: 130px; position: relative;"><div class="mono" style="width: 36px; height: 36px; border-radius: 999px; background: #023448; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600;">2</div><div style="font-weight: 600; font-size: 14px; margin-top: 12px;">Instant review</div><div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 4px; padding-right: 16px;">AI-verified in under a minute.</div></div>
+            <div style="flex: 1; min-width: 130px; position: relative;"><div class="mono" style="width: 36px; height: 36px; border-radius: 999px; background: #023448; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600;">3</div><div style="font-weight: 600; font-size: 14px; margin-top: 12px;">Pay securely</div><div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 4px; padding-right: 16px;">Via Ecobank app or card.</div></div>
+            <div style="flex: 1; min-width: 130px;"><div class="mono" style="width: 36px; height: 36px; border-radius: 999px; background: #00C58F; color: #fff; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div><div style="font-weight: 600; font-size: 14px; margin-top: 12px;">Get certified</div><div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 4px;">Digital certificate issued instantly.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right sticky purchase card -->
+      <div class="sticky-card" style="position: sticky; top: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <div class="softcard" style="padding: 26px; box-shadow: 0 14px 40px -22px rgba(2,52,72,.3);">
+          <div class="mono" style="font-size: 11px; color: #9aa6ad; letter-spacing: 0.08em;">ANNUAL PREMIUM</div>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 6px;"><span style="font-size: 34px; font-weight: 800; color: #023448;"><span class="cur-label">UGX</span> <span id="premium">485,000</span></span></div>
+          <div class="mono" style="font-size: 12px; color: #00a878; margin-top: 4px;">≈ <span class="cur-label">UGX</span> <span id="permonth">40,400</span> / month</div>
+
+          <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 13px;"><span class="mono" style="color: #9aa6ad;">VEHICLE</span><span style="font-weight: 600;">Toyota RAV4 2022</span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px;"><span class="mono" style="color: #9aa6ad;">COVER TYPE</span><span style="font-weight: 600;">Comprehensive</span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px;"><span class="mono" style="color: #9aa6ad;">SUM INSURED</span><span style="font-weight: 600;"><span class="cur-label">UGX</span> 165M</span></div>
+          </div>
+
+          <button id="applyBtn" style="width: 100%; margin-top: 22px; border: none; background: #BED600; color: #023448; padding: 16px; border-radius: 14px; font-weight: 700; font-size: 15px; cursor: pointer;">Start application →</button>
+          <button style="width: 100%; margin-top: 10px; border: 1px solid #d8dee2; background: #fff; color: #16242b; padding: 14px; border-radius: 14px; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg> Download brochure</button>
+        </div>
+        <div style="border-radius: 18px; background: #ecf2f6; padding: 18px 20px; display: flex; gap: 12px; align-items: flex-start;">
+          <span style="color: #023448; margin-top: 2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/></svg></span>
+          <span class="mono" style="font-size: 12px; color: #5b6578; line-height: 1.5;">Secured by Ecobank. 14-day free cancellation on all policies.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/flow-config.js"></script>
+<script>
+  // Provider-specific content (matches the listing cards)
+  var PROVIDERS = {
+    'Britam': { initials: 'BR', logoBg: '#f3f8d6', logoColor: '#5a6a00', tag: 'BEST VALUE', tagBg: '#eaf3b8', tagColor: '#5a6a00', sub: 'Comprehensive Motor · Underwritten by Britam Insurance', rating: '4.6 ★', claims: '98.2%', payout: '3 days', garages: '240+', premium: '485,000', permonth: '40,400' },
+    'ICEA Lion': { initials: 'IL', logoBg: '#f5f7f8', logoColor: '#023448', tag: 'TOP RATED', tagBg: '#d6f5e8', tagColor: '#00a878', sub: 'Comprehensive Motor · Underwritten by ICEA Lion', rating: '4.7 ★', claims: '96.0%', payout: '7 days', garages: '120+', premium: '542,000', permonth: '45,200' },
+    'Old Mutual': { initials: 'OM', logoBg: '#f5f7f8', logoColor: '#023448', tag: 'RECOMMENDED', tagBg: '#023448', tagColor: '#ffffff', sub: 'Comprehensive Motor · Underwritten by Old Mutual', rating: '4.6 ★', claims: '95.0%', payout: '5 days', garages: '150+', premium: '720,000', permonth: '60,000' }
+  };
+
+  function applyProvider(name) {
+    var key = Object.keys(PROVIDERS).find(function (k) { return (name || '').toLowerCase().indexOf(k.toLowerCase().split(' ')[0]) !== -1; }) || 'Britam';
+    var p = PROVIDERS[key];
+    document.getElementById('logo').textContent = p.initials;
+    document.getElementById('logo').style.background = p.logoBg;
+    document.getElementById('logo').style.color = p.logoColor;
+    document.getElementById('pname').textContent = key + (key === 'Old Mutual' ? ' Car Insurance' : key === 'ICEA Lion' ? ' Simba Motor' : ' Motor Insurance');
+    var tag = document.getElementById('ptag');
+    tag.textContent = p.tag; tag.style.background = p.tagBg; tag.style.color = p.tagColor;
+    document.getElementById('psub').textContent = p.sub;
+    document.getElementById('srating').textContent = p.rating;
+    document.getElementById('sclaims').textContent = p.claims;
+    document.getElementById('spayout').textContent = p.payout;
+    document.getElementById('sgarages').textContent = p.garages;
+    document.getElementById('premium').textContent = p.premium;
+    document.getElementById('permonth').textContent = p.permonth;
+    reportHeight();
+  }
+
+  function post(action, data) {
+    if (window.parent !== window) window.parent.postMessage(Object.assign({ source: 'maas-motor-product', action: action }, data || {}), '*');
+  }
+  document.getElementById('applyBtn').addEventListener('click', function () { post('apply'); });
+  document.getElementById('backLink').addEventListener('click', function () { post('back'); });
+
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.source === 'maas-product-init' && e.data.provider) applyProvider(e.data.provider);
+  });
+
+  function reportHeight() {
+    if (window.parent !== window) window.parent.postMessage({ source: 'maas-iframe-resize', height: document.body.scrollHeight + 40 }, '*');
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (window.ResizeObserver) { new ResizeObserver(reportHeight).observe(document.body); }
+</script>
+</body>
+</html>

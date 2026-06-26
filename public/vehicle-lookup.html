@@ -1,363 +1,106 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Auto Insurance - Category Questions</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "error-container": "#ffdad6",
-                        "secondary": "#4159ab",
-                        "inverse-surface": "#273142",
-                        "tertiary-fixed": "#63fcc2",
-                        "on-secondary-fixed-variant": "#264192",
-                        "deep-navy": "#023448",
-                        "on-error": "#ffffff",
-                        "tertiary": "#004832",
-                        "error": "#ba1a1a",
-                        "inverse-on-surface": "#ecf1ff",
-                        "on-surface": "#121c2c",
-                        "surface-container-lowest": "#ffffff",
-                        "on-secondary-fixed": "#00164f",
-                        "surface-gray": "#F8F8F8",
-                        "on-primary-container": "#91d2fe",
-                        "surface-variant": "#d9e3f9",
-                        "surface-container-highest": "#d9e3f9",
-                        "primary-fixed": "#c8e6ff",
-                        "on-secondary-container": "#1d398a",
-                        "surface-container": "#e7eeff",
-                        "primary-fixed-dim": "#8ecefa",
-                        "on-tertiary": "#ffffff",
-                        "tertiary-container": "#006245",
-                        "surface-bright": "#f9f9ff",
-                        "border-subtle": "#E5E5E5",
-                        "on-tertiary-container": "#44e4ab",
-                        "on-primary": "#ffffff",
-                        "on-primary-fixed": "#001e2e",
-                        "surface-container-low": "#f0f3ff",
-                        "inverse-primary": "#8ecefa",
-                        "surface-tint": "#17648c",
-                        "secondary-container": "#8fa7ff",
-                        "tertiary-fixed-dim": "#3edfa7",
-                        "surface-container-high": "#dee8ff",
-                        "outline-variant": "#c0c7cf",
-                        "primary": "#004260",
-                        "background": "#f9f9ff",
-                        "success-teal": "#00C58F",
-                        "eco-lime": "#BED600",
-                        "on-tertiary-fixed": "#002115",
-                        "secondary-fixed": "#dce1ff",
-                        "primary-container": "#005b82",
-                        "on-background": "#121c2c",
-                        "on-primary-fixed-variant": "#004c6d",
-                        "surface-dim": "#d0daf1",
-                        "on-tertiary-fixed-variant": "#005139",
-                        "outline": "#70787f",
-                        "on-error-container": "#93000a",
-                        "on-surface-variant": "#40484e",
-                        "surface": "#f9f9ff",
-                        "on-secondary": "#ffffff",
-                        "secondary-fixed-dim": "#b6c4ff"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "margin-desktop": "40px",
-                        "margin-mobile": "20px",
-                        "stack-md": "24px",
-                        "gutter": "24px",
-                        "stack-lg": "48px",
-                        "container-max": "1200px",
-                        "stack-sm": "12px",
-                        "base": "8px"
-                    },
-                    "fontFamily": {
-                        "label-sm": ["Hanken Grotesk"],
-                        "label-lg": ["Hanken Grotesk"],
-                        "display-lg": ["Hanken Grotesk"],
-                        "title-md": ["Hanken Grotesk"],
-                        "headline-lg": ["Hanken Grotesk"],
-                        "body-lg": ["Hanken Grotesk"],
-                        "body-md": ["Hanken Grotesk"],
-                        "headline-lg-mobile": ["Hanken Grotesk"]
-                    },
-                    "fontSize": {
-                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
-                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
-                    }
-                }
-            }
-        }
-    </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motor — Vehicle Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #F8F8F8; color: #121C2C; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
-        .progress-segment { transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .pulse-soft { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
-
-        /* Stepper progress bar */
-        .stepper-track {
-            height: 6px;
-            border-radius: 3px;
-            background: #e7eeff;
-            overflow: hidden;
-        }
-        .stepper-fill {
-            height: 100%;
-            border-radius: 3px;
-            background: #004260;
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* License plate input styling */
-        .plate-input-wrapper {
-            background: #FFFFFF;
-            border: 2px solid #d9e3f9;
-            border-radius: 12px;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .plate-input-wrapper:focus-within {
-            border-color: #004260;
-            box-shadow: 0 0 0 3px rgba(0, 66, 96, 0.1);
-        }
-        .plate-input-wrapper input {
-            font-family: 'Hanken Grotesk', monospace;
-            background: transparent;
-            letter-spacing: 0.15em;
-        }
-
-        /* Lookup button */
-        .lookup-btn {
-            background: #004260;
-            box-shadow: 0 4px 12px rgba(0, 66, 96, 0.3);
-            transition: all 0.2s;
-        }
-        .lookup-btn:hover {
-            box-shadow: 0 6px 20px rgba(0, 66, 96, 0.4);
-            transform: translateY(-1px);
-        }
-        .lookup-btn:active {
-            transform: translateY(0) scale(0.97);
-            box-shadow: 0 2px 8px rgba(0, 66, 96, 0.3);
-        }
-
-        /* Popular chips */
-        .chip {
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-            transition: all 0.2s;
-        }
-        .chip:hover {
-            box-shadow: 0 3px 10px rgba(65, 89, 171, 0.2);
-            transform: translateY(-1px);
-            background: #dce1ff;
-            border-color: #4159ab;
-        }
-        .chip:active {
-            transform: translateY(0) scale(0.97);
-        }
-
-        /* Disabled next button */
-        .btn-next-disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-            background: #9ca3af;
-        }
-
-        /* Trust badge cards (removed - now inline text) */
-
-        /* Eco-lime accent gradient bar */
-        .eco-accent-bar {
-            height: 4px;
-            border-radius: 12px 12px 0 0;
-            background: #BED600;
-        }
-    </style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f4f6f7; color: #16242b; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: 'Space Grotesk', monospace; }
+  svg { display: block; }
+  input, select, button, textarea { font-family: inherit; }
+  select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239aa6ad' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; cursor: pointer; }
+  .field { background: #fff; border: 1px solid #e0e5e8; border-radius: 12px; padding: 13px 16px; font-size: 15px; color: #16242b; width: 100%; outline: none; transition: border-color .15s; }
+  .field:focus { border-color: #023448; }
+  .cta-primary { border: none; background: #BED600; color: #023448; padding: 16px; border-radius: 14px; font-weight: 700; font-size: 15px; cursor: pointer; transition: filter .15s; }
+  .cta-primary:hover { filter: brightness(0.96); }
+  .cta-ghost { border: 1px solid #d8dee2; background: #fff; color: #16242b; padding: 16px 24px; border-radius: 14px; font-weight: 600; font-size: 15px; cursor: pointer; transition: background .15s; }
+  .cta-ghost:hover { background: #f5f7f8; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 560px) { .wrap { padding: 0 20px; } .grid2 { grid-template-columns: 1fr !important; } h1 { font-size: 28px !important; } .card { padding: 28px 22px !important; } }
+</style>
 </head>
-<body class="flex flex-col">
+<body>
+<div class="wrap">
+  <div data-screen-label="Manual Intake" style="padding: 32px 0 40px;">
+    <!-- Progress -->
+    <div style="margin-bottom: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <span class="mono" style="font-size: 12px; font-weight: 600; color: #023448; letter-spacing: 0.08em;">STEP 1 OF 3 · VEHICLE DETAILS</span>
+        <span class="mono" style="font-size: 12px; color: #9aa6ad;">33%</span>
+      </div>
+      <div style="height: 6px; background: #e6eaec; border-radius: 999px; overflow: hidden;"><div style="width: 33%; height: 100%; background: linear-gradient(90deg, #023448, #00C58F); border-radius: 999px;"></div></div>
+    </div>
 
-<!-- Thin progress bar replaces stepper -->
-<div class="w-full" style="height:2px;background:#e7eeff;">
-<div class="stepper-fill" style="width:33%;height:100%;"></div>
-</div>
+    <div style="padding: 44px 0 0; display: flex; justify-content: center;">
+      <div style="width: 100%; max-width: 820px;">
+        <div style="text-align: center; margin-bottom: 36px;">
+          <h1 style="font-size: 36px; font-weight: 700; letter-spacing: -0.03em;">Enter vehicle details</h1>
+          <p style="font-size: 16px; color: #6b7780; margin-top: 10px;">Tell us about your vehicle to get accurate quotes from our insurer partners.</p>
+        </div>
 
-<main class="flex-grow flex flex-col items-center px-margin-mobile md:px-margin-desktop py-8">
-<!-- Compact step indicator + title on one line -->
-<div class="w-full max-w-[800px] mb-5 flex items-baseline gap-3">
-<span class="font-label-sm text-[12px] text-secondary uppercase tracking-wider whitespace-nowrap">Step 1 of 3</span>
-<h2 class="font-headline-lg-mobile text-[26px] md:text-[30px] font-bold text-primary leading-tight">Vehicle Information</h2>
-</div>
+        <div class="card" style="background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px -20px rgba(2,52,72,.18);">
+          <div class="grid2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+            <div><label class="mono" style="font-size: 12px; color: #9aa6ad; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">VEHICLE MAKE</label>
+              <select class="field" id="make"><option value="">Select make</option><option>Toyota</option><option>Mercedes-Benz</option><option>Volkswagen</option><option>Nissan</option><option>Hyundai</option><option>Kia</option><option>Mitsubishi</option><option>Honda</option></select></div>
+            <div><label class="mono" style="font-size: 12px; color: #9aa6ad; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">VEHICLE MODEL</label>
+              <select class="field" id="model"><option value="">Select model</option><option>RAV4</option><option>Camry</option><option>Corolla</option><option>Hilux</option><option>Land Cruiser</option></select></div>
+            <div><label class="mono" style="font-size: 12px; color: #9aa6ad; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">YEAR OF MANUFACTURE</label>
+              <select class="field" id="year"><option value="">Select year</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option>2018</option></select></div>
+            <div><label class="mono" style="font-size: 12px; color: #9aa6ad; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">BODY TYPE</label>
+              <select class="field" id="body"><option value="">Select body type</option><option>Sedan</option><option>SUV</option><option>Hatchback</option><option>Pickup</option><option>Minivan</option></select></div>
+            <div style="grid-column: span 2;"><label class="mono" style="font-size: 12px; color: #9aa6ad; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">ESTIMATED MARKET VALUE</label>
+              <div style="display: flex; border: 1px solid #e0e5e8; border-radius: 12px; overflow: hidden;"><span class="mono cur-label" style="padding: 13px 16px; background: #f5f7f8; font-weight: 600; color: #023448; border-right: 1px solid #e0e5e8;">UGX</span><input type="number" id="value" placeholder="0.00" style="flex: 1; border: none; outline: none; padding: 13px 16px; font-size: 15px;"></div>
+            </div>
+            <div style="grid-column: span 2;"><label class="mono" style="font-size: 12px; color: #9aa6ad; letter-spacing: 0.06em; display: block; margin-bottom: 8px;">REGION OF REGISTRATION</label>
+              <select class="field" id="region"><option value="">Select region</option><option>Central Region</option><option>Western Region</option><option>Eastern Region</option><option>Northern Region</option></select></div>
+          </div>
 
-<!-- Focused Purchase Flow Card -->
-<div class="w-full max-w-[800px] bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300" style="border: 1px solid #E5E5E5;">
-<!-- Eco-lime accent gradient bar at top -->
-<div class="eco-accent-bar"></div>
+          <div style="display: flex; gap: 12px; margin-top: 32px;">
+            <button class="cta-primary" id="confirmBtn" style="flex: 1;">Confirm &amp; see quotes →</button>
+            <button class="cta-ghost" id="backBtn">Back</button>
+          </div>
+        </div>
 
-<div class="p-6 md:p-8 flex flex-col gap-5">
-<div>
-<label class="font-label-lg text-label-lg text-primary mb-2 block" for="plate">Enter License Plate Number</label>
-<div class="plate-input-wrapper flex items-center p-1.5">
-<input class="w-full h-14 md:h-16 border-0 focus:ring-0 text-[20px] md:text-[24px] font-bold px-4 uppercase placeholder:normal-case placeholder:font-normal placeholder:text-outline placeholder:tracking-normal" id="plate" placeholder="e.g. UBM 492X" type="text">
-<button class="lookup-btn flex-shrink-0 text-white px-5 md:px-6 h-12 md:h-14 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5" id="lookupBtn" onclick="simulateLookup()">
-<span class="">Lookup</span>
-<span class="material-symbols-outlined text-[18px]">search</span>
-</button>
-</div>
-</div>
-<!-- Popular Search Chips -->
-<div>
-<p class="font-label-sm text-[12px] text-on-surface-variant mb-2">Popular Searches</p>
-<div class="flex flex-wrap gap-2">
-<button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UBM 492X')">UBM 492X</button>
-<button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UBA 123Z')">UBA 123Z</button>
-<button class="chip px-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-[12px] font-semibold text-secondary" onclick="fillPlate('UAS 999K')">UAS 999K</button>
-</div>
-</div>
-<!-- Vehicle Result Card (Hidden by default) -->
-<div class="hidden animate-in fade-in slide-in-from-top-4 duration-500 bg-surface-container border-2 border-success-teal rounded-xl p-6 flex flex-col md:flex-row items-center gap-6" id="resultCard">
-<div class="w-24 h-24 bg-white rounded-lg flex items-center justify-center border border-border-subtle shadow-sm relative overflow-hidden">
-<img class="object-cover w-full h-full" data-alt="A clean, studio shot of a modern blue luxury sedan centered against a minimalist white background. The lighting is bright and professional, highlighting the metallic paint and sleek contours of the car. The aesthetic is high-trust and corporate, perfectly aligned with a premium financial or insurance service portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg1JqcTWdV_h-GVNLLXsU0zU4mCzxzjYLr5Y09uEsqLKaPmZZd55a2d_m7VrP2c8TUpX-sCON3wmni1QsaqPmFotsEYtU8qv961-pAxYI_GRiAx8B1DaHzzw_L6h3_B2KBFSFqf9LqGM_BY1TDcCRkvpZPnalT0NtF9Aj3784lcfED00_MzxHXlI3EPETZ6c_ISiQITicmoOavRSua28YQFSjMFEbRKyihasQSrBgeFBOkIsy6_oUoN4g22T9VWPVkn_-zZm6TtZ0">
-<div class="absolute inset-0 bg-primary/5"></div>
-</div>
-<div class="flex-grow text-center md:text-left">
-<h3 class="font-title-md text-title-md text-primary" id="vehicleName">Toyota Land Cruiser V8</h3>
-<p class="font-body-md text-body-md text-on-surface-variant" id="vehicleDetails">2022 Model &bull; Diesel &bull; 4,500cc</p>
-<div class="mt-2 flex flex-wrap justify-center md:justify-start gap-2">
-<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-sm font-label-sm">
-<span class="material-symbols-outlined text-[14px]">verified</span> Verified Details
-                            </span>
-</div>
-</div>
-<div class="flex flex-col items-center md:items-end gap-1">
-<span class="text-label-sm font-label-sm text-on-surface-variant">Estimated Value</span>
-<span class="text-title-md font-bold text-primary">$45,000</span>
-</div>
-</div>
-<div class="pt-4 flex flex-row justify-between items-center gap-4">
-<button class="flex-1 px-4 h-12 font-label-lg text-[14px] text-primary border-2 border-primary rounded-lg hover:bg-surface-container transition-colors active:scale-95">
-                        Enter Details Manually
-                    </button>
-<button class="flex-1 px-4 h-12 font-label-lg text-[14px] rounded-lg transition-all btn-next-disabled text-white" disabled="" id="nextBtn">
-                        Confirm &amp; Next Step
-                    </button>
-</div>
-</div>
+        <div style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 20px; color: #8a96a0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"></path></svg>
+          <span class="mono" style="font-size: 12px;">Bank-grade encryption via Ecobank. Your data is never shared.</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Trust text (compact) -->
-<div class="w-full max-w-[800px] mt-6">
-<p class="text-[12px] text-on-surface-variant text-center">
-Secure DMV Lookup &nbsp;&middot;&nbsp; 40-Second Flow &nbsp;&middot;&nbsp; Ecobank Partner
-</p>
-</div>
-</main>
+<script src="/flow-config.js"></script>
 <script>
-        function fillPlate(val) {
-            const input = document.getElementById('plate');
-            input.value = val;
-            input.focus();
-        }
+  // ── postMessage bridge (preserves existing wizard contract: source 'maas-vehicle-lookup') ──
+  function send(action, payload) {
+    parent.postMessage(Object.assign({ source: 'maas-vehicle-lookup', action: action }, payload || {}), '*');
+  }
+  document.getElementById('confirmBtn').addEventListener('click', function () {
+    var v = {
+      make: document.getElementById('make').value,
+      model: document.getElementById('model').value,
+      year: document.getElementById('year').value,
+      body: document.getElementById('body').value,
+      value: document.getElementById('value').value,
+      region: document.getElementById('region').value
+    };
+    send('confirm', { vehicle: v });
+  });
+  document.getElementById('backBtn').addEventListener('click', function () { send('back'); });
 
-        function simulateLookup() {
-            const btn = document.getElementById('lookupBtn');
-            const resultCard = document.getElementById('resultCard');
-            const nextBtn = document.getElementById('nextBtn');
-            const plateInput = document.getElementById('plate');
-
-            if (!plateInput.value) return;
-
-            // Loading state
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span>';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                btn.innerHTML = '<span>Refetch</span><span class="material-symbols-outlined text-[20px]">refresh</span>';
-                btn.disabled = false;
-
-                // Show Result
-                resultCard.classList.remove('hidden');
-
-                // Enable Next Button
-                nextBtn.classList.remove('btn-next-disabled');
-                nextBtn.classList.add('bg-primary', 'hover:bg-primary-container', 'active:scale-95', 'shadow-lg');
-                nextBtn.disabled = false;
-
-                // Simple randomization for demo
-                const vehicles = [
-                    { name: "Toyota Land Cruiser V8", details: "2022 Model • Diesel • 4,500cc" },
-                    { name: "Mercedes-Benz G63 AMG", details: "2023 Model • Petrol • 3,982cc" },
-                    { name: "Land Rover Defender", details: "2021 Model • Hybrid • 2,996cc" }
-                ];
-                const v = vehicles[Math.floor(Math.random() * vehicles.length)];
-                document.getElementById('vehicleName').textContent = v.name;
-                document.getElementById('vehicleDetails').textContent = v.details;
-            }, 1200);
-        }
-
-        // Handle enter key
-        document.getElementById('plate').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                simulateLookup();
-            }
-        });
-
-        // postMessage bridge to parent wizard
-        function notifyParent(action, data) {
-            window.parent.postMessage({ source: 'maas-vehicle-lookup', action, ...data }, '*');
-        }
-
-        // "Confirm & Next Step" → advance wizard to listing
-        document.getElementById('nextBtn').addEventListener('click', function() {
-            if (!this.disabled) {
-                const plate = document.getElementById('plate').value;
-                const name = document.getElementById('vehicleName').textContent;
-                notifyParent('confirm', { plate, vehicleName: name });
-            }
-        });
-
-        // "Enter Details Manually" button
-        document.querySelectorAll('button').forEach(btn => {
-            if (btn.textContent.trim() === 'Enter Details Manually') {
-                btn.addEventListener('click', function() {
-                    notifyParent('manual', {});
-                });
-            }
-        });
-
-        // Back arrow → go back to explore
-        document.querySelectorAll('button').forEach(btn => {
-            if (btn.querySelector('.material-symbols-outlined') &&
-                btn.querySelector('.material-symbols-outlined').textContent.trim() === 'arrow_back') {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    notifyParent('back', {});
-                });
-            }
-        });
-
-        // Listen for plate number from parent
-        window.addEventListener('message', function(e) {
-            if (e.data && e.data.source === 'maas-wizard' && e.data.plate) {
-                document.getElementById('plate').value = e.data.plate;
-                simulateLookup();
-            }
-        });
-    </script>
-</body></html>
+  // ── auto-resize the iframe (wizard listens for source 'maas-iframe-resize') ──
+  function reportHeight() {
+    parent.postMessage({ source: 'maas-iframe-resize', height: document.body.scrollHeight }, '*');
+  }
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (window.ResizeObserver) { new ResizeObserver(reportHeight).observe(document.body); }
+</script>
+</body>
+</html>

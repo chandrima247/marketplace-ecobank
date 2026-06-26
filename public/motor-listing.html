@@ -1,477 +1,200 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Ecobank Insurance | Quote Marketplace</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-secondary-fixed": "#00164f",
-                        "surface-container-lowest": "#ffffff",
-                        "on-secondary-container": "#1d398a",
-                        "on-primary": "#ffffff",
-                        "surface-bright": "#f9f9ff",
-                        "on-tertiary-container": "#44e4ab",
-                        "inverse-primary": "#8ecefa",
-                        "on-error": "#ffffff",
-                        "tertiary-container": "#006245",
-                        "inverse-surface": "#273142",
-                        "secondary": "#4159ab",
-                        "surface-container-highest": "#d9e3f9",
-                        "on-tertiary": "#ffffff",
-                        "background": "#f9f9ff",
-                        "on-primary-fixed": "#001e2e",
-                        "success-teal": "#00C58F",
-                        "on-primary-container": "#91d2fe",
-                        "deep-navy": "#023448",
-                        "on-surface-variant": "#40484e",
-                        "border-subtle": "#E5E5E5",
-                        "surface": "#f9f9ff",
-                        "surface-container-low": "#f0f3ff",
-                        "tertiary": "#004832",
-                        "error": "#ba1a1a",
-                        "primary-fixed": "#c8e6ff",
-                        "primary-fixed-dim": "#8ecefa",
-                        "surface-dim": "#d0daf1",
-                        "on-surface": "#121c2c",
-                        "on-tertiary-fixed": "#002115",
-                        "outline": "#70787f",
-                        "tertiary-fixed-dim": "#3edfa7",
-                        "inverse-on-surface": "#ecf1ff",
-                        "eco-lime": "#BED600",
-                        "secondary-fixed": "#dce1ff",
-                        "error-container": "#ffdad6",
-                        "secondary-fixed-dim": "#b6c4ff",
-                        "outline-variant": "#c0c7cf",
-                        "surface-tint": "#17648c",
-                        "primary": "#004260",
-                        "on-error-container": "#93000a",
-                        "on-secondary-fixed-variant": "#264192",
-                        "on-secondary": "#ffffff",
-                        "surface-variant": "#d9e3f9",
-                        "surface-container": "#e7eeff",
-                        "on-primary-fixed-variant": "#004c6d",
-                        "tertiary-fixed": "#63fcc2",
-                        "surface-gray": "#F8F8F8",
-                        "secondary-container": "#8fa7ff",
-                        "primary-container": "#005b82",
-                        "surface-container-high": "#dee8ff",
-                        "on-tertiary-fixed-variant": "#005139",
-                        "on-background": "#121c2c"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "stack-sm": "12px",
-                        "margin-desktop": "40px",
-                        "base": "8px",
-                        "gutter": "24px",
-                        "stack-md": "24px",
-                        "stack-lg": "48px",
-                        "margin-mobile": "20px",
-                        "container-max": "1200px"
-                    },
-                    "fontFamily": {
-                        "title-md": ["Hanken Grotesk"],
-                        "body-md": ["Hanken Grotesk"],
-                        "label-lg": ["Hanken Grotesk"],
-                        "label-sm": ["Hanken Grotesk"],
-                        "headline-lg-mobile": ["Hanken Grotesk"],
-                        "display-lg": ["Hanken Grotesk"],
-                        "body-lg": ["Hanken Grotesk"],
-                        "headline-lg": ["Hanken Grotesk"]
-                    },
-                    "fontSize": {
-                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
-                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
-                    }
-                }
-            }
-        }
-    </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motor — Compare Quotes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-        body { font-family: 'Hanken Grotesk', sans-serif; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .sidebar-scroller::-webkit-scrollbar { width: 4px; }
-        .sidebar-scroller::-webkit-scrollbar-thumb { background: #c0c7cf; border-radius: 10px; }
-
-        /* Custom styled compare checkbox */
-        .compare-check {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
-            border: 2px solid #c0c7cf;
-            border-radius: 6px;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-        }
-        .compare-check:hover {
-            border-color: #00C58F;
-            background: rgba(0, 197, 143, 0.06);
-        }
-        .compare-check:checked {
-            background: #00C58F;
-            border-color: #00C58F;
-        }
-        .compare-check:checked::after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 2px;
-            width: 6px;
-            height: 11px;
-            border: solid white;
-            border-width: 0 2.5px 2.5px 0;
-            transform: rotate(45deg);
-        }
-        .compare-check:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 197, 143, 0.2);
-        }
-
-        /* Premium range slider */
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 18px;
-            width: 18px;
-            border-radius: 50%;
-            background: #004260;
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-        }
-
-        /* Card hover lift */
-        .quote-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .quote-card:hover {
-            transform: translateY(-2px);
-        }
-    </style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f4f6f7; color: #16242b; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: 'Space Grotesk', monospace; }
+  svg { display: block; }
+  input, select, button, textarea { font-family: inherit; }
+  select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239aa6ad' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; cursor: pointer; }
+  .field { background: #fff; border: 1px solid #e0e5e8; border-radius: 12px; padding: 13px 16px; font-size: 15px; color: #16242b; width: 100%; outline: none; transition: border-color .15s; }
+  .field:focus { border-color: #023448; }
+  .softcard { background: #fff; border-radius: 20px; border: 1px solid #eef0f1; }
+  .qcard { transition: box-shadow .2s; }
+  .qcard:hover { box-shadow: 0 8px 30px -16px rgba(2,52,72,.25); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  .grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 880px) { .grid { grid-template-columns: 1fr; } aside { order: 2; } }
+  @media (max-width: 560px) { .wrap { padding: 0 18px; } .qrow { flex-wrap: wrap; } .qprice { text-align: left !important; } }
+</style>
 </head>
-<body class="bg-surface-gray text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed-variant min-h-screen flex flex-col">
-<!-- Main Content Layout -->
-<main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-8 flex flex-col md:flex-row gap-8">
-<!-- Sidebar -->
-<aside class="hidden md:block w-72 flex-shrink-0">
-<div class="sticky top-24 space-y-5">
-<!-- Vehicle Summary Card -->
-<div class="bg-primary/5 p-5 rounded-2xl border border-primary/10 shadow-sm">
-<div class="flex items-center gap-3 mb-3">
-<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary" style="font-size: 22px;">directions_car</span>
-</div>
-<div class="flex-grow">
-<div class="flex justify-between items-start">
-<h4 class="font-bold text-deep-navy text-label-lg">MARUTI SX4</h4>
-<button class="text-secondary text-label-sm font-semibold hover:underline flex items-center gap-0.5" data-nav="edit">
-Edit <span class="material-symbols-outlined" style="font-size: 14px;">edit</span>
-</button>
-</div>
-<p class="text-on-surface-variant text-label-sm">DL10CB1234 | 2011 | Petrol</p>
-</div>
-</div>
-<div class="flex justify-between items-center pt-3 border-t border-primary/10">
-<span class="text-label-sm text-on-surface-variant">Policy Expiry Date</span>
-<span class="text-label-sm font-bold text-on-surface">31-May-2026 <span class="material-symbols-outlined text-[16px] align-middle">chevron_right</span></span>
-</div>
+<body>
+<div class="wrap">
+  <div style="padding: 32px 0 120px;">
+    <!-- Progress -->
+    <div style="margin-bottom: 28px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <span class="mono" style="font-size: 12px; font-weight: 600; color: #023448; letter-spacing: 0.08em;">STEP 2 OF 3 · COMPARE QUOTES</span>
+        <span class="mono" style="font-size: 12px; color: #9aa6ad;">66%</span>
+      </div>
+      <div style="height: 6px; background: #e6eaec; border-radius: 999px; overflow: hidden;"><div style="width: 66%; height: 100%; background: linear-gradient(90deg, #023448, #00C58F); border-radius: 999px;"></div></div>
+    </div>
+
+    <div class="grid">
+      <!-- sidebar -->
+      <aside style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="softcard" style="padding: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div class="mono" style="font-size: 11px; color: #9aa6ad; letter-spacing: 0.08em;">YOUR VEHICLE</div>
+            <button data-nav="edit" class="mono" style="border: none; background: none; color: #023448; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: underline;">Edit</button>
+          </div>
+          <div style="font-size: 17px; font-weight: 700; margin-top: 8px;">Toyota RAV4</div>
+          <div class="mono" style="font-size: 12px; color: #7c8890; margin-top: 4px;">2022 · Petrol · SUV</div>
+        </div>
+        <div class="softcard" style="padding: 20px;">
+          <div class="mono" style="font-size: 11px; color: #16242b; letter-spacing: 0.08em; margin-bottom: 16px; font-weight: 600;">REFINE RESULTS</div>
+          <label class="mono" style="font-size: 11px; color: #9aa6ad; display: block; margin-bottom: 8px;">POLICY TYPE</label>
+          <select class="field" style="font-size: 13px; padding: 10px 14px;"><option>Comprehensive Motor</option><option>Third Party Fire &amp; Theft</option><option>Third Party Only</option></select>
+          <label class="mono" style="font-size: 11px; color: #9aa6ad; display: flex; justify-content: space-between; margin: 18px 0 8px;">ANNUAL PREMIUM <span style="color: #023448; font-weight: 600;">400k–1.2M</span></label>
+          <input type="range" style="width: 100%; accent-color: #023448;">
+          <div class="mono" style="font-size: 11px; color: #9aa6ad; margin: 18px 0 10px;">KEY FEATURES</div>
+          <div style="display: flex; flex-direction: column; gap: 11px;">
+            <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;"><input type="checkbox" checked style="width: 16px; height: 16px; accent-color: #023448;"> Zero Depreciation</label>
+            <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;"><input type="checkbox" style="width: 16px; height: 16px; accent-color: #023448;"> Cashless Garages</label>
+            <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;"><input type="checkbox" style="width: 16px; height: 16px; accent-color: #023448;"> Engine Protection</label>
+            <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer;"><input type="checkbox" style="width: 16px; height: 16px; accent-color: #023448;"> Roadside Assist</label>
+          </div>
+          <button style="width: 100%; margin-top: 20px; border: none; background: #023448; color: #fff; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 13px; cursor: pointer;">Update results</button>
+        </div>
+        <div style="border-radius: 20px; background: #023448; padding: 22px; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: -20px; right: -20px; width: 90px; height: 90px; border-radius: 999px; background: rgba(190,214,0,.18);"></div>
+          <div class="mono" style="font-size: 11px; color: #BED600; letter-spacing: 0.08em; font-weight: 600;">ECOBANK EXCLUSIVE</div>
+          <div style="color: #fff; font-size: 20px; font-weight: 800; margin-top: 8px;">Get 5% cashback</div>
+          <div style="color: rgba(255,255,255,.7); font-size: 13px; margin-top: 6px; line-height: 1.5;">When you pay with your Ecobank App or Card.</div>
+        </div>
+      </aside>
+
+      <!-- listings -->
+      <section style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h1 style="font-size: 28px; font-weight: 700; letter-spacing: -0.02em;">Insurance Quotes</h1>
+            <div class="mono" style="font-size: 13px; color: #7c8890; margin-top: 6px;">14 policies for your <span style="color: #023448; font-weight: 600;">Toyota RAV4 2022</span></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="mono" style="font-size: 12px; color: #9aa6ad;">SORT</span>
+            <select class="field" style="width: auto; font-size: 13px; padding: 9px 14px;"><option>Lowest Price</option><option>Top Rated</option><option>Best Value</option></select>
+          </div>
+        </div>
+
+        <!-- ICEA Lion (index 0) -->
+        <article class="qcard softcard" style="overflow: hidden;">
+          <div class="qrow" style="display: flex; align-items: center; gap: 20px; padding: 22px 24px;">
+            <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f5f7f8; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #023448; flex-shrink: 0;">IL</div>
+            <div style="flex: 1; min-width: 160px;">
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><span style="font-size: 16px; font-weight: 700;">ICEA Lion Simba Motor</span><span style="font-size: 10px; color: #00a878; background: #d6f5e8; padding: 3px 9px; border-radius: 999px; font-weight: 600;">TOP RATED</span></div>
+              <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Zero dep · 24/7 roadside</div>
+            </div>
+            <div class="qprice" style="text-align: right;">
+              <div class="mono" style="font-size: 13px; color: #c0c8cd; text-decoration: line-through;"><span class="cur-label">UGX</span> 680,000</div>
+              <div style="font-size: 24px; font-weight: 800; color: #023448; line-height: 1.1;"><span class="cur-label">UGX</span> 542,000</div>
+              <div class="mono" style="font-size: 11px; color: #9aa6ad;">PER YEAR</div>
+            </div>
+            <button data-buy="ICEA Lion" style="border: none; background: #BED600; color: #023448; padding: 13px 22px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer;">Buy plan →</button>
+          </div>
+          <div style="padding: 12px 24px; background: #f8fafb; border-top: 1px solid #eef0f1; display: flex; justify-content: space-between; align-items: center;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; color: #5b6578;" class="mono"><input type="checkbox" class="cmp" style="width: 15px; height: 15px; accent-color: #023448;"> ADD TO COMPARE</label>
+            <a data-buy="ICEA Lion" class="mono" style="font-size: 12px; color: #023448; cursor: pointer; font-weight: 600;">View details →</a>
+          </div>
+        </article>
+
+        <!-- Britam (index 1, featured) -->
+        <article class="qcard softcard" style="overflow: hidden; border-color: #BED600;">
+          <div class="qrow" style="display: flex; align-items: center; gap: 20px; padding: 22px 24px;">
+            <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f3f8d6; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #5a6a00; flex-shrink: 0;">BR</div>
+            <div style="flex: 1; min-width: 160px;">
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><span style="font-size: 16px; font-weight: 700;">Britam Motor Insurance</span><span style="font-size: 10px; color: #5a6a00; background: #eaf3b8; padding: 3px 9px; border-radius: 999px; font-weight: 600;">BEST VALUE</span></div>
+              <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Cashless garages · Free towing</div>
+            </div>
+            <div class="qprice" style="text-align: right;">
+              <div style="font-size: 24px; font-weight: 800; color: #023448; line-height: 1.1;"><span class="cur-label">UGX</span> 485,000</div>
+              <div class="mono" style="font-size: 11px; color: #9aa6ad;">PER YEAR</div>
+            </div>
+            <button data-buy="Britam" style="border: none; background: #BED600; color: #023448; padding: 13px 22px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer;">Buy plan →</button>
+          </div>
+          <div style="padding: 12px 24px; background: #f8fafb; border-top: 1px solid #eef0f1; display: flex; justify-content: space-between; align-items: center;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; color: #5b6578;" class="mono"><input type="checkbox" class="cmp" checked style="width: 15px; height: 15px; accent-color: #023448;"> ADD TO COMPARE</label>
+            <a data-buy="Britam" class="mono" style="font-size: 12px; color: #023448; cursor: pointer; font-weight: 600;">View details →</a>
+          </div>
+        </article>
+
+        <!-- Old Mutual (index 2, priority) -->
+        <article class="qcard softcard" style="overflow: hidden; position: relative;">
+          <div class="mono" style="position: absolute; top: 0; right: 24px; background: #023448; color: #fff; font-size: 10px; padding: 4px 12px; border-radius: 0 0 8px 8px; letter-spacing: 0.06em;">ECOBANK PRIORITY</div>
+          <div class="qrow" style="display: flex; align-items: center; gap: 20px; padding: 22px 24px;">
+            <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f5f7f8; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #023448; flex-shrink: 0;">OM</div>
+            <div style="flex: 1; min-width: 160px;">
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><span style="font-size: 16px; font-weight: 700;">Old Mutual Car Insurance</span><span style="font-size: 10px; color: #fff; background: #023448; padding: 3px 9px; border-radius: 999px; font-weight: 600;">RECOMMENDED</span></div>
+              <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Engine protect · Priority claims</div>
+            </div>
+            <div class="qprice" style="text-align: right;">
+              <div style="font-size: 24px; font-weight: 800; color: #023448; line-height: 1.1;"><span class="cur-label">UGX</span> 720,000</div>
+              <div class="mono" style="font-size: 11px; color: #9aa6ad;">PER YEAR</div>
+            </div>
+            <button data-buy="Old Mutual" style="border: none; background: #023448; color: #fff; padding: 13px 22px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer;">Buy plan →</button>
+          </div>
+          <div style="padding: 12px 24px; background: #f8fafb; border-top: 1px solid #eef0f1; display: flex; justify-content: space-between; align-items: center;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; color: #5b6578;" class="mono"><input type="checkbox" class="cmp" style="width: 15px; height: 15px; accent-color: #023448;"> ADD TO COMPARE</label>
+            <a data-buy="Old Mutual" class="mono" style="font-size: 12px; color: #023448; cursor: pointer; font-weight: 600;">View details →</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
 </div>
 
-<!-- Refine Results Card -->
-<div class="bg-surface-container-lowest p-6 rounded-2xl border border-border-subtle shadow-sm">
-<h3 class="font-label-lg text-label-lg text-primary mb-5 uppercase tracking-wider flex items-center gap-2">
-<span class="material-symbols-outlined" style="font-size: 18px;">tune</span>
-Refine Results
-</h3>
-<div class="space-y-6">
-<div>
-<label class="block font-label-lg text-label-lg text-on-surface-variant mb-2">Policy Type</label>
-<select class="w-full bg-surface-container-lowest border border-border-subtle rounded-xl py-2.5 px-3 text-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
-<option>Comprehensive Motor</option>
-<option>Third Party Fire &amp; Theft</option>
-<option>Health Prime</option>
-</select>
+<!-- Sticky compare bar (appears when 2+ selected) -->
+<div id="compareBar" style="display:none; position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid #eef0f1; box-shadow: 0 -8px 30px -18px rgba(2,52,72,.3); z-index: 60;">
+  <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 40px;">
+    <span class="mono" style="font-size: 13px; color: #5b6578;"><span id="cmpCount">0</span> plans selected to compare</span>
+    <button id="compare-now-btn" style="border: none; background: #BED600; color: #023448; padding: 11px 22px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer;">Compare now →</button>
+  </div>
 </div>
-<div>
-<div class="flex justify-between items-center mb-2">
-<label class="font-label-lg text-label-lg text-on-surface-variant">Annual Premium</label>
-<span class="text-label-sm font-bold text-primary bg-primary/5 px-2 py-0.5 rounded-lg">UGX 400k - 1.2M</span>
-</div>
-<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range">
-</div>
-<div>
-<label class="block font-label-lg text-label-lg text-on-surface-variant mb-3">Key Features</label>
-<div class="space-y-3">
-<label class="flex items-center gap-3 cursor-pointer group">
-<input checked="" class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
-<span class="text-body-md group-hover:text-primary transition-colors">Zero Depreciation</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group">
-<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
-<span class="text-body-md group-hover:text-primary transition-colors">Cashless Garages</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group">
-<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
-<span class="text-body-md group-hover:text-primary transition-colors">Engine Protection</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group">
-<input class="w-4 h-4 rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox">
-<span class="text-body-md group-hover:text-primary transition-colors">Roadside Assist</span>
-</label>
-</div>
-</div>
-</div>
-<button class="w-full mt-6 bg-primary text-on-primary py-3 rounded-xl font-bold hover:bg-deep-navy transition-all active:scale-[0.98] shadow-sm hover:shadow-md">
-                    Update Results
-                </button>
-</div>
-<!-- Ad/EcoBank Trust Banner -->
-<div class="bg-secondary p-5 rounded-2xl text-on-secondary relative overflow-hidden group shadow-md">
-<div class="relative z-10">
-<span class="text-label-sm uppercase font-bold text-eco-lime mb-2 block tracking-wider">Ecobank Exclusive</span>
-<h4 class="font-label-lg text-label-lg font-bold mb-2">Get 5% Cashback</h4>
-<p class="text-label-lg opacity-90">When you pay using your Ecobank Mobile App or Card.</p>
-</div>
-</div>
-</div>
-</aside>
-<!-- Quote Listings Container -->
-<section class="flex-grow space-y-5">
-<!-- Header/Summary -->
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-4">
-<div>
-<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-deep-navy">Insurance Quotes</h1>
-<p class="text-body-md text-on-surface-variant mt-1">Showing 14 policies for your <span class="font-bold text-primary">Toyota RAV4 2022</span></p>
-</div>
-<div class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2.5 rounded-xl border border-border-subtle shadow-sm">
-<span class="text-label-sm text-on-surface-variant">Sort by:</span>
-<button class="text-label-lg font-bold text-primary flex items-center gap-1 hover:text-secondary transition-colors">
-                    Lowest Price <span class="material-symbols-outlined text-[18px]">expand_more</span>
-</button>
-</div>
-</div>
-<!-- Quote Card 1 -->
-<article class="quote-card bg-surface-container-lowest rounded-2xl border border-border-subtle shadow-sm hover:shadow-lg overflow-hidden">
-<div class="flex flex-col md:flex-row items-center p-6 gap-5">
-<!-- Column 1: Brand -->
-<div class="w-[72px] h-[72px] flex-shrink-0 flex items-center justify-center bg-surface-container-low rounded-xl p-2">
-<img alt="AXA Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Kwif4olBwECfw70kIFT0KqXXXyj8_VYLBeWB9GI7EelLQflhsE0HQL6yN_madxmLyiMEIOzJONTjU5k5KHzxwLswCJBhjYQcQbpuCYE27uMR8sw9BajvDxVwWy82oESSoWx6h2NfQRirUV3IgKa_okC7q75NmcKju4L3drY74AJgDIL4-le74o47hVHb5fnMjDM319hxiH9mIb4oxbVxMKn1JqPVFighkbMPf28cYje-iRiekHtyrQRlopTrh-k0nskRUlKSssk">
-</div>
-<!-- Column 2: Plan Info -->
-<div class="flex-grow min-w-0">
-<h2 class="font-body-md text-body-md font-bold text-deep-navy mb-2">ICEA Lion Simba Motor Policy</h2>
-<span class="inline-flex items-center gap-1 bg-success-teal/10 text-success-teal text-[11px] font-bold px-2.5 py-1 rounded-lg uppercase border border-success-teal/20">
-<span class="material-symbols-outlined" style="font-size: 13px; font-variation-settings: 'FILL' 1;">star</span>
-Top Rated
-</span>
-</div>
-<!-- Column 3: Pricing Block -->
-<div class="flex items-center gap-5">
-<div class="text-right">
-<span class="text-label-sm text-on-surface-variant line-through block">UGX 680,000</span>
-<span class="text-[28px] font-extrabold text-primary block leading-tight tracking-tight">UGX 542,000</span>
-<span class="text-[10px] text-on-surface-variant block uppercase tracking-widest mt-0.5">Per Year</span>
-<span class="text-label-sm text-success-teal font-semibold mt-1 block">~UGX 45,167/mo</span>
-</div>
-<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-bold text-label-lg hover:bg-deep-navy transition-all active:scale-95 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg whitespace-nowrap" data-buy="ICEA Lion">
-                        Buy Plan
-                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Footer -->
-<div class="px-6 py-3.5 bg-surface-container-low/60 border-t border-border-subtle/60 flex justify-between items-center">
-<label class="flex items-center gap-2.5 cursor-pointer group">
-<input class="compare-check" type="checkbox">
-<span class="text-label-lg font-label-lg text-on-surface-variant group-hover:text-success-teal transition-colors font-semibold">Add to Compare</span>
-</label>
-<a class="text-label-sm font-bold text-secondary hover:underline flex items-center gap-1" href="#">
-View Policy Wordings
-<span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span>
-</a>
-</div>
-</article>
-<!-- Quote Card 2 -->
-<article class="quote-card bg-surface-container-lowest rounded-2xl border border-border-subtle shadow-sm hover:shadow-lg overflow-hidden">
-<div class="flex flex-col md:flex-row items-center p-6 gap-5">
-<!-- Column 1: Brand -->
-<div class="w-[72px] h-[72px] flex-shrink-0 flex items-center justify-center bg-surface-container-low rounded-xl p-2">
-<img alt="Allianz Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADL7bfHB2Yo2_W0Q_Y0z5xnfHNRlGsobh-_lDenLKxePhnjWx8wO5jjWevTwYhvKcfngjHhLlWnwqx3RWUsE6S4POHkPwUIldHv5Zn6TBgTYPUYsJoHdv1krfTBFqxDY1joJWRq2uvf6D7lMmBe7cpaAAmuR5GfsR_RboDy9rBWqoUyR-987dKmpWDEHn8L9T0bjsukUYTamPLNfuLCZ4wX08PPKuR5Jc5Al82ro6Vq1PFhodNZlStJFPICZVhN0Ta3oz9kBnFD3s">
-</div>
-<!-- Column 2: Plan Info -->
-<div class="flex-grow min-w-0">
-<h2 class="font-body-md text-body-md font-bold text-deep-navy mb-2">Britam Motor Insurance</h2>
-<span class="inline-flex items-center gap-1 bg-eco-lime/15 text-on-tertiary-fixed-variant text-[11px] font-bold px-2.5 py-1 rounded-lg uppercase border border-eco-lime/30">
-<span class="material-symbols-outlined" style="font-size: 13px; font-variation-settings: 'FILL' 1;">thumb_up</span>
-Best Value
-</span>
-</div>
-<!-- Column 3: Pricing Block -->
-<div class="flex items-center gap-5">
-<div class="text-right">
-<span class="text-[28px] font-extrabold text-primary block leading-tight tracking-tight">UGX 485,000</span>
-<span class="text-[10px] text-on-surface-variant block uppercase tracking-widest mt-0.5">Per Year</span>
-<span class="text-label-sm text-success-teal font-semibold mt-1 block">~UGX 40,417/mo</span>
-</div>
-<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-bold text-label-lg hover:bg-deep-navy transition-all active:scale-95 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg whitespace-nowrap" data-buy="Britam">
-                        Buy Plan
-                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Footer -->
-<div class="px-6 py-3.5 bg-surface-container-low/60 border-t border-border-subtle/60 flex justify-between items-center">
-<label class="flex items-center gap-2.5 cursor-pointer group">
-<input class="compare-check" type="checkbox">
-<span class="text-label-lg font-label-lg text-on-surface-variant group-hover:text-success-teal transition-colors font-semibold">Add to Compare</span>
-</label>
-<a class="text-label-sm font-bold text-secondary hover:underline flex items-center gap-1" href="#">
-View Details
-<span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span>
-</a>
-</div>
-</article>
-<!-- Quote Card 3 (Premium / Ecobank Priority) -->
-<article class="quote-card bg-surface-container-lowest rounded-2xl border-2 border-secondary/30 shadow-md hover:shadow-xl overflow-hidden relative">
-<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-5 py-1 rounded-bl-2xl font-bold text-[11px] uppercase tracking-widest z-10 shadow-sm flex items-center gap-1.5">
-<span class="material-symbols-outlined" style="font-size: 14px; font-variation-settings: 'FILL' 1;">verified</span>
-Ecobank Priority
-</div>
-<div class="flex flex-col md:flex-row items-center p-6 pt-8 md:pt-6 gap-5">
-<!-- Column 1: Brand -->
-<div class="w-[72px] h-[72px] flex-shrink-0 flex items-center justify-center bg-secondary/5 rounded-xl p-2 border border-secondary/10">
-<img alt="Liberty Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARkUSO4u-B0dNP4edm6krOB8fVO_OoFREpjPOot15AsTl0j8pcJp2CWcM7ls9Raty6j7sZAc6NLGTgPULB-BnyTXOI4j8pTfP94K8U0CtWMURzqqF1CqOiodu97QJ8MBoB-YqM86xNc-MiCYqC2MASQaoBemA4UZj18bpIwVGQFoB3JWIWjp7ae06TAx9jk2bb694zmJHD75Lq9s4ClKETd9DKRPISvSJQzLBjeoCuJ5argtMLNOp4t5wFOeoKrX0TdMuUF7cNt1M">
-</div>
-<!-- Column 2: Plan Info -->
-<div class="flex-grow min-w-0">
-<h2 class="font-body-md text-body-md font-bold text-deep-navy mb-2">Old Mutual Car Insurance</h2>
-<span class="inline-flex items-center gap-1 bg-secondary/10 text-secondary text-[11px] font-bold px-2.5 py-1 rounded-lg uppercase border border-secondary/20">
-<span class="material-symbols-outlined" style="font-size: 13px; font-variation-settings: 'FILL' 1;">workspace_premium</span>
-Highly Recommended
-</span>
-</div>
-<!-- Column 3: Pricing Block -->
-<div class="flex items-center gap-5">
-<div class="text-right">
-<span class="text-[28px] font-extrabold text-secondary block leading-tight tracking-tight">UGX 720,000</span>
-<span class="text-[10px] text-on-surface-variant block uppercase tracking-widest mt-0.5">Per Year</span>
-<span class="text-label-sm text-success-teal font-semibold mt-1 block">~UGX 60,000/mo</span>
-</div>
-<button class="bg-secondary text-on-secondary px-8 py-3 rounded-xl font-bold text-label-lg hover:bg-on-secondary-fixed-variant transition-all active:scale-95 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl whitespace-nowrap" data-buy="Old Mutual">
-                        Buy Plan
-                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Footer -->
-<div class="px-6 py-3.5 bg-secondary/[0.03] border-t border-secondary/10 flex justify-between items-center">
-<label class="flex items-center gap-2.5 cursor-pointer group">
-<input class="compare-check" type="checkbox">
-<span class="text-label-lg font-label-lg text-on-surface-variant group-hover:text-success-teal transition-colors font-semibold">Add to Compare</span>
-</label>
-<a class="text-label-sm font-bold text-secondary hover:underline flex items-center gap-1" href="#">
-View Policy Wordings
-<span class="material-symbols-outlined" style="font-size: 14px;">open_in_new</span>
-</a>
-</div>
-</article>
-</section>
-</main>
-<!-- Compare Drawer (Floating Interaction) -->
-<div class="fixed bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 bg-deep-navy text-surface py-4 px-8 rounded-2xl shadow-[0_8px_32px_rgba(2,52,72,0.35)] z-[60] hidden flex items-center gap-6" id="compare-bar" style="border: 2px solid rgba(190,214,0,0.3);">
-<div class="flex -space-x-3">
-<div class="w-10 h-10 rounded-full border-2 border-eco-lime/40 bg-white overflow-hidden shadow-sm"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANn5vEk74J4RWxMIABJGk4Zh_cooxDyRFGIEsXqzZe31fXt3TQ9fGIWszeDWgFEwhptO00tWwrb03xNZfCG6GYYjERv4eWZqwcTTqs1yXKnYsyFesUp5OxYxRVWO0vpLclu9JRj6294D4pHfndH0AGZGEzb4iZGiTKaS21-33sO__kgayi9q0tjSTAAHx8KWRvk2VE8VacohoZEq664iKu6_b1C5M58KoUS7k8eCfdQS06GjVh2vkkHCLFpe6C8VyvOMT99CvEGeY"></div>
-<div class="w-10 h-10 rounded-full border-2 border-eco-lime/40 bg-white overflow-hidden shadow-sm"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC31NPDuIXT-zKVGRm6OFjPLmcypvjRxof6jYcQgz_S6DZjr5XcPC4_TQlv8bIG5bkf5i5jzVCp5ngOPSp2fIU5BxM7k8fTbBOmYB0bIHXNuuxPLJnmJDjoG35IN5dU7YiiVz_wswH-vBh3XBqMu6YGeoX8bXoMLOOfoKOcs6PPOUlxfYyXNiT_12HEH4lkgM3bJeiiPUu7L78qzEprpDaNGs5TWYgjfJEFHwnvAL9BvcRHEN_E8rAX8DUxrkhN5oI---Tq_SmCInI"></div>
-</div>
-<div class="h-6 w-px bg-eco-lime/20"></div>
-<div class="text-label-lg font-bold">2 Plans Selected</div>
-<button class="bg-eco-lime text-deep-navy px-7 py-2.5 rounded-xl font-extrabold text-label-lg hover:bg-white transition-colors shadow-md" id="compare-now-btn">Compare Now</button>
-<button class="material-symbols-outlined text-surface-variant/70 hover:text-white transition-colors" onclick="document.getElementById('compare-bar').classList.add('hidden')">close</button>
-</div>
+
+<script src="/flow-config.js"></script>
 <script>
-    // Logic for compare bar
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const compareBar = document.getElementById('compare-bar');
+  function post(action, payload) {
+    try { window.parent.postMessage(Object.assign({ source: 'maas-motor-listing', action: action }, payload || {}), '*'); } catch (e) {}
+  }
+  document.querySelectorAll('[data-buy]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) { e.preventDefault(); post('buy', { provider: btn.getAttribute('data-buy') }); });
+  });
+  document.querySelectorAll('[data-nav]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); post('navigate', { target: el.getAttribute('data-nav') }); });
+  });
 
-    checkboxes.forEach(cb => {
-        cb.addEventListener('change', () => {
-            const checkedCount = Array.from(checkboxes).filter(c => c.checked).length;
-            if (checkedCount > 0) {
-                compareBar.classList.remove('hidden');
-                compareBar.querySelector('.text-label-lg').textContent = `${checkedCount} Plan${checkedCount > 1 ? 's' : ''} Selected`;
-            } else {
-                compareBar.classList.add('hidden');
-            }
-        });
-    });
+  var bar = document.getElementById('compareBar');
+  var countEl = document.getElementById('cmpCount');
+  function selectedIndices() {
+    var cbs = document.querySelectorAll('article .cmp');
+    var sel = [];
+    cbs.forEach(function (cb, i) { if (cb.checked) sel.push(i); });
+    return sel;
+  }
+  function refreshBar() {
+    var sel = selectedIndices();
+    countEl.textContent = sel.length;
+    bar.style.display = sel.length >= 2 ? 'block' : 'none';
+    reportHeight();
+  }
+  document.querySelectorAll('article .cmp').forEach(function (cb) { cb.addEventListener('change', refreshBar); });
+  document.getElementById('compare-now-btn').addEventListener('click', function () {
+    post('compare', { selectedIndices: selectedIndices() });
+  });
 
-    // Sticky Header Shrink
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('nav');
-        if (window.scrollY > 20) {
-            nav.classList.add('py-2');
-            nav.classList.remove('py-4');
-        } else {
-            nav.classList.add('py-4');
-            nav.classList.remove('py-2');
-        }
-    });
-
-    // ── Bridge to parent wizard (MaaS shell) ──
-    function post(action, payload) {
-        try {
-            window.parent.postMessage(Object.assign({ source: 'maas-motor-listing', action: action }, payload || {}), '*');
-        } catch (e) {}
-    }
-    // Buy Plan → advance to application/details with selected provider
-    document.querySelectorAll('[data-buy]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            post('buy', { provider: btn.getAttribute('data-buy') });
-        });
-    });
-    // Edit Car / Explore / nav → back to questionnaire or other views
-    document.querySelectorAll('[data-nav]').forEach(el => {
-        el.addEventListener('click', (e) => {
-            e.preventDefault();
-            post('navigate', { target: el.getAttribute('data-nav') });
-        });
-    });
-    // Compare Now → send selected plans to parent
-    document.getElementById('compare-now-btn').addEventListener('click', () => {
-        const cards = document.querySelectorAll('article');
-        const selected = [];
-        cards.forEach((card, i) => {
-            const cb = card.querySelector('input[type="checkbox"]');
-            if (cb && cb.checked) {
-                selected.push(i);
-            }
-        });
-        post('compare', { selectedIndices: selected });
-    });
+  function reportHeight() {
+    parent.postMessage({ source: 'maas-iframe-resize', height: document.body.scrollHeight + 80 }, '*');
+  }
+  window.addEventListener('load', function () { refreshBar(); reportHeight(); });
+  window.addEventListener('resize', reportHeight);
+  if (window.ResizeObserver) { new ResizeObserver(reportHeight).observe(document.body); }
 </script>
-
-
-</body></html>
+</body>
+</html>
