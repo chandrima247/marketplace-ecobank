@@ -29,9 +29,9 @@ export default function InsuranceWizard({
 }: InsuranceWizardProps) {
   const [category, setCategory] = useState<InsuranceCategory>(initialCategory);
   
-  // Refactored 5-Stage Wizard Progression States
-  // 'questions' -> 'listing' -> 'details' -> 'application' -> 'policy'
-  const [stage, setStage] = useState<'questions' | 'listing' | 'details' | 'application' | 'policy'>('questions');
+  // Wizard Progression States
+  // 'questions' -> 'listing' -> 'details' -> 'application' -> 'checkout' -> 'receipt' -> (dashboard)
+  const [stage, setStage] = useState<'questions' | 'listing' | 'details' | 'application' | 'checkout' | 'receipt' | 'policy'>('questions');
 
   // QUESTIONNAIRE STATES
 
@@ -223,6 +223,26 @@ export default function InsuranceWizard({
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
   }, []);
+
+  // Bridge: intent submit -> checkout -> receipt -> dashboard
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const data = e.data;
+      if (!data) return;
+      if (data.source === 'maas-intent' && data.action === 'submit') {
+        setStage('checkout');
+        window.scrollTo(0, 0);
+      } else if (data.source === 'maas-checkout') {
+        if (data.action === 'paid') { setStage('receipt'); window.scrollTo(0, 0); }
+        else if (data.action === 'back') { setStage('application'); window.scrollTo(0, 0); }
+      } else if (data.source === 'maas-receipt') {
+        if (data.action === 'home') { finalizePolicyAndExit(); }
+        else if (data.action === 'back') { setStage('checkout'); window.scrollTo(0, 0); }
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  });
 
   // Bridge: receive actions from Health wizard Stitch pages
   useEffect(() => {
@@ -503,6 +523,43 @@ export default function InsuranceWizard({
       onCompleted(generatedPolicy);
     }
   };
+
+  // Receipt "Home" -> create the policy and hand off to the Ecobank policy dashboard
+  const finalizePolicyAndExit = () => {
+    const randCode = `POL-${category.charAt(0).toUpperCase()}-${Math.floor(10000 + Math.random() * 90000)}`;
+    const activeItemName = category === 'Motor'
+      ? (lookupResult ? lookupResult.makeModel : (manMakeMod || 'Vehicle')) + (plateNumber ? ` (${plateNumber})` : '')
+      : selectedPlan.name;
+    const newPolicy: Policy = {
+      id: `pol-${Date.now()}`,
+      category,
+      title: selectedPlan.name,
+      insuredItemName: activeItemName,
+      premium: selectedPlan.price,
+      renewalDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      status: 'Active',
+      coverageAmount: selectedPlan.coverage,
+      code: randCode
+    };
+    setGeneratedPolicy(newPolicy);
+    onCompleted(newPolicy);
+  };
+
+  // Outer page navbar (Ecobank left, nxtpe right) used to wrap the embedded
+  // intent / checkout / receipt screens.
+  const EmbedNavbar = () => (
+    <div className="bg-white border-b border-[#eef0f1] sticky top-0 z-50 shrink-0">
+      <div className="max-w-[1180px] mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
+        <img src={METADATA_IMAGES.ecobankLogo} alt="Ecobank" className="h-9 w-auto object-contain" />
+        <img src={METADATA_IMAGES.nxtpeLogo} alt="nxtpe" className="h-6 w-auto object-contain" />
+      </div>
+    </div>
+  );
+
+  const selectedProviderName = (() => {
+    const provs = getProvidersForCategory(category);
+    return (provs.find(p => p.id === selectedProviderId) || provs[0]).name;
+  })();
 
   return (
     <main className="flex-grow flex flex-col items-center py-6 w-full animate-fade-in" id="wizard-base-main">
@@ -1984,49 +2041,78 @@ export default function InsuranceWizard({
               );
             })()}
 
-            {/* STAGE 4: APPLICATION FORM — clean full-bleed layout: nav + intent embed + small footer */}
+            {/* STAGE 4: APPLICATION (intent embed) — outer Ecobank/nxtpe navbar, intent fills
+                the viewport and scrolls internally; its own Back/Next stay pinned to the footer. */}
             {stage === 'application' && (
               <div
-                className="w-screen relative left-1/2 -translate-x-1/2 -mt-6 min-h-screen flex flex-col"
+                className="w-screen relative left-1/2 -translate-x-1/2 -mt-6 -mb-6 h-screen overflow-hidden flex flex-col"
                 style={{ background: '#f4f6f7' }}
                 id="stage-application-view"
               >
-                {/* Slim nav bar */}
-                <div className="bg-white border-b border-[#eef0f1] sticky top-0 z-50">
-                  <div className="max-w-[1180px] mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
-                    <button
-                      onClick={() => setStage('details')}
-                      className="flex items-center gap-1.5 text-[#5b6578] hover:text-[#023448] text-sm font-semibold transition-colors"
-                      id="application-back-btn"
-                    >
-                      <ArrowLeft className="w-4 h-4" /> Back
-                    </button>
-                    <img src={METADATA_IMAGES.ecobankLogo} alt="Ecobank" className="h-8 w-auto object-contain" />
-                    <div className="hidden sm:flex items-center gap-2 text-[#5b6578]">
-                      <Shield className="w-4 h-4 text-[#023448]" />
-                      <span className="text-xs font-semibold tracking-wide" style={{ fontFamily: "'Space Grotesk', monospace" }}>STEP 3 OF 3 · APPLICATION</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Intent embed — stretched end to end; #f4f6f7 shows in the side gutters */}
-                <div className="flex-grow w-full" style={{ background: '#f4f6f7' }}>
+                <EmbedNavbar />
+                <div className="flex-1 min-h-0 w-full" style={{ background: '#f4f6f7' }}>
                   <iframe
                     src="/intent-form.html"
                     title="Application"
-                    className="w-full border-0 block"
-                    style={{ width: '100%', height: `${iframeHeight}px`, minHeight: 'calc(100vh - 116px)', background: '#f4f6f7' }}
+                    className="w-full h-full border-0 block"
+                    style={{ background: '#f4f6f7' }}
                     allow="camera; microphone; geolocation"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
                   />
                 </div>
+              </div>
+            )}
 
-                {/* Small footer */}
-                <div className="bg-white border-t border-[#eef0f1]">
-                  <div className="max-w-[1180px] mx-auto px-5 sm:px-10 h-[52px] flex items-center justify-between text-[#9aa6ad]">
-                    <span className="text-xs" style={{ fontFamily: "'Space Grotesk', monospace" }}>© 2026 Ecobank · Powered by NxtPe</span>
-                    <span className="text-xs flex items-center gap-1.5"><Lock className="w-3.5 h-3.5" /> Bank-grade encryption</span>
-                  </div>
+            {/* STAGE 5: CHECKOUT (Britam payment) — outer navbar + embedded payment page */}
+            {stage === 'checkout' && (
+              <div
+                className="w-screen relative left-1/2 -translate-x-1/2 -mt-6 -mb-6 h-screen overflow-hidden flex flex-col"
+                style={{ background: '#f4f6f7' }}
+                id="stage-checkout-view"
+              >
+                <EmbedNavbar />
+                <div className="flex-1 min-h-0 w-full" style={{ background: '#f4f6f7' }}>
+                  <iframe
+                    ref={(el) => {
+                      if (el) {
+                        el.onload = () => {
+                          el.contentWindow?.postMessage({ source: 'maas-checkout-init', provider: selectedProviderName }, '*');
+                        };
+                      }
+                    }}
+                    src="/checkout.html"
+                    title="Checkout"
+                    className="w-full h-full border-0 block"
+                    style={{ background: '#f4f6f7' }}
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* STAGE 6: RECEIPT (payment confirmation) — Home goes to the Ecobank policy dashboard */}
+            {stage === 'receipt' && (
+              <div
+                className="w-screen relative left-1/2 -translate-x-1/2 -mt-6 -mb-6 h-screen overflow-hidden flex flex-col"
+                style={{ background: '#f4f6f7' }}
+                id="stage-receipt-view"
+              >
+                <EmbedNavbar />
+                <div className="flex-1 min-h-0 w-full" style={{ background: '#f4f6f7' }}>
+                  <iframe
+                    ref={(el) => {
+                      if (el) {
+                        el.onload = () => {
+                          el.contentWindow?.postMessage({ source: 'maas-receipt-init', provider: selectedProviderName }, '*');
+                        };
+                      }
+                    }}
+                    src="/receipt.html"
+                    title="Payment Confirmation"
+                    className="w-full h-full border-0 block"
+                    style={{ background: '#f4f6f7' }}
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
+                  />
                 </div>
               </div>
             )}

@@ -148,7 +148,7 @@ export default function App() {
           full-bleed Motor listing page (that page renders its own header) */}
       {activeView !== 'policies' && activeView !== 'claims' &&
         activeView !== 'agent' &&
-        !(activeView === 'wizard' && wizardStage === 'application') && (
+        !(activeView === 'wizard' && (wizardStage === 'application' || wizardStage === 'checkout' || wizardStage === 'receipt')) && (
         <Header
           user={user}
           onLoginClick={() => openRoleLogin('customer')}
@@ -476,7 +476,7 @@ export default function App() {
       {/* Persistent global footer - hidden on dashboard and the full-bleed Motor listing */}
       {activeView !== 'policies' && activeView !== 'claims' &&
         activeView !== 'agent' &&
-        !(activeView === 'wizard' && wizardStage === 'application') && (
+        !(activeView === 'wizard' && (wizardStage === 'application' || wizardStage === 'checkout' || wizardStage === 'receipt')) && (
         <Footer isSubPage={activeView === 'wizard'} onRoleLogin={openRoleLogin} onBackofficeLogin={openBackoffice} />
       )}
 

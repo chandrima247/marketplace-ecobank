@@ -5537,6 +5537,13 @@
                 return;
             }
 
+            // When embedded in the marketplace wizard, hand off to the checkout stage
+            // instead of rendering the in-iframe completion receipt.
+            if (window.parent !== window) {
+                window.parent.postMessage({ source: 'maas-intent', action: 'submit' }, '*');
+                return;
+            }
+
             // Hide only the stepper — keep the app header visible for consistency
             document.getElementById('stepperContainer').style.display = 'none';
             document.getElementById('reviewScreen').classList.add('hidden');

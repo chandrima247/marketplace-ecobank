@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Confirmation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --britam: #0F74BC; }
+  html, body { height: 100%; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f4f6f7; color: #1f2d36; -webkit-font-smoothing: antialiased; }
+  button { font-family: inherit; }
+  .shell { max-width: 430px; margin: 0 auto; min-height: 100%; background: #fff; display: flex; flex-direction: column; box-shadow: 0 0 60px -30px rgba(0,0,0,.25); }
+  .hdr { background: var(--britam); color: #fff; padding: 18px; display: flex; align-items: center; justify-content: space-between; }
+  .hdr h1 { font-size: 18px; font-weight: 700; }
+  .icon-btn { background: none; border: none; color: #fff; cursor: pointer; display: flex; }
+  .body { flex: 1; padding: 22px 20px; overflow-y: auto; }
+  .receipt-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .success-badge { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 0 22px; }
+  .tick { width: 58px; height: 58px; border-radius: 999px; background: #e6f7ef; color: #00a878; display: flex; align-items: center; justify-content: center; }
+  .row { display: flex; align-items: center; justify-content: space-between; padding: 13px 0; border-bottom: 1px solid #f1f4f5; font-size: 13.5px; }
+  .row .k { color: #8a96a0; }
+  .row .v { font-weight: 600; text-align: right; }
+  .row .v.ok { color: #00a878; display: flex; align-items: center; gap: 6px; }
+  .row .v.amt { color: var(--britam); font-weight: 800; }
+  .footer-bar { border-top: 1px solid #eef0f1; padding: 14px 18px; display: flex; gap: 12px; }
+  .btn { flex: 1; border-radius: 10px; padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .btn-ghost { background: #fff; border: 1px solid #d8dee2; color: #1f2d36; }
+  .btn-home { background: var(--britam); border: none; color: #fff; }
+  .powered { text-align: center; font-size: 10px; color: #9aa6ad; padding: 8px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="hdr">
+    <h1>Payment Confirmation</h1>
+    <button class="icon-btn" aria-label="Download"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></button>
+  </div>
+
+  <div class="body">
+    <div class="success-badge">
+      <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <div class="receipt-title">Payment Receipt</div>
+    </div>
+
+    <div class="row"><span class="k">Application ID</span><span class="v" id="appId">—</span></div>
+    <div class="row"><span class="k">Transaction Status</span><span class="v ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Transaction Successful</span></div>
+    <div class="row"><span class="k">Transaction Id</span><span class="v" id="txnId">—</span></div>
+    <div class="row"><span class="k">Order ID</span><span class="v" id="orderId">—</span></div>
+    <div class="row"><span class="k">Date &amp; Time</span><span class="v" id="dateTime">—</span></div>
+    <div class="row"><span class="k">Paid Amount</span><span class="v amt"><span id="cur">UGX</span> <span id="paidAmount">485,000</span></span></div>
+    <div class="row" style="border-bottom:none;"><span class="k">Account No.</span><span class="v" id="acctNo">—</span></div>
+  </div>
+
+  <div class="footer-bar">
+    <button class="btn btn-ghost" id="backBtn">Back</button>
+    <button class="btn btn-home" id="homeBtn">Home</button>
+  </div>
+  <div class="powered">Powered by nxtpe</div>
+</div>
+
+<script src="/flow-config.js"></script>
+<script>
+  var AMOUNTS = { 'Britam': '485,000', 'ICEA Lion': '542,000', 'Old Mutual': '720,000' };
+
+  function rid(n) { var s=''; for (var i=0;i<n;i++) s+=Math.floor(Math.random()*10); return s; }
+  function build(d) {
+    var amount = d.amount || '485,000';
+    if (d.provider) { var key = Object.keys(AMOUNTS).find(function(k){ return d.provider.toLowerCase().indexOf(k.toLowerCase().split(' ')[0]) !== -1; }); if (key) amount = AMOUNTS[key]; }
+    var now = new Date();
+    var pad = function(x){ return String(x).padStart(2,'0'); };
+    document.getElementById('appId').textContent   = 'AI_' + rid(16);
+    document.getElementById('txnId').textContent   = rid(10);
+    document.getElementById('orderId').textContent = 'O' + rid(16);
+    document.getElementById('dateTime').textContent = now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds());
+    document.getElementById('paidAmount').textContent = amount;
+    document.getElementById('acctNo').textContent = rid(9);
+    if (window.MAAS) document.getElementById('cur').textContent = window.MAAS.currency();
+    report();
+  }
+
+  function post(action) { if (window.parent !== window) window.parent.postMessage({ source: 'maas-receipt', action: action }, '*'); }
+  document.getElementById('homeBtn').addEventListener('click', function(){ post('home'); });
+  document.getElementById('backBtn').addEventListener('click', function(){ post('back'); });
+
+  window.addEventListener('message', function(e){ if (e.data && e.data.source === 'maas-receipt-init') build(e.data); });
+
+  function report(){ if (window.parent !== window) window.parent.postMessage({ source: 'maas-iframe-resize', height: document.body.scrollHeight }, '*'); }
+  window.addEventListener('load', function(){ build({}); report(); });
+</script>
+</body>
+</html>
