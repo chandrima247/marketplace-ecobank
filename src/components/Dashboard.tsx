@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import {
   Shield, RefreshCw, FileText, Download, Plus, CheckCircle2, AlertTriangle,
-  CreditCard, Repeat, ChevronRight, Phone, MessageCircle, Mail, X, Calendar
+  CreditCard, Phone, MessageCircle, Mail, X, Calendar
 } from 'lucide-react';
 import { Policy, Claim } from '../types';
-import { METADATA_IMAGES } from '../data';
 import { T, S, StateKey, policyStatusState, claimStatusState, categoryConfig, fmtUGX } from './dashboardTokens';
 
 interface DashboardProps {
@@ -96,7 +95,6 @@ export default function Dashboard({
   ];
 
   const [activeId, setActiveId] = useState(list[0].id);
-  const [tab, setTab] = useState<'Overview' | 'Policy' | 'Claims' | 'Payments' | 'Support'>('Overview');
   const [toast, setToast] = useState<string | null>(null);
   const [showClaim, setShowClaim] = useState(false);
   const [showPay, setShowPay] = useState(false);
@@ -120,28 +118,9 @@ export default function Dashboard({
 
   const fire = (msg: string) => { setToast(msg); setTimeout(() => setToast(null), 2600); };
 
-  const tabs: typeof tab[] = ['Overview', 'Policy', cfg.showClaims ? 'Claims' : null, 'Payments', 'Support'].filter(Boolean) as any;
-
   return (
     <div className="min-h-screen" style={{ background: T.bg, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      {/* ───── NAV ───── */}
-      <nav className="bg-white border-b border-[#eef0f1] sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-8 py-3.5 flex items-center justify-between">
-          <img src={METADATA_IMAGES.ecobankLogo} alt="Ecobank" className="h-12 w-auto" />
-          <div className="hidden md:flex gap-9 items-center">
-            <button onClick={onBuyInsurance} className="text-[15px] font-medium text-[#5b6578] hover:text-[#023448]">Explore</button>
-            <span className="text-[15px] font-semibold text-[#023448] relative pb-[18px] -mb-[18px] border-b-2 border-[#BED600]">My Policies</span>
-            <button onClick={() => setTab('Claims')} className="text-[15px] font-medium text-[#5b6578] hover:text-[#023448]">Claims</button>
-            <button onClick={() => setTab('Support')} className="text-[15px] font-medium text-[#5b6578] hover:text-[#023448]">Support</button>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-9 h-9 rounded-full bg-[#023448] text-white flex items-center justify-center font-bold text-sm">{userName.charAt(0)}</div>
-            <img src={METADATA_IMAGES.nxtpeLogo} alt="nxtpe" className="h-7 w-auto" />
-          </div>
-        </div>
-      </nav>
-
-      <div className="max-w-7xl mx-auto px-8 py-6">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-6">
         {/* ───── HERO ───── */}
         <div className="rounded-[22px] overflow-hidden relative mb-5" style={{ background: 'linear-gradient(110deg,#023448,#005b82 60%,#1c6fa0)', padding: '30px 34px' }}>
           <div className="absolute -top-10 -right-5 w-52 h-52 rounded-full" style={{ background: 'rgba(190,214,0,.12)' }} />
@@ -174,7 +153,7 @@ export default function Dashboard({
               const st = policyStatusState[p.status] || 'neutral';
               const active = p.id === activeId;
               return (
-                <button key={p.id} onClick={() => { setActiveId(p.id); setTab('Overview'); }}
+                <button key={p.id} onClick={() => setActiveId(p.id)}
                   className="text-left rounded-2xl p-4 transition-all bg-white"
                   style={{ border: `2px solid ${active ? T.navy : T.line}`, boxShadow: active ? '0 6px 18px -10px rgba(2,52,72,.3)' : 'none' }}>
                   <div className="flex justify-between items-start">
@@ -194,9 +173,9 @@ export default function Dashboard({
             </button>
           </aside>
 
-          {/* MAIN PANEL */}
-          <div className="bg-white rounded-2xl border border-[#eef0f1] p-5 min-w-0">
-            {/* policy heading + tabs */}
+          {/* MAIN — heading + 3-column widget grid */}
+          <div className="min-w-0">
+            {/* policy heading */}
             <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
               <div>
                 <div className="flex items-center gap-2">
@@ -205,92 +184,28 @@ export default function Dashboard({
                 </div>
                 <div style={{ fontFamily: T.mono }} className="text-xs text-[#9aa6ad] mt-0.5">{pol.category} · {pol.code}</div>
               </div>
-            </div>
-            <div className="flex gap-2 mb-5 flex-wrap border-b border-[#f1f4f5] pb-4">
-              {tabs.map(t => (
-                <button key={t} onClick={() => setTab(t)}
-                  className="text-sm font-semibold px-4 py-2 rounded-full transition"
-                  style={tab === t ? { background: '#ecf2f6', color: T.navy } : { color: T.sub, border: `1px solid ${T.line}` }}>
-                  {t}
-                </button>
-              ))}
+              <button onClick={() => fire('Certificate downloaded')} className="bg-[#023448] text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 hover:opacity-95">
+                <Download className="w-4 h-4" /> Proof of cover
+              </button>
             </div>
 
-            {/* ─── TAB: OVERVIEW ─── */}
-            {tab === 'Overview' && (
-              <div className="space-y-4">
-                {dueSoon && (
-                  <RenewalBanner days={daysToDue} amount={pol.premium} onPay={() => { setTab('Payments'); }} />
-                )}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <Widget title="Policy snapshot" accent={T.teal}>
-                    <div className="grid grid-cols-2 gap-4">
-                      <Field label="Policy no." value={pol.code} />
-                      <Field label="Premium / yr" value={`UGX ${fmtUGX(pol.premium)}`} alignRight />
-                      <Field label={cfg.assetLabel} value={pol.insuredItemName} />
-                      <Field label="Sum insured" value={`UGX ${(pol.coverageAmount / 1_000_000).toFixed(0)}M`} alignRight />
-                    </div>
-                    <button onClick={() => setTab('Policy')} className="w-full mt-4 bg-[#023448] text-white py-2.5 rounded-xl text-xs font-bold hover:opacity-95">View full details</button>
-                  </Widget>
+            {dueSoon && <div className="mb-4"><RenewalBanner days={daysToDue} amount={pol.premium} onPay={() => setShowPay(true)} /></div>}
 
-                  <Widget title="Payment & mandate" accent={T.lime} action={<Pill state={autopay ? 'ok' : 'danger'}>{autopay ? 'AUTO-PAY ON' : 'AUTO-PAY OFF'}</Pill>}>
-                    <div className="flex justify-between items-start">
-                      <Field label="Next premium" value={`UGX ${fmtUGX(pol.premium)}`} />
-                      <Field label="Due" value={dueDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })} alignRight />
-                    </div>
-                    <div className="flex items-center gap-2 mt-3 text-xs" style={{ fontFamily: T.mono }}>
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: autopay ? T.teal : S.danger.fg }} />
-                      <span style={{ color: autopay ? S.ok.fg : S.danger.fg }} className="font-semibold">
-                        {autopay ? 'Direct debit active · Ecobank ****4292' : 'Direct debit inactive'}
-                      </span>
-                    </div>
-                    <div className="flex gap-2 mt-4">
-                      <button onClick={() => setShowPay(true)} className="flex-1 bg-[#023448] text-white py-2.5 rounded-xl text-xs font-bold">Pay now</button>
-                      <button onClick={() => setTab('Payments')} className="flex-1 border border-[#e0e5e8] py-2.5 rounded-xl text-xs font-bold text-[#16242b]">Manage</button>
-                    </div>
-                  </Widget>
-                </div>
+            {/* ═══ 3-COLUMN WIDGET GRID (IHK-style) ═══ */}
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 items-start">
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  {cfg.showClaims && (
-                    <Widget title="Claims" accent={T.navy} action={
-                      <button onClick={() => { setTab('Claims'); setShowClaim(true); }} className="bg-[#023448] text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1"><Plus className="w-3 h-3" />File</button>}>
-                      {polClaims.length ? polClaims.slice(0, 2).map(c => (
-                        <ClaimRow key={c.id} claim={c} />
-                      )) : (
-                        <EmptyState icon={<FileText className="w-5 h-5" />} text={`No claims on this policy. Report ${cfg.claimNoun} anytime.`} />
-                      )}
-                    </Widget>
-                  )}
-
-                  <Widget title="Quick actions" accent={T.teal}>
-                    <div className="grid grid-cols-2 gap-2.5">
-                      <Action icon={<Download className="w-4 h-4" />} label="Proof of cover" onClick={() => fire('Certificate downloaded')} />
-                      <Action icon={<RefreshCw className="w-4 h-4" />} label="Renew policy" onClick={() => setTab('Payments')} />
-                      {cfg.showClaims && <Action icon={<FileText className="w-4 h-4" />} label="File a claim" onClick={() => { setTab('Claims'); setShowClaim(true); }} />}
-                      <Action icon={<MessageCircle className="w-4 h-4" />} label="Get support" onClick={() => setTab('Support')} />
-                    </div>
-                  </Widget>
-                </div>
-              </div>
-            )}
-
-            {/* ─── TAB: POLICY ─── */}
-            {tab === 'Policy' && (
-              <div className="space-y-4">
-                <Widget title="Policy details" accent={T.teal} action={
-                  <button onClick={() => fire('Certificate downloaded')} className="text-xs font-bold text-[#023448] flex items-center gap-1"><Download className="w-3.5 h-3.5" />Certificate</button>}>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {/* ─── COLUMN 1 — Policy & cover ─── */}
+              <div className="flex flex-col gap-4">
+                <Widget title="Policy overview" accent={T.teal} action={<Pill state={policyStatusState[pol.status] || 'neutral'}>{pol.status.toUpperCase()}</Pill>}>
+                  <div className="grid grid-cols-2 gap-4">
                     <Field label="Policy no." value={pol.code} />
-                    <Field label="Underwriter" value={pol.title.split(' ')[0]} />
-                    <Field label="Status" value={pol.status} />
+                    <Field label="Premium / yr" value={`UGX ${fmtUGX(pol.premium)}`} alignRight />
                     <Field label={cfg.assetLabel} value={pol.insuredItemName} />
-                    <Field label="Sum insured" value={`UGX ${(pol.coverageAmount / 1_000_000).toFixed(0)}M`} />
-                    <Field label="Premium / yr" value={`UGX ${fmtUGX(pol.premium)}`} />
+                    <Field label="Sum insured" value={`UGX ${(pol.coverageAmount / 1_000_000).toFixed(0)}M`} alignRight />
                     <Field label="Cover start" value="01 Jun 2025" />
-                    <Field label="Renews on" value={dueDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} />
-                    <Field label="Auto-renewal" value={autopay ? 'On' : 'Off'} />
+                    <Field label="Renews on" value={dueDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} alignRight />
                   </div>
+                  <button onClick={() => fire('Certificate downloaded')} className="w-full mt-4 border border-[#e0e5e8] py-2.5 rounded-xl text-xs font-bold text-[#16242b] hover:bg-slate-50 transition">Download certificate</button>
                 </Widget>
 
                 {cfg.showCoverage && (
@@ -327,103 +242,40 @@ export default function Dashboard({
                   </Widget>
                 )}
               </div>
-            )}
 
-            {/* ─── TAB: CLAIMS ─── */}
-            {tab === 'Claims' && (
-              <div className="space-y-4">
-                <Widget title="File a claim" accent={T.teal}>
-                  <div className="flex items-center justify-between gap-4 flex-wrap">
-                    <p className="text-sm text-[#6b7780] max-w-md">Report {cfg.claimNoun} with photos and documents. Most {pol.category} claims are reviewed within 48 hours.</p>
-                    <button onClick={() => setShowClaim(true)} className="bg-[#BED600] text-[#023448] px-5 py-3 rounded-xl font-bold text-sm flex items-center gap-2 whitespace-nowrap"><Plus className="w-4 h-4" />New claim</button>
+              {/* ─── COLUMN 2 — Payments ─── */}
+              <div className="flex flex-col gap-4">
+                <Widget title="Payment & mandate" accent={T.lime} action={<Pill state={autopay ? 'ok' : 'danger'}>{autopay ? 'AUTO-PAY ON' : 'AUTO-PAY OFF'}</Pill>}>
+                  <div className="flex justify-between items-start">
+                    <Field label="Next premium" value={`UGX ${fmtUGX(pol.premium)}`} />
+                    <Field label="Due" value={dueDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })} alignRight />
                   </div>
+                  <div className="flex items-center gap-3 border border-[#eef0f1] rounded-xl p-3 mt-4">
+                    <div className="w-9 h-9 rounded-lg bg-[#ecf2f6] text-[#023448] flex items-center justify-center shrink-0"><CreditCard className="w-4 h-4" /></div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[13px] font-bold">Ecobank ****4292</div>
+                      <div style={{ fontFamily: T.mono }} className="text-[11px] text-[#9aa6ad]">{autopay ? 'Direct debit active' : 'Direct debit inactive'}</div>
+                    </div>
+                    <button onClick={() => { setAutopay(a => !a); fire(autopay ? 'Auto-pay turned off' : 'Auto-pay turned on'); }}
+                      className="w-11 h-6 rounded-full transition relative shrink-0" style={{ background: autopay ? T.teal : '#cdd5d9' }}>
+                      <span className="absolute top-1 w-4 h-4 bg-white rounded-full transition-all" style={{ left: autopay ? '24px' : '4px' }} />
+                    </button>
+                  </div>
+                  <button onClick={() => setShowPay(true)} className="w-full mt-3 bg-[#023448] text-white py-2.5 rounded-xl text-xs font-bold">Pay UGX {fmtUGX(pol.premium)}</button>
                 </Widget>
 
-                <Widget title="Your claims" accent={T.navy}>
-                  {polClaims.length ? (
-                    <div className="space-y-3">
-                      {polClaims.map(c => (
-                        <div key={c.id} className="border border-[#eef0f1] rounded-2xl p-4">
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <div className="text-sm font-bold">{c.description || 'Claim'}</div>
-                              <div style={{ fontFamily: T.mono }} className="text-xs text-[#9aa6ad] mt-0.5">{c.dateSubmitted} · {c.policyTitle}</div>
-                            </div>
-                            <div className="text-right">
-                              <div className="font-bold text-[#00a878]">UGX {fmtUGX(c.estimatedPayout)}</div>
-                              <Pill state={claimStatusState[c.status] || 'neutral'}>{c.status.toUpperCase()}</Pill>
-                            </div>
-                          </div>
-                          <ClaimTimeline status={c.status} />
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <EmptyState icon={<FileText className="w-6 h-6" />} text="No claims yet. When you file one, you'll track its full status here." />
-                  )}
-                </Widget>
-              </div>
-            )}
-
-            {/* ─── TAB: PAYMENTS ─── */}
-            {tab === 'Payments' && (
-              <div className="space-y-4">
-                {dueSoon && <RenewalBanner days={daysToDue} amount={pol.premium} onPay={() => setShowPay(true)} />}
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  {/* Direct debit / mandate */}
-                  <Widget title="Direct debit mandate" accent={T.lime} action={<Pill state={autopay ? 'ok' : 'danger'}>{autopay ? 'ACTIVE' : 'INACTIVE'}</Pill>}>
-                    <div className="flex items-center gap-3 border border-[#eef0f1] rounded-xl p-4">
-                      <div className="w-10 h-10 rounded-lg bg-[#ecf2f6] text-[#023448] flex items-center justify-center"><CreditCard className="w-5 h-5" /></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-bold">Ecobank Account ****4292</div>
-                        <div style={{ fontFamily: T.mono }} className="text-xs text-[#9aa6ad]">{autopay ? `Charges UGX ${fmtUGX(pol.premium)} every year` : 'No active mandate'}</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between mt-4">
-                      <span className="text-sm font-semibold text-[#16242b]">Auto-pay renewals</span>
-                      <button onClick={() => { setAutopay(a => !a); fire(autopay ? 'Auto-pay turned off' : 'Auto-pay turned on'); }}
-                        className="w-12 h-7 rounded-full transition relative" style={{ background: autopay ? T.teal : '#cdd5d9' }}>
-                        <span className="absolute top-1 w-5 h-5 bg-white rounded-full transition-all" style={{ left: autopay ? '26px' : '4px' }} />
-                      </button>
-                    </div>
-                  </Widget>
-
-                  {/* Pay now */}
-                  <Widget title="Make a payment" accent={T.teal}>
-                    <div className="flex justify-between items-start">
-                      <Field label="Outstanding" value={<span className="text-[#f59e0b]">NIL</span>} />
-                      <Field label="Next premium" value={`UGX ${fmtUGX(pol.premium)}`} alignRight />
-                    </div>
-                    <div className="flex gap-2 mt-4">
-                      <div className="flex border border-[#e0e5e8] rounded-xl overflow-hidden flex-1">
-                        <span style={{ fontFamily: T.mono }} className="px-3 py-2.5 text-xs font-bold bg-[#f5f7f8] text-[#023448]">UGX</span>
-                        <input defaultValue={fmtUGX(pol.premium)} className="flex-1 px-3 py-2.5 text-sm outline-none min-w-0" />
-                      </div>
-                      <button onClick={() => setShowPay(true)} className="px-5 bg-[#023448] text-white rounded-xl text-sm font-bold">Pay</button>
-                    </div>
-                  </Widget>
-                </div>
-
-                {/* Installments — fights "can't pay in full" lapses */}
                 <Widget title="Can't pay in full?" accent={T.lime}>
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: S.warn.bg, color: S.warn.fg }}><Repeat className="w-5 h-5" /></div>
-                    <div className="flex-1">
-                      <p className="text-sm text-[#3e4a52] leading-relaxed">Spread your premium with <b>Ecobank Premium Financing</b> — keep your cover active even in a tight month.</p>
-                      <div className="flex gap-2 mt-3 flex-wrap">
-                        {[{ m: 3, v: Math.round(pol.premium / 3) }, { m: 6, v: Math.round(pol.premium / 6) }, { m: 12, v: Math.round(pol.premium / 12) }].map(o => (
-                          <button key={o.m} onClick={() => fire(`Installment plan: ${o.m} × UGX ${fmtUGX(o.v)}`)} className="border border-[#e0e5e8] rounded-xl px-4 py-2.5 text-left hover:border-[#023448] transition">
-                            <div className="text-xs text-[#9aa6ad]" style={{ fontFamily: T.mono }}>{o.m} MONTHS</div>
-                            <div className="text-sm font-bold text-[#023448]">UGX {fmtUGX(o.v)}<span className="text-xs text-[#9aa6ad] font-medium">/mo</span></div>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                  <p className="text-sm text-[#3e4a52] leading-relaxed">Spread your premium with <b>Ecobank Premium Financing</b> — keep your cover active even in a tight month.</p>
+                  <div className="grid grid-cols-3 gap-2 mt-3">
+                    {[{ m: 3, v: Math.round(pol.premium / 3) }, { m: 6, v: Math.round(pol.premium / 6) }, { m: 12, v: Math.round(pol.premium / 12) }].map(o => (
+                      <button key={o.m} onClick={() => fire(`Installment plan: ${o.m} × UGX ${fmtUGX(o.v)}`)} className="border border-[#e0e5e8] rounded-xl px-3 py-2.5 text-left hover:border-[#023448] transition">
+                        <div className="text-[10px] text-[#9aa6ad]" style={{ fontFamily: T.mono }}>{o.m} MONTHS</div>
+                        <div className="text-[13px] font-bold text-[#023448] mt-0.5">UGX {fmtUGX(o.v)}</div>
+                      </button>
+                    ))}
                   </div>
                 </Widget>
 
-                {/* Payment history — success / failed-reversed states */}
                 <Widget title="Payment history" accent={T.navy}>
                   <div className="space-y-2.5">
                     {payHistory.map((h, i) => (
@@ -445,31 +297,46 @@ export default function Dashboard({
                   </div>
                 </Widget>
               </div>
-            )}
 
-            {/* ─── TAB: SUPPORT ─── */}
-            {tab === 'Support' && (
-              <div className="space-y-4">
-                <Widget title="Contact support" accent={T.teal}>
-                  <div className="grid sm:grid-cols-2 gap-3">
+              {/* ─── COLUMN 3 — Claims & service ─── */}
+              <div className="flex flex-col gap-4">
+                {cfg.showClaims && (
+                  <Widget title="Claims" accent={T.navy} action={
+                    <button onClick={() => setShowClaim(true)} className="bg-[#023448] text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1"><Plus className="w-3 h-3" />File</button>}>
+                    {polClaims.length ? (
+                      <div className="space-y-3">
+                        {polClaims.slice(0, 3).map(c => (
+                          <div key={c.id} className="border border-[#eef0f1] rounded-xl p-3">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <div className="text-[13px] font-bold">{c.description?.slice(0, 24) || 'Claim'}</div>
+                                <div style={{ fontFamily: T.mono }} className="text-[11px] text-[#9aa6ad] mt-0.5">{c.dateSubmitted}</div>
+                              </div>
+                              <div className="text-right">
+                                <div className="text-sm font-bold text-[#00a878]">UGX {fmtUGX(c.estimatedPayout)}</div>
+                                <Pill state={claimStatusState[c.status] || 'neutral'}>{c.status.toUpperCase()}</Pill>
+                              </div>
+                            </div>
+                            <ClaimTimeline status={c.status} />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <EmptyState icon={<FileText className="w-5 h-5" />} text={`No claims yet. Report ${cfg.claimNoun} and track it here.`} />
+                    )}
+                  </Widget>
+                )}
+
+                <Widget title="Need help?" accent={T.teal}>
+                  <div className="grid grid-cols-1 gap-2.5">
                     <SupportCard icon={<MessageCircle className="w-5 h-5" />} title="Live chat" sub="Avg. reply < 2 min" onClick={() => fire('Opening live chat…')} />
                     <SupportCard icon={<Phone className="w-5 h-5" />} title="Call us" sub="0800 100 200 · 24/7" onClick={() => fire('Calling 0800 100 200…')} />
-                    <SupportCard icon={<MessageCircle className="w-5 h-5" />} title="WhatsApp" sub="+256 700 000 000" onClick={() => fire('Opening WhatsApp…')} />
                     <SupportCard icon={<Mail className="w-5 h-5" />} title="Email" sub="care@ecobank.com" onClick={() => fire('Opening email…')} />
                   </div>
                 </Widget>
-                <Widget title="Common questions" accent={T.navy}>
-                  <div className="divide-y divide-[#f1f4f5]">
-                    {['How do I file a claim?', 'When is my premium due?', 'How do I update my direct debit?', 'How do I download my certificate?'].map(q => (
-                      <button key={q} onClick={() => fire('Opening help article…')} className="w-full flex items-center justify-between py-3 text-left">
-                        <span className="text-sm font-medium text-[#3e4a52]">{q}</span>
-                        <ChevronRight className="w-4 h-4 text-[#9aa6ad]" />
-                      </button>
-                    ))}
-                  </div>
-                </Widget>
               </div>
-            )}
+
+            </div>
           </div>
         </div>
       </div>
