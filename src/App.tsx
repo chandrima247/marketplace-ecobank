@@ -144,10 +144,9 @@ export default function App() {
     <div className="bg-background text-on-background min-h-screen flex flex-col relative select-none antialiased overflow-x-hidden">
       
 
-      {/* Structured Header Routing - hidden on dashboard (it has its own) and on the
-          full-bleed Motor listing page (that page renders its own header) */}
-      {activeView !== 'policies' && activeView !== 'claims' &&
-        activeView !== 'agent' &&
+      {/* Structured Header Routing — global nav shown on explore + dashboard (policies/claims).
+          Hidden on the agent workspace and on full-bleed wizard stages. */}
+      {activeView !== 'agent' &&
         !(activeView === 'wizard' && (wizardStage === 'application' || wizardStage === 'checkout' || wizardStage === 'receipt')) && (
         <Header
           user={user}
