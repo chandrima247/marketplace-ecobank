@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import LoginModal from './components/LoginModal';
 import VoiceAssistant from './components/VoiceAssistant';
+import SupportChat from './components/SupportChat';
 import InsuranceWizard from './components/InsuranceWizard';
 import Dashboard from './components/Dashboard';
 import AgentDashboard from './components/AgentDashboard';
@@ -493,6 +494,9 @@ export default function App() {
         onClose={() => setIsVoiceOpen(false)}
         onActionTriggered={(cat, plate) => handleLaunchWizard(cat, plate)}
       />
+
+      {/* GLOBAL "NEED HELP?" SUPPORT CHAT BUBBLE — on every page */}
+      <SupportChat />
 
     </div>
   );
