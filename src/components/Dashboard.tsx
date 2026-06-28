@@ -95,6 +95,7 @@ export default function Dashboard({
   ];
 
   const [activeId, setActiveId] = useState(list[0].id);
+  const [filter, setFilter] = useState<'Overview' | 'Policy' | 'Claims' | 'Payments' | 'Documents'>('Overview');
   const [toast, setToast] = useState<string | null>(null);
   const [showClaim, setShowClaim] = useState(false);
   const [showPay, setShowPay] = useState(false);
@@ -117,6 +118,8 @@ export default function Dashboard({
   ];
 
   const fire = (msg: string) => { setToast(msg); setTimeout(() => setToast(null), 2600); };
+  const show = (c: string) => filter === 'Overview' || filter === c;
+  const pills = (['Overview', 'Policy', cfg.showClaims ? 'Claims' : null, 'Payments', 'Documents'].filter(Boolean) as typeof filter[]);
 
   return (
     <div className="min-h-screen" style={{ background: T.bg, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -173,29 +176,42 @@ export default function Dashboard({
             </button>
           </aside>
 
-          {/* MAIN — heading + 3-column widget grid */}
+          {/* MAIN — single widget panel (card): header + pill filters + 3-column grid */}
           <div className="min-w-0">
-            {/* policy heading */}
-            <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-              <div>
-                <div className="flex items-center gap-2">
-                  <h2 className="text-lg font-extrabold text-[#16242b]">{pol.title}</h2>
-                  <Pill state={policyStatusState[pol.status] || 'neutral'}>{pol.status.toUpperCase()}</Pill>
+            <div className="bg-white rounded-2xl border border-[#eef0f1] p-5 lg:p-6">
+              {/* panel header */}
+              <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-lg font-extrabold text-[#16242b]">{pol.title}</h2>
+                    <Pill state={policyStatusState[pol.status] || 'neutral'}>{pol.status.toUpperCase()}</Pill>
+                  </div>
+                  <div style={{ fontFamily: T.mono }} className="text-xs text-[#9aa6ad] mt-0.5">{pol.category} · {pol.code}</div>
                 </div>
-                <div style={{ fontFamily: T.mono }} className="text-xs text-[#9aa6ad] mt-0.5">{pol.category} · {pol.code}</div>
+                <button onClick={() => fire('Certificate downloaded')} className="bg-[#023448] text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 hover:opacity-95">
+                  <Download className="w-4 h-4" /> Proof of cover
+                </button>
               </div>
-              <button onClick={() => fire('Certificate downloaded')} className="bg-[#023448] text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 hover:opacity-95">
-                <Download className="w-4 h-4" /> Proof of cover
-              </button>
-            </div>
 
-            {dueSoon && <div className="mb-4"><RenewalBanner days={daysToDue} amount={pol.premium} onPay={() => setShowPay(true)} /></div>}
+              {/* pill filters */}
+              <div className="flex gap-2 flex-wrap border-b border-[#f1f4f5] pb-4 mb-5">
+                {pills.map(f => (
+                  <button key={f} onClick={() => setFilter(f)}
+                    className="text-[13px] font-semibold px-4 py-2 rounded-full transition"
+                    style={filter === f ? { background: '#ecf2f6', color: T.navy } : { color: T.sub, border: `1px solid ${T.line}` }}>
+                    {f}
+                  </button>
+                ))}
+              </div>
 
-            {/* ═══ 3-COLUMN WIDGET GRID (IHK-style) ═══ */}
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 items-start">
+              {dueSoon && <div className="mb-4"><RenewalBanner days={daysToDue} amount={pol.premium} onPay={() => setShowPay(true)} /></div>}
 
-              {/* ─── COLUMN 1 — Policy & cover ─── */}
-              <div className="flex flex-col gap-4">
+              {/* ═══ 3-COLUMN WIDGET GRID ═══ */}
+              <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 items-start">
+
+                {/* ─── COLUMN 1 — Policy & cover ─── */}
+                <div className="flex flex-col gap-4">
+                {show('Policy') && (
                 <Widget title="Policy overview" accent={T.teal} action={<Pill state={policyStatusState[pol.status] || 'neutral'}>{pol.status.toUpperCase()}</Pill>}>
                   <div className="grid grid-cols-2 gap-4">
                     <Field label="Policy no." value={pol.code} />
@@ -207,8 +223,9 @@ export default function Dashboard({
                   </div>
                   <button onClick={() => fire('Certificate downloaded')} className="w-full mt-4 border border-[#e0e5e8] py-2.5 rounded-xl text-xs font-bold text-[#16242b] hover:bg-slate-50 transition">Download certificate</button>
                 </Widget>
+                )}
 
-                {cfg.showCoverage && (
+                {show('Policy') && cfg.showCoverage && (
                   <Widget title="Coverage highlights" accent={T.teal}>
                     <div className="space-y-3">
                       {[{ n: 'Third Party Liability', p: 100 }, { n: 'Own Damage', p: 85 }, { n: 'Theft Protection', p: 90 }, { n: 'Roadside Assist', p: 60 }].map(x => (
@@ -226,7 +243,7 @@ export default function Dashboard({
                   </Widget>
                 )}
 
-                {cfg.showBeneficiary && (
+                {show('Policy') && cfg.showBeneficiary && (
                   <Widget title="Beneficiaries" accent={T.navy} action={<button onClick={() => fire('Beneficiary form opened')} className="text-xs font-bold text-[#023448]">Update</button>}>
                     <div className="space-y-2">
                       {[{ n: 'John Doe', r: 'Spouse', s: '60%' }, { n: 'Mary Doe', r: 'Child', s: '40%' }].map(b => (
@@ -241,10 +258,23 @@ export default function Dashboard({
                     </div>
                   </Widget>
                 )}
+
+                {show('Documents') && (
+                  <Widget title="Documents" accent={T.navy}>
+                    <p className="text-sm text-[#6b7780] leading-relaxed">Certificates, claim receipts and statements — all digitally signed.</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {['Certificate', 'Claim receipt', 'Tax statement'].map(d => (
+                        <span key={d} style={{ fontFamily: T.mono }} className="text-[11px] font-semibold bg-[#f8fafb] border border-[#eef0f1] px-3 py-1.5 rounded-full">{d}</span>
+                      ))}
+                    </div>
+                    <button onClick={() => fire('Statement downloaded')} className="w-full mt-4 bg-[#023448] text-white py-2.5 rounded-xl text-xs font-bold">Get statement</button>
+                  </Widget>
+                )}
               </div>
 
               {/* ─── COLUMN 2 — Payments ─── */}
               <div className="flex flex-col gap-4">
+                {show('Payments') && (
                 <Widget title="Payment & mandate" accent={T.lime} action={<Pill state={autopay ? 'ok' : 'danger'}>{autopay ? 'AUTO-PAY ON' : 'AUTO-PAY OFF'}</Pill>}>
                   <div className="flex justify-between items-start">
                     <Field label="Next premium" value={`UGX ${fmtUGX(pol.premium)}`} />
@@ -263,7 +293,9 @@ export default function Dashboard({
                   </div>
                   <button onClick={() => setShowPay(true)} className="w-full mt-3 bg-[#023448] text-white py-2.5 rounded-xl text-xs font-bold">Pay UGX {fmtUGX(pol.premium)}</button>
                 </Widget>
+                )}
 
+                {show('Payments') && (
                 <Widget title="Can't pay in full?" accent={T.lime}>
                   <p className="text-sm text-[#3e4a52] leading-relaxed">Spread your premium with <b>Ecobank Premium Financing</b> — keep your cover active even in a tight month.</p>
                   <div className="grid grid-cols-3 gap-2 mt-3">
@@ -275,7 +307,9 @@ export default function Dashboard({
                     ))}
                   </div>
                 </Widget>
+                )}
 
+                {show('Payments') && (
                 <Widget title="Payment history" accent={T.navy}>
                   <div className="space-y-2.5">
                     {payHistory.map((h, i) => (
@@ -296,11 +330,12 @@ export default function Dashboard({
                     ))}
                   </div>
                 </Widget>
+                )}
               </div>
 
               {/* ─── COLUMN 3 — Claims & service ─── */}
               <div className="flex flex-col gap-4">
-                {cfg.showClaims && (
+                {show('Claims') && cfg.showClaims && (
                   <Widget title="Claims" accent={T.navy} action={
                     <button onClick={() => setShowClaim(true)} className="bg-[#023448] text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1"><Plus className="w-3 h-3" />File</button>}>
                     {polClaims.length ? (
@@ -327,6 +362,7 @@ export default function Dashboard({
                   </Widget>
                 )}
 
+                {filter === 'Overview' && (
                 <Widget title="Need help?" accent={T.teal}>
                   <div className="grid grid-cols-1 gap-2.5">
                     <SupportCard icon={<MessageCircle className="w-5 h-5" />} title="Live chat" sub="Avg. reply < 2 min" onClick={() => fire('Opening live chat…')} />
@@ -334,8 +370,10 @@ export default function Dashboard({
                     <SupportCard icon={<Mail className="w-5 h-5" />} title="Email" sub="care@ecobank.com" onClick={() => fire('Opening email…')} />
                   </div>
                 </Widget>
+                )}
               </div>
 
+            </div>
             </div>
           </div>
         </div>
