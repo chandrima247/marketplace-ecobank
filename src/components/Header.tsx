@@ -41,14 +41,20 @@ export default function Header({
             </button>
           ) : null}
 
-          <div className="flex items-center" id="homepage-logo-container">
+          <button
+            type="button"
+            onClick={() => onNavigate('explore')}
+            aria-label="Ecobank Insurance — home"
+            className="flex items-center rounded-lg transition-opacity hover:opacity-80 active:scale-95"
+            id="homepage-logo-container"
+          >
             <img
               src={METADATA_IMAGES.ecobankLogo}
               alt="Ecobank Logo"
               className="h-10 md:h-12 w-auto object-contain"
               id="header-ecobank-logo"
             />
-          </div>
+          </button>
         </div>
 
         {/* Center Navigation Links (Hidden on wizards/subpages to focus conversion) */}
