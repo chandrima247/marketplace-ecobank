@@ -30,10 +30,6 @@
 <body>
 <div class="wrap">
   <div data-screen-label="Get a quote" style="padding: 28px 0 60px;">
-    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 22px;">
-      <span id="backLink" class="mono" style="font-size: 13px; color: #5b6578; cursor: pointer;">← Back</span>
-    </div>
-
     <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
       <div id="catIcon" style="width: 56px; height: 56px; border-radius: 16px; background: #ecf2f6; color: #023448; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"></div>
       <div>
@@ -184,7 +180,6 @@
     if (window.parent !== window) window.parent.postMessage({ source: 'maas-intake', action: action, category: cat, data: state }, '*');
   }
   document.getElementById('submitBtn').addEventListener('click', function () { post('confirm'); });
-  document.getElementById('backLink').addEventListener('click', function () { post('back'); });
 
   function report() { if (window.parent !== window) window.parent.postMessage({ source: 'maas-iframe-resize', height: document.body.scrollHeight + 40 }, '*'); }
   window.addEventListener('load', report);
