@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { 
-  Heart, Shield, Car, Smartphone, Plane, Coins, Briefcase, Sparkles, 
-  Search, Mic, ChevronRight, CheckCircle2, ArrowRight, UserCheck, 
-  ArrowUpRight, HelpCircle, AlertCircle
+  Heart, Shield, Car, Smartphone, Plane, Coins, Briefcase, Sparkles,
+  Search, Mic, ChevronRight, CheckCircle2, ArrowRight, UserCheck,
+  ArrowUpRight, HelpCircle, AlertCircle, Home
 } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -163,6 +163,7 @@ export default function App() {
       case 'Plane': return <Plane className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />;
       case 'Leaf': return <Briefcase className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />; // Agric alternative
       case 'Coins': return <Coins className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />;
+      case 'Home': return <Home className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />;
       case 'Briefcase': return <Briefcase className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />;
       default: return <Shield className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />;
     }

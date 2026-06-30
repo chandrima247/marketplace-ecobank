@@ -5,7 +5,7 @@ export type InsuranceCategory =
   | 'Device'
   | 'Travel'
   | 'Agric'
-  | 'Forex'
+  | 'Property'
   | 'Business';
 
 export interface Policy {

@@ -67,7 +67,7 @@
     Business:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4"/></svg>',
     Agric:   '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M15.66 8.34 17 7l1.5 1.5a3.5 3.5 0 0 1-4.95 4.95"/></svg>',
     Travel:  '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>',
-    Forex:   '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    Property:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>',
   };
 
   var CONFIGS = {
@@ -116,13 +116,13 @@
         { name: 'coverLevel', label: 'Cover level', type: 'chips', full: true, options: ['Standard', 'Premium', 'Schengen-ready'], value: 'Standard' },
       ],
     },
-    Forex: {
-      title: 'Forex / trade cover', sub: 'Hedge currency risk on imports & exports',
+    Property: {
+      title: 'Property & home cover', sub: 'Protect your home, rental or commercial building',
       fields: [
-        { name: 'transactionType', label: 'Transaction type', type: 'chips', full: true, options: ['Import', 'Export', 'Remittance'], value: 'Import' },
-        { name: 'amount', label: 'Transaction amount', type: 'cur', value: '50,000' },
-        { name: 'currencyPair', label: 'Currency', type: 'select', options: ['USD', 'EUR', 'GBP', 'CNY'] },
-        { name: 'period', label: 'Cover period', type: 'chips', options: ['30 days', '60 days', '90 days'], value: '30 days' },
+        { name: 'propertyType', label: 'Property type', type: 'select', full: true, options: ['Home / residence', 'Apartment / flat', 'Rental property', 'Commercial building', 'Shop / retail unit'] },
+        { name: 'ownership', label: 'You are the…', type: 'chips', options: ['Owner-occupier', 'Landlord', 'Tenant'], value: 'Owner-occupier' },
+        { name: 'buildingValue', label: 'Rebuild / sum insured', type: 'cur', value: '120,000,000' },
+        { name: 'propertyCover', label: 'Cover you need', type: 'chips', full: true, options: ['Building only', 'Building + contents', 'All-risk + liability'], value: 'Building + contents' },
       ],
     },
   };

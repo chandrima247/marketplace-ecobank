@@ -9,7 +9,7 @@ const INTENT: Record<InsuranceCategory, string[]> = {
   Travel:  ['travel', 'trip', 'flight', 'visa', 'abroad', 'journey', 'holiday', 'vacation', 'schengen', 'overseas', 'airport', 'luggage'],
   Agric:   ['farm', 'farming', 'crop', 'crops', 'harvest', 'livestock', 'cattle', 'cow', 'goat', 'poultry', 'chicken', 'maize', 'coffee', 'agric', 'agriculture', 'drought', 'weather index', 'tractor', 'plantation'],
   Business:['business', 'shop', 'sme', 'stock', 'inventory', 'office', 'enterprise', 'goods', 'premises', 'fire', 'burglary', 'liability', 'employees', 'workmen', 'warehouse', 'store', 'company'],
-  Forex:   ['forex', 'currency', 'exchange rate', 'fx', 'dollar', 'usd', 'hedge', 'remittance', 'import', 'export'],
+  Property:['property', 'home', 'house', 'building', 'apartment', 'flat', 'rent', 'rental', 'landlord', 'tenant', 'contents', 'household', 'mortgage', 'real estate', 'fire', 'burglary', 'flood'],
 };
 
 export interface Match { id: InsuranceCategory; score: number }

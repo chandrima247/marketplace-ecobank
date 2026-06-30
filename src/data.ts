@@ -55,10 +55,10 @@ export const CATEGORIES: CategoryInfo[] = [
     description: 'Crop yields protection for multi-scale famers using weather index and automated soil sensors.'
   },
   {
-    id: 'Forex',
-    name: 'Forex',
-    icon: 'Coins',
-    description: 'Protect international business against extreme volatile exchange rates during import transfers.'
+    id: 'Property',
+    name: 'Property',
+    icon: 'Home',
+    description: 'Cover your home, rental or commercial building against fire, flood, burglary and liability.'
   },
   {
     id: 'Business',

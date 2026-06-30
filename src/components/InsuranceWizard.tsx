@@ -435,6 +435,11 @@ export default function InsuranceWizard({
       coverageLimit = 50000;
       basePrice = businessEmployees === '50+' ? 60 : businessEmployees === '21-50' ? 42 : businessEmployees === '6-20' ? 30 : 22;
       if (businessCover === 'All-risk + liability') basePrice += 8;
+    } else if (category === 'Property') {
+      insuredItem = 'Home & property cover';
+      titlePrefix = 'Home & Property Shield';
+      coverageLimit = 80000;
+      basePrice = 34;
     } else {
       insuredItem = `${category} Specialized Asset`;
       titlePrefix = `${category} Protective Guarantee`;

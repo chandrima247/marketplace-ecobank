@@ -67,7 +67,7 @@ export const categoryConfig: Record<string, {
   Device:   { assetLabel: 'Device',      showCoverage: true,  showClaims: true,  showBeneficiary: false, claimNoun: 'damage or theft' },
   Travel:   { assetLabel: 'Trip',        showCoverage: true,  showClaims: true,  showBeneficiary: false, claimNoun: 'travel claim' },
   Agric:    { assetLabel: 'Farm',        showCoverage: true,  showClaims: true,  showBeneficiary: false, claimNoun: 'crop or livestock loss' },
-  Forex:    { assetLabel: 'Cover',       showCoverage: false, showClaims: false, showBeneficiary: false, claimNoun: 'claim' },
+  Property: { assetLabel: 'Property',    showCoverage: true,  showClaims: true,  showBeneficiary: false, claimNoun: 'damage, fire or burglary' },
   Business: { assetLabel: 'Business',    showCoverage: true,  showClaims: true,  showBeneficiary: false, claimNoun: 'business claim' },
 };
 
