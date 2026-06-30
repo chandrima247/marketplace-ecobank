@@ -1,6 +1,7 @@
-import { LogIn, User, LogOut, Menu, ArrowLeft } from 'lucide-react';
+import { LogIn, LogOut, ArrowLeft } from 'lucide-react';
 import { METADATA_IMAGES } from '../data';
 import { User as UserType } from '../types';
+import CountrySelector from './CountrySelector';
 
 interface HeaderProps {
   user: UserType | null;
@@ -112,7 +113,8 @@ export default function Header({
         ) : null}
 
         {/* Right segment */}
-        <div className="flex items-center gap-4" id="header-right-controls">
+        <div className="flex items-center gap-3 sm:gap-4" id="header-right-controls">
+          <CountrySelector />
           {user?.isLoggedIn ? (
             <div className="flex items-center gap-2" id="header-user-badge">
               <div className="hidden sm:flex flex-col text-right">

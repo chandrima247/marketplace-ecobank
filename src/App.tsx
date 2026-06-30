@@ -21,6 +21,7 @@ import {
   getVehicleForPlate 
 } from './data';
 import { Policy, Claim, User, InsuranceCategory } from './types';
+import { matchCategories, SEARCH_PROMPTS } from './searchIntent';
 
 export default function App() {
   // Navigation states
@@ -45,18 +46,44 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredCategories, setFilteredCategories] = useState(CATEGORIES);
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+  const [typedPrompt, setTypedPrompt] = useState('');
 
-  // Filter categories dynamically based on query
+  // Typewriter animation for the search placeholder (rotates example queries)
+  useEffect(() => {
+    let phrase = 0, char = 0, deleting = false;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      const full = SEARCH_PROMPTS[phrase];
+      if (!deleting) {
+        char++;
+        setTypedPrompt(full.slice(0, char));
+        if (char === full.length) { deleting = true; timer = setTimeout(tick, 1800); return; }
+        timer = setTimeout(tick, 45);
+      } else {
+        char--;
+        setTypedPrompt(full.slice(0, char));
+        if (char === 0) { deleting = false; phrase = (phrase + 1) % SEARCH_PROMPTS.length; timer = setTimeout(tick, 350); return; }
+        timer = setTimeout(tick, 22);
+      }
+    };
+    timer = setTimeout(tick, 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const runSmartSearch = () => {
+    const ids = matchCategories(searchQuery, CATEGORIES);
+    if (ids.length) { handleLaunchWizard(ids[0]); setShowSearchDropdown(false); }
+  };
+
+  // Smart category routing from a natural-language query
   useEffect(() => {
     if (!searchQuery.trim()) {
       setFilteredCategories(CATEGORIES);
       return;
     }
-    const filtered = CATEGORIES.filter(cat => 
-      cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cat.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredCategories(filtered);
+    const ids = matchCategories(searchQuery, CATEGORIES);
+    const ranked = ids.map(id => CATEGORIES.find(c => c.id === id)!).filter(Boolean);
+    setFilteredCategories(ranked);
   }, [searchQuery]);
 
   // Handle successful login
@@ -195,7 +222,8 @@ export default function App() {
                       setShowSearchDropdown(true);
                     }}
                     onFocus={() => setShowSearchDropdown(true)}
-                    placeholder="Describe it or search active categories..."
+                    onKeyDown={(e) => { if (e.key === 'Enter' && searchQuery.trim()) runSmartSearch(); }}
+                    placeholder={searchQuery ? '' : `${typedPrompt || 'Describe what you want to protect'}…`}
                     className="w-full h-11 bg-transparent px-2 font-sans font-medium text-sm sm:text-base text-gray-900 placeholder:text-gray-400 outline-none border-none focus:ring-0"
                     id="hero-insurance-search"
                   />

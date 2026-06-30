@@ -14,9 +14,18 @@
  */
 (function () {
   var params = new URLSearchParams(location.search);
+  // Persisted market chosen via the shell's country selector (localStorage),
+  // so an iframe mounted after selection still shows the right currency.
+  var saved = { currency: null, country: null };
+  try {
+    var code = (window.parent || window).localStorage.getItem('maas-market');
+    var MAP = { NG: 'NGN', GH: 'GHS', KE: 'KES', UG: 'UGX', TZ: 'TZS', RW: 'RWF', CI: 'XOF', SN: 'XOF', CM: 'XAF', CD: 'CDF', ZM: 'ZMW', ML: 'XOF', BJ: 'XOF', TG: 'XOF' };
+    if (code && MAP[code]) { saved.currency = MAP[code]; saved.country = code; }
+  } catch (e) { /* cross-origin / unavailable */ }
+
   var cfg = {
-    currency: params.get('cur') || 'UGX',
-    country: params.get('country') || 'UG'
+    currency: params.get('cur') || saved.currency || 'UGX',
+    country: params.get('country') || saved.country || 'UG'
   };
 
   function applyLabels() {
