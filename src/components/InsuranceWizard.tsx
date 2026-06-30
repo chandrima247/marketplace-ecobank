@@ -251,6 +251,38 @@ export default function InsuranceWizard({
     return () => window.removeEventListener('message', onMessage);
   });
 
+  // Bridge: new-design category intake page (Life/Device/Business/Agric/Travel/Forex)
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      const msg = e.data;
+      if (!msg || msg.source !== 'maas-intake') return;
+      if (msg.action === 'back') { onBack(); return; }
+      if (msg.action === 'confirm') {
+        const d = (msg.data || {}) as Record<string, string>;
+        if (category === 'Life') {
+          if (d.annualIncome) setAnnualIncome(d.annualIncome);
+          if (d.dependentsCount) setDependentsCount(d.dependentsCount);
+          if (d.benefitMultiplier) setBenefitMultiplier(d.benefitMultiplier as any);
+          setIsSmoker(d.isSmoker === 'Yes');
+        } else if (category === 'Device') {
+          if (d.deviceModel) setDeviceModel(d.deviceModel);
+          if (d.deviceValue) setDeviceValue(d.deviceValue);
+          if (d.deviceCondition) setDeviceCondition(d.deviceCondition as any);
+          if (d.deviceSerial) setDeviceSerial(d.deviceSerial);
+        } else if (category === 'Business') {
+          if (d.businessType) setBusinessType(d.businessType);
+          if (d.businessTurnover) setBusinessTurnover(d.businessTurnover);
+          if (d.businessEmployees) setBusinessEmployees(d.businessEmployees as any);
+          if (d.businessCover) setBusinessCover(d.businessCover as any);
+        }
+        setStage('listing');
+        window.scrollTo(0, 0);
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  });
+
   // Bridge: receive actions from Health wizard Stitch pages
   useEffect(() => {
     const onMessage = (e: MessageEvent) => {
@@ -695,9 +727,24 @@ export default function InsuranceWizard({
           </div>
         )}
 
+        {/* QUESTIONNAIRE — Life / Device / Business / Agric / Travel / Forex use the
+            polished new-design intake page (config-driven), like Motor & Health. */}
+        {stage === 'questions' && category !== 'Motor' && category !== 'Health' && (
+          <div className="w-screen relative left-1/2 -translate-x-1/2 -mt-6" id="stage-intake-view">
+            <iframe
+              src={`/category-intake.html?cat=${category}`}
+              title={`${category} questions`}
+              className="w-full border-0 block"
+              style={{ height: 'calc(100vh - 56px)', minHeight: '640px' }}
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
+            />
+          </div>
+        )}
+
         {stage !== 'policy' && (
           <div className="transition-all duration-300" id="wizard-stage-panel">
-            {stage === 'questions' && category !== 'Motor' && category !== 'Health' && (
+            {/* Legacy React questionnaire — superseded by /category-intake.html iframe above */}
+            {false && stage === 'questions' && category !== 'Motor' && category !== 'Health' && (
               <div className="space-y-6" id="stage-questions-view">
                 <div className="mb-2">
                   <h2 className="font-black text-2xl sm:text-3xl text-primary font-sans leading-tight">

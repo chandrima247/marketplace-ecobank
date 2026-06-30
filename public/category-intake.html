@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a quote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f4f6f7; color: #16242b; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: 'Space Grotesk', monospace; }
+  button, input, select { font-family: inherit; }
+  svg { display: block; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .softcard { background: #fff; border-radius: 20px; border: 1px solid #eef0f1; }
+  .field label { display: block; font-size: 13px; font-weight: 700; color: #023448; margin-bottom: 8px; }
+  .field input, .field select { width: 100%; height: 50px; padding: 0 16px; background: #f8fafb; border: 1px solid #e0e5e8; border-radius: 12px; outline: none; font-size: 14px; font-weight: 600; color: #16242b; }
+  .field input:focus, .field select:focus { border-color: #00C58F; background: #fff; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 11px 16px; border-radius: 12px; border: 1px solid #e0e5e8; background: #f8fafb; font-size: 13px; font-weight: 600; color: #5b6578; cursor: pointer; transition: all .15s; }
+  .chip.on { background: #eaf6f1; border-color: #00C58F; color: #015a3d; }
+  .cur-prefix { display: flex; align-items: center; }
+  .cur-prefix span { height: 50px; display: flex; align-items: center; padding: 0 14px; background: #eef2f4; border: 1px solid #e0e5e8; border-right: none; border-radius: 12px 0 0 12px; font-weight: 700; font-size: 13px; color: #023448; }
+  .cur-prefix input { border-radius: 0 12px 12px 0; }
+  @media (max-width: 560px) { .wrap { padding: 0 16px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div data-screen-label="Get a quote" style="padding: 28px 0 60px;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 22px;">
+      <span id="backLink" class="mono" style="font-size: 13px; color: #5b6578; cursor: pointer;">← Back</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+      <div id="catIcon" style="width: 56px; height: 56px; border-radius: 16px; background: #ecf2f6; color: #023448; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"></div>
+      <div>
+        <h1 id="catTitle" style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Tell us about it</h1>
+        <p id="catSub" class="mono" style="font-size: 13px; color: #7c8890; margin-top: 4px;"></p>
+      </div>
+    </div>
+
+    <div class="softcard" style="padding: 28px;">
+      <div id="form" style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px;"></div>
+    </div>
+
+    <div style="display: flex; gap: 28px; margin-top: 22px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="color:#00a878"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="mono" style="font-size:12px;color:#5b6578;">No paperwork</span></div>
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="color:#00a878"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="mono" style="font-size:12px;color:#5b6578;">Quotes in seconds</span></div>
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="color:#00a878"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="mono" style="font-size:12px;color:#5b6578;">Secured by Ecobank</span></div>
+    </div>
+
+    <button id="submitBtn" style="width: 100%; margin-top: 26px; border: none; background: #BED600; color: #023448; padding: 17px; border-radius: 14px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      Get real-time quotes
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="/flow-config.js"></script>
+<script>
+  var ICONS = {
+    Life:    '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
+    Device:  '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>',
+    Business:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4"/></svg>',
+    Agric:   '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M15.66 8.34 17 7l1.5 1.5a3.5 3.5 0 0 1-4.95 4.95"/></svg>',
+    Travel:  '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>',
+    Forex:   '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+  };
+
+  var CONFIGS = {
+    Life: {
+      title: 'Life & family cover', sub: 'Protect your family’s future income',
+      fields: [
+        { name: 'annualIncome', label: 'Annual income band', type: 'select', full: true, options: ['Under 10M', '10M – 30M', '30M – 60M', '60M+'] },
+        { name: 'dependentsCount', label: 'Number of dependants', type: 'number', value: '2' },
+        { name: 'benefitMultiplier', label: 'Cover size', type: 'chips', options: ['10x', '15x', '20x'], value: '10x' },
+        { name: 'isSmoker', label: 'Do you smoke?', type: 'chips', options: ['No', 'Yes'], value: 'No' },
+      ],
+    },
+    Device: {
+      title: 'Device protection', sub: 'Cover your phone, laptop or gadget',
+      fields: [
+        { name: 'deviceModel', label: 'Device model', type: 'text', full: true, placeholder: 'e.g. iPhone 15 / Tecno Camon 30', value: 'iPhone 15 Pro' },
+        { name: 'deviceValue', label: 'Estimated value', type: 'cur', value: '1200' },
+        { name: 'deviceCondition', label: 'Condition', type: 'chips', options: ['New', 'Mint', 'Refurbished'], value: 'New' },
+        { name: 'deviceSerial', label: 'IMEI / serial', type: 'text', placeholder: 'IMEI or serial number' },
+      ],
+    },
+    Business: {
+      title: 'Business shield (SME)', sub: 'Cover your shop, stock and premises',
+      fields: [
+        { name: 'businessType', label: 'Type of business', type: 'select', full: true, options: ['Retail shop', 'Wholesale / distribution', 'Restaurant / food', 'Salon / services', 'Pharmacy', 'Workshop / manufacturing', 'Agribusiness', 'Other'] },
+        { name: 'businessTurnover', label: 'Annual turnover', type: 'cur', value: '25,000,000' },
+        { name: 'businessEmployees', label: 'Employees', type: 'chips', options: ['1-5', '6-20', '21-50', '50+'], value: '1-5' },
+        { name: 'businessCover', label: 'Cover you need', type: 'chips', full: true, options: ['Fire & perils', 'Burglary & theft', 'All-risk + liability'], value: 'All-risk + liability' },
+      ],
+    },
+    Agric: {
+      title: 'Farm & agriculture cover', sub: 'Protect crops and livestock against loss',
+      fields: [
+        { name: 'farmType', label: 'What do you farm?', type: 'select', full: true, options: ['Crops', 'Livestock', 'Poultry', 'Mixed farm', 'Aquaculture'] },
+        { name: 'farmSize', label: 'Farm size / herd', type: 'text', placeholder: 'e.g. 5 acres / 40 cattle', value: '5 acres' },
+        { name: 'farmValue', label: 'Insured value', type: 'cur', value: '8,000,000' },
+        { name: 'mainRisk', label: 'Main risk to cover', type: 'chips', full: true, options: ['Drought', 'Flood', 'Pest & disease', 'Fire'], value: 'Drought' },
+      ],
+    },
+    Travel: {
+      title: 'Travel insurance', sub: 'Cover for trips across Africa & abroad',
+      fields: [
+        { name: 'destination', label: 'Destination', type: 'text', full: true, placeholder: 'e.g. Lagos, Dubai, Schengen', value: 'Dubai' },
+        { name: 'tripType', label: 'Trip type', type: 'chips', options: ['Single trip', 'Annual multi-trip'], value: 'Single trip' },
+        { name: 'travellers', label: 'Travellers', type: 'number', value: '1' },
+        { name: 'coverLevel', label: 'Cover level', type: 'chips', full: true, options: ['Standard', 'Premium', 'Schengen-ready'], value: 'Standard' },
+      ],
+    },
+    Forex: {
+      title: 'Forex / trade cover', sub: 'Hedge currency risk on imports & exports',
+      fields: [
+        { name: 'transactionType', label: 'Transaction type', type: 'chips', full: true, options: ['Import', 'Export', 'Remittance'], value: 'Import' },
+        { name: 'amount', label: 'Transaction amount', type: 'cur', value: '50,000' },
+        { name: 'currencyPair', label: 'Currency', type: 'select', options: ['USD', 'EUR', 'GBP', 'CNY'] },
+        { name: 'period', label: 'Cover period', type: 'chips', options: ['30 days', '60 days', '90 days'], value: '30 days' },
+      ],
+    },
+  };
+
+  var params = new URLSearchParams(location.search);
+  var cat = params.get('cat') || 'Device';
+  var cfg = CONFIGS[cat] || CONFIGS.Device;
+  var state = {};
+
+  function cur() { return (window.MAAS ? window.MAAS.currency() : 'UGX'); }
+
+  document.getElementById('catIcon').innerHTML = ICONS[cat] || ICONS.Device;
+  document.getElementById('catTitle').textContent = cfg.title;
+  document.getElementById('catSub').textContent = cfg.sub;
+
+  function render() {
+    var form = document.getElementById('form');
+    form.innerHTML = '';
+    cfg.fields.forEach(function (f) {
+      if (f.value !== undefined && state[f.name] === undefined) state[f.name] = f.value;
+      var wrap = document.createElement('div');
+      wrap.className = 'field';
+      wrap.style.gridColumn = (f.full || f.type === 'chips') ? '1 / -1' : 'auto';
+      var html = '<label>' + f.label + '</label>';
+      if (f.type === 'select') {
+        html += '<select data-name="' + f.name + '">' + f.options.map(function (o) { return '<option' + (state[f.name] === o ? ' selected' : '') + '>' + o + '</option>'; }).join('') + '</select>';
+      } else if (f.type === 'chips') {
+        html += '<div class="chips">' + f.options.map(function (o) { return '<button type="button" class="chip ' + (state[f.name] === o ? 'on' : '') + '" data-name="' + f.name + '" data-val="' + o + '">' + o + '</button>'; }).join('') + '</div>';
+      } else if (f.type === 'cur') {
+        html += '<div class="cur-prefix"><span class="cur-label">' + cur() + '</span><input data-name="' + f.name + '" inputmode="numeric" value="' + (state[f.name] || '') + '"></div>';
+      } else if (f.type === 'number') {
+        html += '<input data-name="' + f.name + '" type="number" value="' + (state[f.name] || '') + '">';
+      } else {
+        html += '<input data-name="' + f.name + '" type="text" placeholder="' + (f.placeholder || '') + '" value="' + (state[f.name] || '') + '">';
+      }
+      wrap.innerHTML = html;
+      form.appendChild(wrap);
+    });
+    bind();
+    report();
+  }
+
+  function bind() {
+    document.querySelectorAll('#form input, #form select').forEach(function (el) {
+      el.addEventListener('input', function () { state[el.getAttribute('data-name')] = el.value; });
+      el.addEventListener('change', function () { state[el.getAttribute('data-name')] = el.value; });
+    });
+    document.querySelectorAll('#form .chip').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var name = b.getAttribute('data-name');
+        state[name] = b.getAttribute('data-val');
+        document.querySelectorAll('#form .chip[data-name="' + name + '"]').forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+      });
+    });
+  }
+
+  function post(action) {
+    if (window.parent !== window) window.parent.postMessage({ source: 'maas-intake', action: action, category: cat, data: state }, '*');
+  }
+  document.getElementById('submitBtn').addEventListener('click', function () { post('confirm'); });
+  document.getElementById('backLink').addEventListener('click', function () { post('back'); });
+
+  function report() { if (window.parent !== window) window.parent.postMessage({ source: 'maas-iframe-resize', height: document.body.scrollHeight + 40 }, '*'); }
+  window.addEventListener('load', report);
+  window.addEventListener('resize', report);
+  render();
+</script>
+</body>
+</html>
