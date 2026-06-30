@@ -10,6 +10,7 @@ import {
   ShieldCheck, HeartPulse, CarFront, Cpu, PlaneTakeoff, Wheat, Building
 } from 'lucide-react';
 import { VEHICLE_DATABASE, POPULAR_PLATES, getVehicleForPlate, getProvidersForCategory, InsuranceProvider, METADATA_IMAGES } from '../data';
+import { getMarket } from '../countries';
 import { Policy, InsuranceCategory, VehicleLookupResult } from '../types';
 
 interface InsuranceWizardProps {
@@ -69,6 +70,12 @@ export default function InsuranceWizard({
   const [deviceSerial, setDeviceSerial] = useState('IMEI-8839210-99');
   const [deviceValue, setDeviceValue] = useState('1200');
   const [deviceCondition, setDeviceCondition] = useState<'New' | 'Mint' | 'Refurbished'>('New');
+
+  // 5. Business (SME) States
+  const [businessType, setBusinessType] = useState('Retail shop');
+  const [businessTurnover, setBusinessTurnover] = useState('25,000,000');
+  const [businessEmployees, setBusinessEmployees] = useState<'1-5' | '6-20' | '21-50' | '50+'>('1-5');
+  const [businessCover, setBusinessCover] = useState<'Fire & perils' | 'Burglary & theft' | 'All-risk + liability'>('All-risk + liability');
 
   // GLOBAL STAGE SELECT STATES
   const [selectedPlanId, setSelectedPlanId] = useState<'plan-basic' | 'plan-standard' | 'plan-pro'>('plan-standard');
@@ -390,6 +397,12 @@ export default function InsuranceWizard({
       
       if (deviceCondition === 'Refurbished') basePrice += 3;
       if (deviceCondition === 'New') basePrice = Math.max(5, basePrice - 1);
+    } else if (category === 'Business') {
+      insuredItem = businessType;
+      titlePrefix = 'Business Shield (SME)';
+      coverageLimit = 50000;
+      basePrice = businessEmployees === '50+' ? 60 : businessEmployees === '21-50' ? 42 : businessEmployees === '6-20' ? 30 : 22;
+      if (businessCover === 'All-risk + liability') basePrice += 8;
     } else {
       insuredItem = `${category} Specialized Asset`;
       titlePrefix = `${category} Protective Guarantee`;
@@ -1123,6 +1136,57 @@ export default function InsuranceWizard({
                           onChange={(e) => setDeviceSerial(e.target.value)}
                           className="w-full h-11 px-4 bg-slate-50/50 border border-gray-100 focus:border-primary rounded-xl outline-none text-xs sm:text-sm font-semibold text-slate-700"
                         />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {category === 'Business' && (
+                  <div className="space-y-6" id="form-business-questions">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label className="font-bold text-xs sm:text-sm text-primary block mb-2">Type of business</label>
+                        <select
+                          value={businessType}
+                          onChange={(e) => setBusinessType(e.target.value)}
+                          className="w-full h-11 px-4 bg-slate-50/50 border border-gray-100 focus:border-primary rounded-xl outline-none text-xs sm:text-sm font-semibold"
+                        >
+                          {['Retail shop', 'Wholesale / distribution', 'Restaurant / food', 'Salon / services', 'Pharmacy', 'Workshop / manufacturing', 'Agribusiness', 'Other'].map(t => <option key={t}>{t}</option>)}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="font-bold text-xs sm:text-sm text-primary block mb-2">Annual turnover ({getMarket().currency})</label>
+                        <input
+                          type="text"
+                          value={businessTurnover}
+                          onChange={(e) => setBusinessTurnover(e.target.value.replace(/[^0-9,]/g, ''))}
+                          className="w-full h-11 px-4 bg-slate-50/50 border border-gray-100 focus:border-primary rounded-xl outline-none text-xs sm:text-sm font-semibold"
+                          placeholder="e.g. 25,000,000"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="font-bold text-xs sm:text-sm text-primary block mb-2">Number of employees</label>
+                      <div className="grid grid-cols-4 gap-2">
+                        {(['1-5', '6-20', '21-50', '50+'] as const).map((c) => (
+                          <button key={c} type="button" onClick={() => setBusinessEmployees(c)}
+                            className={`py-2 px-3 rounded-xl border text-center text-xs font-bold transition-all ${businessEmployees === c ? 'bg-primary/5 border-primary text-primary' : 'bg-slate-50/50 border-gray-100 text-gray-500 hover:bg-slate-100/50'}`}>
+                            {c}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="font-bold text-xs sm:text-sm text-primary block mb-2">Cover you need</label>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        {(['Fire & perils', 'Burglary & theft', 'All-risk + liability'] as const).map((c) => (
+                          <button key={c} type="button" onClick={() => setBusinessCover(c)}
+                            className={`py-2.5 px-3 rounded-xl border text-center text-xs font-bold transition-all ${businessCover === c ? 'bg-primary/5 border-primary text-primary' : 'bg-slate-50/50 border-gray-100 text-gray-500 hover:bg-slate-100/50'}`}>
+                            {c}
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
