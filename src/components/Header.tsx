@@ -1,7 +1,8 @@
-import { LogIn, LogOut, ArrowLeft } from 'lucide-react';
+import { LogIn, ArrowLeft } from 'lucide-react';
 import { METADATA_IMAGES } from '../data';
 import { User as UserType } from '../types';
 import CountrySelector from './CountrySelector';
+import AccountMenu from './AccountMenu';
 
 interface HeaderProps {
   user: UserType | null;
@@ -116,23 +117,7 @@ export default function Header({
         <div className="flex items-center gap-3 sm:gap-4" id="header-right-controls">
           <CountrySelector />
           {user?.isLoggedIn ? (
-            <div className="flex items-center gap-2" id="header-user-badge">
-              <div className="hidden sm:flex flex-col text-right">
-                <span className="text-xs font-semibold text-gray-900">{user.name}</span>
-                <span className="text-[10px] text-gray-500">{user.email}</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
-                {user.name.charAt(0)}
-              </div>
-              <button
-                id="header-logout-btn"
-                onClick={onLogout}
-                title="Log Out"
-                className="p-1.5 text-gray-400 hover:text-error rounded-full hover:bg-gray-100 transition-all active:scale-95"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
+            <AccountMenu user={user} onLogout={onLogout} onNavigate={onNavigate} />
           ) : (
             <button
               id="header-login-btn"
