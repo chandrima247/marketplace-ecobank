@@ -19,6 +19,7 @@ interface InsuranceWizardProps {
   onCompleted: (newPolicy: Policy) => void;
   onBack: () => void;
   onStageChange?: (stage: string) => void;
+  onNavigate?: (view: 'explore' | 'policies' | 'claims') => void;
 }
 
 export default function InsuranceWizard({
@@ -26,7 +27,8 @@ export default function InsuranceWizard({
   initialPlate = '',
   onCompleted,
   onBack,
-  onStageChange
+  onStageChange,
+  onNavigate
 }: InsuranceWizardProps) {
   const [category, setCategory] = useState<InsuranceCategory>(initialCategory);
   
@@ -597,11 +599,19 @@ export default function InsuranceWizard({
 
   // Outer page navbar (Ecobank left, nxtpe right) used to wrap the embedded
   // intent / checkout / receipt screens.
+  const nav = (v: 'explore' | 'policies' | 'claims') => (onNavigate ? onNavigate(v) : onBack());
   const EmbedNavbar = () => (
     <div className="bg-white border-b border-[#eef0f1] sticky top-0 z-50 shrink-0">
-      <div className="max-w-[1180px] mx-auto px-5 sm:px-10 h-16 flex items-center justify-between">
-        <img src={METADATA_IMAGES.ecobankLogo} alt="Ecobank" className="h-9 w-auto object-contain" />
-        <img src={METADATA_IMAGES.nxtpeLogo} alt="nxtpe" className="h-6 w-auto object-contain" />
+      <div className="max-w-[1180px] mx-auto px-5 sm:px-10 h-16 flex items-center justify-between gap-4">
+        <button type="button" onClick={() => nav('explore')} aria-label="Ecobank Insurance — home" className="flex items-center transition-opacity hover:opacity-80 active:scale-95 shrink-0">
+          <img src={METADATA_IMAGES.ecobankLogo} alt="Ecobank" className="h-9 w-auto object-contain" />
+        </button>
+        <div className="hidden md:flex items-center gap-8 font-medium">
+          <button onClick={() => nav('explore')} className="text-sm text-[#5b6578] hover:text-[#023448] transition-colors">Explore</button>
+          <button onClick={() => nav('policies')} className="text-sm text-[#5b6578] hover:text-[#023448] transition-colors">My Policies</button>
+          <button onClick={() => nav('claims')} className="text-sm text-[#5b6578] hover:text-[#023448] transition-colors">Claims</button>
+        </div>
+        <img src={METADATA_IMAGES.nxtpeLogo} alt="nxtpe" className="h-6 w-auto object-contain shrink-0" />
       </div>
     </div>
   );

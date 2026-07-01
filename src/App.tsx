@@ -476,6 +476,7 @@ export default function App() {
             onCompleted={handlePolicyCreated}
             onBack={() => setActiveView('explore')}
             onStageChange={setWizardStage}
+            onNavigate={(view) => setActiveView(view)}
           />
         )}
 
