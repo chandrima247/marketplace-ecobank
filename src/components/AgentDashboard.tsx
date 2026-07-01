@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   ChevronDown,
   ChevronRight,
-  ClipboardCheck,
   Clock,
   CreditCard,
   Download,
@@ -22,11 +21,9 @@ import {
   RefreshCw,
   Search,
   ShieldCheck,
-  Sparkles,
   TrendingUp,
   Trophy,
   UploadCloud,
-  UserCheck,
   Users,
 } from 'lucide-react';
 import { User } from '../types';
@@ -132,14 +129,6 @@ const stageColors: Record<PipelineStage, string> = {
   Application: 'bg-amber-50 text-amber-700 border-amber-200',
   Bound: 'bg-emerald-50 text-emerald-700 border-emerald-200',
 };
-
-const assistedSteps = [
-  { title: 'Discover', body: 'AI recommends cover from account, card, loan, and wallet events.', icon: <Sparkles className="w-4 h-4" /> },
-  { title: 'Prefill KYC', body: 'Bank profile removes duplicate entry and flags missing consent.', icon: <UserCheck className="w-4 h-4" /> },
-  { title: 'Quote', body: 'Compare insurer prices and underwriting rules by market.', icon: <ClipboardCheck className="w-4 h-4" /> },
-  { title: 'Issue & collect', body: 'Generate policy documents, mandate debit, or start IPF.', icon: <CreditCard className="w-4 h-4" /> },
-  { title: 'Service', body: 'Renewals, FNOL, documents, and claim payout status stay visible.', icon: <Headset className="w-4 h-4" /> },
-];
 
 function parsePremium(str: string): number {
   return parseInt(str.replace(/[^0-9]/g, ''), 10) || 0;
@@ -392,24 +381,6 @@ export default function AgentDashboard({ user, onLogout, onStartCustomerQuote }:
           </Panel>
 
           <div className="space-y-5">
-            <Panel
-              title="Assisted Sales Workflow"
-              eyebrow="RFP: RM / agent-led journey"
-              action={<span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1">Human escalation ready</span>}
-            >
-              <div className="p-5">
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                  {assistedSteps.map((step, index) => (
-                    <div key={step.title} className="relative rounded-xl border border-slate-200 bg-slate-50 p-4 min-h-[150px]">
-                      <div className="w-8 h-8 rounded-lg bg-[#004260] text-white flex items-center justify-center">{step.icon}</div>
-                      <p className="mt-4 text-sm font-extrabold">{index + 1}. {step.title}</p>
-                      <p className="mt-2 text-xs leading-relaxed text-slate-600">{step.body}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Panel>
-
             {/* Pipeline Stages */}
             <Panel title="Sales Pipeline" eyebrow="Lead to bound tracking">
               <div className="p-5">
