@@ -20,7 +20,7 @@ export default function CountrySelector() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(o => !o)}
-        className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-full border border-gray-200 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+        className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-full border border-gray-200 hover:border-primary/40 hover:bg-primary/5 transition-colors shrink-0"
         id="country-selector-btn"
         title="Select your country"
       >

@@ -32,8 +32,20 @@
   .ipf-badge { font-size: 10px; color: #005b82; background: #e7eef5; padding: 3px 9px; border-radius: 999px; font-weight: 600; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
   .grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+  .qhead { display: flex; align-items: center; gap: 20px; flex: 1; min-width: 0; }
+  .qhead-title { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-width: 0; }
   @media (max-width: 880px) { .grid { grid-template-columns: 1fr; } aside { order: 2; } }
-  @media (max-width: 560px) { .wrap { padding: 0 18px; } .qrow { flex-wrap: wrap; } .qprice { text-align: left !important; } }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 18px; }
+    .qrow { flex-direction: column; align-items: stretch !important; gap: 18px !important; }
+    .qend { align-items: stretch; width: 100%; }
+    .qend > div:last-child { width: 100%; }
+    .per-year { text-align: left !important; }
+    .price-cta { width: 100%; justify-content: space-between; }
+    .cmp-chip { margin-top: 4px; }
+    #compareBar .wrap { padding: 12px 18px !important; gap: 10px; }
+    #compareBar .wrap span { font-size: 12px !important; }
+  }
 </style>
 </head>
 <body>
@@ -89,11 +101,13 @@
         <!-- ICEA Lion (index 0) -->
         <article class="qcard softcard" style="overflow: hidden;">
           <div class="qrow" style="display: flex; align-items: center; gap: 20px; padding: 22px 24px;">
-            <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f5f7f8; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #023448; flex-shrink: 0;">IL</div>
-            <div style="flex: 1; min-width: 160px;">
-              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><span style="font-size: 16px; font-weight: 700;">ICEA Lion Simba Motor</span><span style="font-size: 10px; color: #00a878; background: #d6f5e8; padding: 3px 9px; border-radius: 999px; font-weight: 600;">TOP RATED</span></div>
-              <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Zero dep · 24/7 roadside</div>
-              <label class="cmp-chip"><input type="checkbox" class="cmp"> Compare</label>
+            <div class="qhead">
+              <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f5f7f8; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #023448; flex-shrink: 0;">IL</div>
+              <div style="flex: 1; min-width: 0;">
+                <div class="qhead-title"><span style="font-size: 16px; font-weight: 700;">ICEA Lion Simba Motor</span><span style="font-size: 10px; color: #00a878; background: #d6f5e8; padding: 3px 9px; border-radius: 999px; font-weight: 600;">TOP RATED</span></div>
+                <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Zero dep · 24/7 roadside</div>
+                <label class="cmp-chip"><input type="checkbox" class="cmp"> Compare</label>
+              </div>
             </div>
             <div class="qend">
               <div>
@@ -107,11 +121,13 @@
         <!-- Britam (index 1, featured) -->
         <article class="qcard softcard" style="overflow: hidden; border-color: #BED600;">
           <div class="qrow" style="display: flex; align-items: center; gap: 20px; padding: 22px 24px;">
-            <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f3f8d6; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #5a6a00; flex-shrink: 0;">BR</div>
-            <div style="flex: 1; min-width: 160px;">
-              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><span style="font-size: 16px; font-weight: 700;">Britam Motor Insurance</span><span style="font-size: 10px; color: #5a6a00; background: #eaf3b8; padding: 3px 9px; border-radius: 999px; font-weight: 600;">BEST VALUE</span><span class="ipf-badge">IPF available</span></div>
-              <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Cashless garages · Free towing</div>
-              <label class="cmp-chip"><input type="checkbox" class="cmp" checked> Compare</label>
+            <div class="qhead">
+              <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f3f8d6; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #5a6a00; flex-shrink: 0;">BR</div>
+              <div style="flex: 1; min-width: 0;">
+                <div class="qhead-title"><span style="font-size: 16px; font-weight: 700;">Britam Motor Insurance</span><span style="font-size: 10px; color: #5a6a00; background: #eaf3b8; padding: 3px 9px; border-radius: 999px; font-weight: 600;">BEST VALUE</span><span class="ipf-badge">IPF available</span></div>
+                <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Cashless garages · Free towing</div>
+                <label class="cmp-chip"><input type="checkbox" class="cmp" checked> Compare</label>
+              </div>
             </div>
             <div class="qend">
               <div>
@@ -126,11 +142,13 @@
         <article class="qcard softcard" style="overflow: hidden; position: relative;">
           <div class="mono" style="position: absolute; top: 0; right: 24px; background: #023448; color: #fff; font-size: 10px; padding: 4px 12px; border-radius: 0 0 8px 8px; letter-spacing: 0.06em; z-index: 2;">ECOBANK PRIORITY</div>
           <div class="qrow" style="display: flex; align-items: center; gap: 20px; padding: 30px 24px 22px;">
-            <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f5f7f8; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #023448; flex-shrink: 0;">OM</div>
-            <div style="flex: 1; min-width: 160px;">
-              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><span style="font-size: 16px; font-weight: 700;">Old Mutual Car Insurance</span><span style="font-size: 10px; color: #fff; background: #023448; padding: 3px 9px; border-radius: 999px; font-weight: 600;">RECOMMENDED</span></div>
-              <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Engine protect · Priority claims</div>
-              <label class="cmp-chip"><input type="checkbox" class="cmp"> Compare</label>
+            <div class="qhead">
+              <div class="mono" style="width: 56px; height: 56px; border-radius: 14px; background: #f5f7f8; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #023448; flex-shrink: 0;">OM</div>
+              <div style="flex: 1; min-width: 0;">
+                <div class="qhead-title"><span style="font-size: 16px; font-weight: 700;">Old Mutual Car Insurance</span><span style="font-size: 10px; color: #fff; background: #023448; padding: 3px 9px; border-radius: 999px; font-weight: 600;">RECOMMENDED</span></div>
+                <div class="mono" style="font-size: 12px; color: #9aa6ad; margin-top: 6px;">Comprehensive · Engine protect · Priority claims</div>
+                <label class="cmp-chip"><input type="checkbox" class="cmp"> Compare</label>
+              </div>
             </div>
             <div class="qend">
               <div>

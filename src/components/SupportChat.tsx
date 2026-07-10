@@ -36,6 +36,20 @@ export default function SupportChat() {
   const [typing, setTyping] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
 
+  // Track viewport size directly (rather than relying solely on CSS vh, which can
+  // be slow to re-resolve on an already-mounted fixed element across viewport
+  // changes like device rotation) so the panel always fits the visible screen.
+  const [viewport, setViewport] = useState(() => ({ w: window.innerWidth, h: window.innerHeight }));
+  useEffect(() => {
+    const onResize = () => setViewport({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('orientationchange', onResize);
+    };
+  }, []);
+
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [msgs, typing, open]);
 
   const send = (text: string) => {
@@ -59,8 +73,8 @@ export default function SupportChat() {
           style={{
             bottom: 'calc(env(safe-area-inset-bottom, 0px) + 92px)',
             right: 24,
-            width: 'min(370px, calc(100vw - 32px))',
-            height: 'min(540px, calc(100vh - 140px))',
+            width: Math.min(370, viewport.w - 32),
+            height: Math.min(540, viewport.h - 140),
             borderRadius: 20,
             border: '1px solid #e2e8f0',
             overflow: 'hidden',

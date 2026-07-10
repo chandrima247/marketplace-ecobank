@@ -88,8 +88,9 @@ export default function LoginModal({ isOpen, onClose, onSuccess, initialRole = '
   };
 
   return (
-    <div className="fixed inset-0 z-110 flex items-center justify-center bg-black/40 backdrop-blur-xs animate-in fade-in duration-300">
-      <div className="bg-white w-full max-w-md rounded-[2rem] p-8 sm:p-10 flex flex-col shadow-2xl mx-4 relative">
+    <div className="fixed inset-0 z-110 overflow-y-auto bg-black/40 backdrop-blur-xs animate-in fade-in duration-300">
+      <div className="min-h-full flex items-center justify-center py-8 px-4">
+      <div className="bg-white w-full max-w-md rounded-[2rem] p-6 sm:p-10 flex flex-col shadow-2xl relative">
         {/* Close Button */}
         <button 
           onClick={onClose}
@@ -212,9 +213,10 @@ export default function LoginModal({ isOpen, onClose, onSuccess, initialRole = '
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-8">
-          By signing up, you agree to our 
+          By signing up, you agree to our
           <a href="#terms" className="text-primary underline font-semibold ml-1">Terms of Service</a>
         </p>
+      </div>
       </div>
     </div>
   );

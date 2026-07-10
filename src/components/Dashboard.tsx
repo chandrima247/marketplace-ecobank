@@ -516,13 +516,15 @@ function PayModal({ policy, onClose, onPaid }: { policy: Policy; onClose: () => 
 
 function Overlay({ title, children, onClose }: { title: string; children: React.ReactNode; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" style={{ background: 'rgba(2,36,51,.45)' }} onClick={onClose}>
-      <div className="bg-white rounded-2xl w-full max-w-md p-6 animate-in zoom-in-95" onClick={e => e.stopPropagation()}>
-        <div className="flex items-center justify-between mb-5">
-          <h3 className="text-lg font-extrabold text-[#16242b]">{title}</h3>
-          <button onClick={onClose} className="text-[#9aa6ad] hover:text-[#16242b]"><X className="w-5 h-5" /></button>
+    <div className="fixed inset-0 z-[70] overflow-y-auto" style={{ background: 'rgba(2,36,51,.45)' }} onClick={onClose}>
+      <div className="min-h-full flex items-center justify-center py-8 px-4">
+        <div className="bg-white rounded-2xl w-full max-w-md p-6 animate-in zoom-in-95" onClick={e => e.stopPropagation()}>
+          <div className="flex items-center justify-between mb-5">
+            <h3 className="text-lg font-extrabold text-[#16242b]">{title}</h3>
+            <button onClick={onClose} className="text-[#9aa6ad] hover:text-[#16242b]"><X className="w-5 h-5" /></button>
+          </div>
+          {children}
         </div>
-        {children}
       </div>
     </div>
   );

@@ -83,8 +83,9 @@ export default function VoiceAssistant({ isOpen, onClose, onActionTriggered }: V
   };
 
   return (
-    <div className="fixed inset-0 z-100 bg-gray-950/60 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-white w-full max-w-md rounded-[2.5rem] p-10 flex flex-col items-center shadow-2xl relative animate-in slide-in-from-bottom-12 duration-300">
+    <div className="fixed inset-0 z-100 overflow-y-auto bg-gray-950/60 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="min-h-full flex items-center justify-center py-8 px-4">
+      <div className="bg-white w-full max-w-md rounded-[2.5rem] p-6 sm:p-10 flex flex-col items-center shadow-2xl relative animate-in slide-in-from-bottom-12 duration-300">
         
         {/* Close Button */}
         <button
@@ -163,6 +164,7 @@ export default function VoiceAssistant({ isOpen, onClose, onActionTriggered }: V
           Cancel
         </button>
 
+      </div>
       </div>
     </div>
   );

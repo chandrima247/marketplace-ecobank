@@ -18,7 +18,15 @@
   .yes { color: #00a878; }
   .no { color: #c9ccd1; }
   .matrix > div { display: grid; }
-  @media (max-width: 560px) { .wrap { padding: 0 16px; } h1 { font-size: 23px !important; } }
+  .matrix-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 20px; }
+  .swipe-hint { display: none; }
+  @media (max-width: 700px) {
+    .wrap { padding: 0 16px; }
+    h1 { font-size: 23px !important; }
+    .swipe-hint { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #9aa6ad; margin-bottom: 10px; }
+    .matrix { min-width: 560px; overflow: visible !important; }
+    .lbl-cell { position: sticky; left: 0; z-index: 1; box-shadow: 1px 0 0 #eef0f1; }
+  }
 </style>
 </head>
 <body>
@@ -31,7 +39,10 @@
       <h1 style="font-size: 30px; font-weight: 700; letter-spacing: -0.02em;">Compare plans side by side</h1>
       <p style="font-size: 15px; color: #6b7780; margin-top: 8px;">Your Toyota RAV4 2022 · the cover features that matter, lined up.</p>
     </div>
-    <div class="softcard matrix" id="matrix" style="overflow: hidden;"></div>
+    <div class="swipe-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6-6 6-6"/><path d="M15 6l6 6-6 6"/></svg> Swipe to see all plans</div>
+    <div class="matrix-scroll">
+      <div class="softcard matrix" id="matrix" style="overflow: hidden;"></div>
+    </div>
   </div>
 </div>
 
@@ -78,7 +89,7 @@
 
     // header row
     html += '<div style="grid-template-columns:' + gridCols + ';">';
-    html += '<div style="padding: 24px; border-bottom: 1px solid #eef0f1; display: flex; align-items: flex-end;"><span class="mono" style="font-size: 11px; color: #9aa6ad; letter-spacing: 0.08em;">PLAN</span></div>';
+    html += '<div class="lbl-cell" style="padding: 24px; background: #fff; border-bottom: 1px solid #eef0f1; display: flex; align-items: flex-end;"><span class="mono" style="font-size: 11px; color: #9aa6ad; letter-spacing: 0.08em;">PLAN</span></div>';
     cols.forEach(function (p, ci) {
       html += '<div style="padding: 22px 18px; border-left: 1px solid #eef0f1; border-bottom: 1px solid #eef0f1; text-align: center; position: relative;">';
       if (selected.length > 2) {
@@ -94,7 +105,7 @@
     // feature rows
     features.forEach(function (f) {
       html += '<div style="grid-template-columns:' + gridCols + ';">';
-      html += '<div style="' + labelCell() + '">' + f.label + '</div>';
+      html += '<div class="lbl-cell" style="' + labelCell() + '">' + f.label + '</div>';
       cols.forEach(function (p) {
         var v = '';
         if (f.type === 'price') v = '<span style="font-size: 20px; font-weight: 800; color: #023448;">' + cur() + ' ' + p.price + '</span>';
@@ -109,7 +120,7 @@
 
     // buy row
     html += '<div style="grid-template-columns:' + gridCols + ';">';
-    html += '<div style="padding: 20px 24px;"></div>';
+    html += '<div class="lbl-cell" style="padding: 20px 24px; background: #fff;"></div>';
     cols.forEach(function (p) {
       html += '<div style="padding: 18px; border-left: 1px solid #eef0f1; display: flex; align-items: center; justify-content: center;"><button data-buy="' + p.name + '" style="border: none; background: #BED600; color: #023448; padding: 12px 0; width: 100%; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer;">Buy plan →</button></div>';
     });

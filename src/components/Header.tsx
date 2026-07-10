@@ -45,13 +45,13 @@ export default function Header({
             type="button"
             onClick={() => onNavigate('explore')}
             aria-label="Ecobank Insurance — home"
-            className="flex items-center rounded-lg transition-opacity hover:opacity-80 active:scale-95"
+            className="flex items-center rounded-lg transition-opacity hover:opacity-80 active:scale-95 shrink-0"
             id="homepage-logo-container"
           >
             <img
               src={METADATA_IMAGES.ecobankLogo}
               alt="Ecobank Logo"
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain shrink-0"
               id="header-ecobank-logo"
             />
           </button>
@@ -120,7 +120,7 @@ export default function Header({
         ) : null}
 
         {/* Right segment */}
-        <div className="flex items-center gap-3 sm:gap-4" id="header-right-controls">
+        <div className="flex items-center gap-1.5 sm:gap-3 md:gap-4 shrink-0" id="header-right-controls">
           <CountrySelector />
           {user?.isLoggedIn ? (
             <AccountMenu user={user} onLogout={onLogout} onNavigate={onNavigate} />
@@ -128,19 +128,19 @@ export default function Header({
             <button
               id="header-login-btn"
               onClick={onLoginClick}
-              className="flex items-center gap-2 px-5 py-2 hover:bg-primary/5 text-primary border border-primary md:bg-primary md:text-white rounded-full font-semibold text-xs sm:text-sm hover:md:bg-primary-container transition-all active:scale-95 shadow-xs"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 hover:bg-primary/5 text-primary border border-primary md:bg-primary md:text-white rounded-full font-semibold text-xs sm:text-sm hover:md:bg-primary-container transition-all active:scale-95 shadow-xs shrink-0"
             >
-              <LogIn className="w-4 h-4" />
+              <LogIn className="w-4 h-4 shrink-0" />
               <span>Login</span>
             </button>
           )}
 
-          {/* Partner & Help Accessories */}
-          <div className="flex items-center gap-2" id="header-partner-badge">
+          {/* Partner & Help Accessories — hidden on the smallest screens to avoid crowding */}
+          <div className="hidden sm:flex items-center gap-2 shrink-0" id="header-partner-badge">
             <img
               src={METADATA_IMAGES.nxtpeLogo}
               alt="nxtpe Logo"
-              className="h-8 md:h-9 object-contain"
+              className="h-7 md:h-9 object-contain shrink-0"
               id="header-nexus-logo"
             />
           </div>
